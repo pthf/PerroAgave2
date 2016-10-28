@@ -1,49 +1,16 @@
 <section class="photos-ig-grid" >
+
+  <div class="container-title">
+    <span>#PERROAGAVE<span>
+  </div>
+
   <div class="photos-grid" ng-controller="igCtrl">
     <div class="photo-container" ng-repeat="(key,items) in data.data"  >
-      <img src="{{items.images.standard_resolution.url}}" alt="" />
-      <span class="title">{{data.title}}</span>
+      <a href="{{items.link}}" target="_blank">
+        <img src="{{items.images.standard_resolution.url}}" alt="" />
+        <span class="title"> {{items.caption.text}} </span>
+      </a>
     </div>
+  </div>
 
 </section>
-
-
-
-</div>
-
-<style media="screen">
-.photos-grid {
-  width: 80%;
-  margin: 0 auto;
-  height: auto;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: flex-start;
-  flex-wrap: wrap;
-  text-align: center;
-}
-
-.photo-container {
-  width: 30%;
-  height: auto;
-  margin: 25px 0;
-}
-
-.photo-container img {
-  width: 100%;
-  height: auto;
-}
-
-@media (max-width: 640px) {
-  .photo-container{
-    width: 48%;
-  }
-}
-
-@media (max-width: 320px) {
-  .photo-container{
-    width: 90%;
-  }
-}
-</style>
