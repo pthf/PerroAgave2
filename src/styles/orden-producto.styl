@@ -1,0 +1,69 @@
+.compra-wrapper.show-form
+  display block
+
+.compra-wrapper.hide-form
+  display none
+
+.status-compra
+  width: 70%
+  margin: 0 auto
+  padding: 40px 0
+  display: flex
+  justify-content: center
+
+.title-status
+  padding 5px 15px
+  font-size 12px
+  cursor pointer
+
+.title-status:nth-child(-n+3)
+  margin-right 5px
+  border-right 1px solid gray
+
+.title-status.selected-status
+  font-family "Gotham-Bold"
+
+.title-status.unselected-status
+  font-family "Gotham-Medium"
+  color gray
+
+input.profile-input.input-order
+  border 1px solid gray
+
+.forma-de-envio-wrapper
+  width: 50%
+  display flex
+  flex-direction row
+  justify-content space-around
+  align-items flex-start
+  margin 30px auto
+
+form.order-form.ng-pristine.ng-valid
+  text-align center
+  font-size 14px
+  margin 50px 0
+
+span.info-client-data
+  display: inline-block;
+  margin: 5px 0;
+  font-family: "Gotham-Bold"
+
+@media (max-width 768px)
+  .status-compra
+    width 90%
+
+  .title-status
+    font-size 10px
+
+
+@media (max-width 400px)
+  .title-status
+    font-size 8px
+
+  .user-data.user-data-order
+    width 90%
+
+
+@media (max-width 350px)
+  .user-data.user-data-order
+    width 96%

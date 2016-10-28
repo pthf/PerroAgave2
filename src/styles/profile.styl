@@ -1,0 +1,377 @@
+.profile-wrapper {
+  width: 100%;
+  height: auto;
+}
+
+.profile-name-wrapper {
+  width: 50%;
+  margin: 30px auto;
+  padding: 50px 0;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.profile-name {
+  display: inline-block;
+}
+
+.logout {
+  display: inline-block;
+}
+
+.profile-name b {
+  font-size: 32px;
+}
+
+span.logout-button {
+  font-size: 26px;
+  cursor: pointer;
+}
+
+.user-data {
+  width: 30%;
+  height: auto;
+  margin: 0 auto;
+}
+
+.user-data-row {
+  text-align: center;
+  width: 100%;
+  margin: 0 auto;
+  padding: 7px 0;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  font-family: Gotham-Book;
+}
+
+.left-side-data, .right-side-data {
+  display: inline-block;
+}
+
+.right-side-data{
+  font-weight: bolder;
+}
+
+.profile-name b {
+  text-transform: uppercase;
+}
+
+.right-side-data input {
+  text-align: left;
+  border: none;
+  color: gray;
+}
+
+.edit-button-wrapper {
+  text-align: center;
+  width: 100%;
+  height: auto;
+  margin: 0 auto;
+  padding: 50px 0;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.edit-button {
+  display: inline-block;
+  cursor: pointer;
+  width: auto;
+  height: auto;
+  border: 2px solid #000;
+  font-family: Gotham-Bold;
+  font-size: 1.2em;
+  padding: 5px 15px;
+  margin: 0 5px;
+  transition: .3s;
+}
+
+span.edit-button:hover {
+  border: 2px solid gray;
+  color: gray;
+}
+
+input[type="submit"]:hover {
+  color: black;
+  border: 3px solid black;
+}
+
+input[type="submit"]:hover {
+  color: black;
+  border: 3px solid black;
+}
+
+input.modal-pass:focus,input.modal-pass:hover {
+  border: 3px solid black;
+  outline: none;
+}
+
+.edit-button.show-button{
+  display: inline;
+}
+
+.edit-button.hide-button{
+  display: none;
+}
+
+.edit-button.edit-data:after{
+  content: 'EDITAR MIS DATOS';
+}
+
+.edit-button.save-changes:after{
+  content: 'GUARDAR';
+}
+
+
+.left-side-data {
+  font-size: 18px;
+  font-weight: 400;
+}
+
+.right-side-data input {
+  font-size: 14px;
+}
+
+span.logout-button {
+  font-weight: 300;
+}
+
+.subtitle {
+  width: 100%;
+  text-align: center;
+  font-size: 32px;
+  font-weight: bold;
+  padding-top: 50px;
+  padding-bottom: 40px;
+}
+
+.profile-modal {
+  width: 100%;
+  height: 100%;
+  z-index: 9;
+  position: fixed;
+  top: 0;
+  background-color: rgba(0,0,0,.7)
+  display: none; //flex
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  transition: .3s;
+}
+
+.close-modal-bg {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+}
+
+.profile-modal-wrapper {
+  position: relative;
+  width: 60%;
+  margin: 0 auto;
+  height: auto;
+  background: white;
+  border: 3px solid gray;
+  z-index: 8;
+}
+
+span.close-icon {
+  position: absolute;
+  right: 3%;
+  top: 3%;
+  font-size: 20px;
+  font-family: sans-serif;
+  color: gray;
+  cursor: pointer;
+  transition: .3s;
+}
+
+span.close-icon:hover {
+  color: black;
+}
+
+.profile-modal-title {
+  width: 80%;
+  margin: 0 auto;
+  text-align: center;
+  font-size: 24px;
+  font-family: Gotham-Book;
+  font-weight: bolder;
+  padding-top: 55px;
+}
+
+.input-modal-wrapper {
+  text-align: center;
+  padding-top:40px;
+  padding-bottom: 80px;
+  width: 80%;
+  margin: 0 auto;
+}
+
+.input-modal-wrapper input[type="submit"] {
+  padding: 5px 25px;
+  border: 3px solid #b7b7b7;
+  color: #b7b7b7;
+  cursor: pointer;
+  font-size: 18px;
+  transition: .3s;
+  background: white;
+  float: right;
+  margin-top:10px;
+}
+
+.input-modal-wrapper input[type="submit"]:focus,.input-modal-wrapper input[type="submit"]:hover{
+  border:3px solid black;
+  color: black;
+  outline: none;
+}
+
+input.modal-pass {
+  padding: 5px;
+  border: 3px solid #b7b7b7;
+  color: #000;
+  font-size: 18px;
+  margin: 0 5px;
+  transition: .3s;
+  background: #fff;
+  width: 100%;
+  margin: 5px auto;
+}
+
+input.modal-pass.check-pass{
+  display: none;
+}
+
+span.wrong-pass {
+  display: block;
+  margin: 10px 0;
+  color: red;
+  display: none;
+  float: left;
+  transition: .3s;
+}
+
+span.change-mail-pass{
+  display: block;
+  margin: 0 auto;
+  color: green;
+  display: none;
+}
+
+span.change-mail-pass.change-mail-email,span.change-mail-pass.change-passwd {
+  margin: 10px 0;
+}
+
+@media(max-width: 1280px){
+  .profile-name-wrapper{
+    width: 60%;
+  }
+
+  .user-data{
+    width: 40%;
+  }
+}
+
+@media(max-width: 1024px){
+  .profile-name-wrapper {
+    width: 80%;
+  }
+
+  .user-data {
+    width: 60%;
+  }
+}
+
+@media(max-width: 768px){
+  .profile-name b {
+    font-size: 28px;
+  }
+
+  span.logout-button {
+    font-size: 24px;
+  }
+
+  .user-data {
+    width: 65%;
+  }
+
+  .left-side-data {
+    font-size: 12px;
+  }
+
+  .right-side-data input {
+    font-size: 12px;
+  }
+
+  .edit-button-wrapper{
+    flex-direction: column;
+  }
+
+  .edit-button{
+    margin: 10px 5px;
+    width: 33%;
+  }
+
+  .profile-modal-wrapper{
+    width: 70%;
+  }
+
+}
+
+@media(max-width: 640px){
+  .profile-name b {
+    font-size: 24px;
+  }
+
+  span.logout-button {
+    font-size: 20px;
+  }
+
+  .user-data {
+    width: 70%;
+  }
+
+  .profile-name-wrapper{
+    width: 100%
+  }
+
+  .edit-button{
+    width: 40%;
+  }
+
+  .profile-modal-wrapper{
+    width: 80%;
+  }
+
+}
+
+@media(max-width: 480px){
+  .profile-name-wrapper{
+    flex-direction: column;
+  }
+
+  .logout {
+    margin-top: 25px;
+  }
+
+  .edit-button{
+    font-size: 14px;
+    width: 50%;
+  }
+
+  .profile-modal-wrapper{
+    width: 85%;
+  }
+
+  .left-side-data {
+    font-size: 11px;
+  }
+
+  .right-side-data input {
+    font-size: 11px;
+  }
+}

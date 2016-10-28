@@ -1,0 +1,56 @@
+input[type=text],
+input[type=email],
+input[type=tel],
+input[type=url],
+input[type=search]
+  appearance: none
+  -moz-appearance none
+  -webkit-appearance none
+  border-radius 0
+  -moz-border-radius 0
+  -webkit-border-radius 0
+
+span.envio-title
+  font-family "Gotham-Book"
+
+.title-payment
+  text-align center
+  font-family "Gotham-Book"
+  font-size 16px
+  margin-bottom 40px
+
+.pay-option.paypal-option, .row-payment-info
+  text-align center
+  width 55%
+  margin 9px auto
+  display flex
+  flex-direction row
+  justify-content space-between
+  font-size 12px
+  font-family "Gotham-Book"
+
+.pay-option.credit-card-option
+  width 55%
+  margin 0 auto
+  display flex
+  flex-direction row
+  justify-content space-between
+
+.row-payment-info.payment-others
+  justify-content flex-start
+
+.paypal-input img
+  width 50px
+  height auto
+
+.banks-options img
+  width: 30px
+  height: auto
+
+@media (max-width 768px)
+  .pay-option.credit-card-option, .row-payment-info,.pay-option.paypal-option
+    width 85%
+    font-size 10px
+
+  .pay-option.paypal-option, .row-payment-info
+    margin: 15px auto

@@ -1,0 +1,84 @@
+.header
+  width: 100%;
+  background: #000000;
+  position: fixed;
+  top: 0;
+  left: 0;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  align-items: center;
+  align-content: center;
+  z-index: 4;
+  font-size: 1em;
+
+.cont-image
+  width: 20px;
+  height: 20px;
+  margin: 15px 10px 15px 10px;
+
+.cont-image img
+  width: 100%;
+  height: auto;
+
+.menu-nav-li
+  position: relative;
+
+.submenu
+  background: #FFF;
+  position: absolute;
+  top: 0;
+  z-index: 1;
+
+.menu-nav li:nth-child(1), .menu-nav li:nth-child(2), .menu-nav li:nth-child(3)
+  cursor: pointer;
+
+.submenu li:not(.menu-close)
+  display: block;
+  padding-left: 10px;
+  padding-right: 50px;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  font-family: 'Gotham-Book';
+  text-transform: uppercase;
+  font-size: .9em;
+
+.submenu li:not(.selected):hover
+  font-weight: bold;
+  text-decoration: underline;
+  cursor: pointer;
+
+.submenu li.selected
+  font-weight: bold;
+  text-decoration: underline;
+
+
+@media (max-width: 640px)
+
+  .header
+    font-size: 1.2em;
+
+  .submenu
+    top: 0;
+    left: 0;
+    width: 100%;
+
+  .menu-nav-li
+    position: static;
+
+  .menu-close
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    align-items: center;
+    align-content: center;
+
+  .header
+    justify-content: space-between;
+
+@media (max-width: 480px)
+  .header
+    font-size: 1.4em;

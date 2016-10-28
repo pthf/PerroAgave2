@@ -1,0 +1,147 @@
+.compra-wrapper
+  width 80%
+  height auto
+  margin 0 auto
+
+h2.compra-title
+  margin-top 100px
+  text-align center
+  font-family: "Gotham-Bold"
+  font-size: 28px
+
+.top-title-order
+  font-family "Gotham-Medium"
+  font-weight 400
+  font-size: 18px
+
+.confirm-order-wrapper
+  display: flex
+  flex-direction: column
+
+.confirm-order-wrapper
+  width 60%
+  margin 50px auto
+
+.confirm-order-top
+  display flex
+  flex-direction row
+  justify-content space-between
+  align-items center
+
+li.order-product-item
+  display flex
+  justify-content space-between
+  padding-top 25px
+  padding-bottom 10px
+  font-weight 800
+
+span.product-size
+  font-weight 400
+
+.product-order
+  display flex
+  flex-direction row
+  align-items flex-start
+
+.product-order-img img
+  width 30px
+  height 65px
+
+.product-info
+  margin-left 10%
+
+span.product-info-title
+  font-family "Gotham-Bold"
+
+span.product-size
+  font-family "Gotham-light"
+
+span.info-row
+  font-size 14px
+  font-family "Gotham-medium"
+
+
+.total-price-table
+  width 80%
+  margin 0 auto
+  height auto
+
+.row-price
+  display flex
+  flex-direction row
+  justify-content space-between
+  width 60%
+  margin 0 auto
+
+
+.button-next-wrapper
+  text-align center
+  margin 0 auto
+  height auto
+  width 100%
+
+span.button-next
+  display inline-block
+  width auto
+  height auto
+  border 2px solid #000
+  font-family Gotham-Bold
+  font-size 1.2em
+  padding 5px 50px
+  margin 30px auto
+  cursor pointer
+
+span.button-next:hover
+  border 2px solid grey
+  color grey
+
+.quantity-order
+  width: 8%
+  font-size: 12px
+
+@media (max-width 1024px)
+  .top-title-order
+    font-size: 16px
+
+@media (max-width 768px)
+  .confirm-order-wrapper
+    width 70%
+
+  span.button-next
+    padding: 10px 50px
+
+  .top-title-order
+    font-size: 12px
+
+  .quantity-order
+    font-size: 10px
+
+  h2.compra-title
+    font-size: 24px
+
+@media (max-width 640px)
+  .compra-wrapper,.total-price-table,.forma-de-envio-wrapper
+    width 90%
+
+  .confirm-order-wrapper
+    width 80%
+
+  .row-price
+    width: 70%
+
+  h2.compra-title
+    margin-top 80px
+
+@media (max-width 480px)
+  .compra-wrapper,.total-price-table,.forma-de-envio-wrapper
+    width 95%
+
+  .confirm-order-wrapper
+    width 90%
+
+  .row-price
+    width: 80%
+
+  h2.compra-title
+    margin-top 70px
+    font-size 20px

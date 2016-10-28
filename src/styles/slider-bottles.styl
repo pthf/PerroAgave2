@@ -1,0 +1,270 @@
+$time-slider = .4s
+
+//Slide standard
+.swiper-slide
+  text-align center
+  transition .3s
+  cursor pointer
+
+//Slider Activo//
+.swiper-slide.swiper-slide-active
+  transition .3s
+.swiper-slide.swiper-slide-active img
+  height 22vw
+  transition $time-slider
+  background-image: url(./../src/images/brillo.png);
+  transform: translateY(90%)
+
+
+//Slide Siguiente y Slide Anterior
+.swiper-slide.swiper-slide-next img,.swiper-slide.swiper-slide-prev img,.swiper-slide img
+  height 18vw
+  transition $time-slider
+  transform: translateY(110%)
+
+.swiper-slide.swiper-slide-next img, .swiper-slide.swiper-slide-prev img,.swiper-slide img
+  -webkit-filter: grayscale(100%)
+  filter: grayscale(100%)
+
+.swiper-slide.swiper-slide-active img
+  -webkit-filter: grayscale(0%)
+  filter: grayscale(0%)
+//wrapper general
+.slider-bottles-wrapper
+  position relative
+  width 100%
+  height auto
+  margin: 0 auto
+
+.swiper-container
+  height 50vw
+  width 75%
+  margin: 0 auto
+
+span.name-bottle
+  position absolute
+  color #fff
+  bottom 20%
+  left 0
+  width 100%
+  text-align center
+  transition .3s
+
+.swiper-slide.swiper-slide-active span.name-bottle
+  bottom 10%
+
+.swiper-slide.swiper-slide-active span.name-bottle span.underline-white
+  border-bottom 2px solid #fff
+  font-weight: bold
+
+//titulo slider
+.slider-title
+  text-align center
+  position absolute
+  width 100%
+  left 0
+  top 5%
+
+span.name-bottle
+  font-size 16px
+
+//Flechas
+.swiper-button-next
+  background-image: url(./../src/images/hiden-service-2.png);
+.swiper-button-prev
+  background-image: url(./../src/images/hiden-service-2.png);
+  transform: scaleX(-1);
+
+//Modal
+.swiper-modal
+  position: absolute
+  width: 100%
+  height: 100%
+  left: -100%
+  -webkit-transform: translateX(-100%)
+  transform: translateX(-100%)
+  -webkit-transform: none
+  transform: none
+  will-change: transform
+  transition: .5s
+  z-index: 3
+  background-color: #fff;
+  display: flex
+  flex-direction: row
+  justify-content: center
+  align-items: center
+
+.swiper-modal.modal-open
+  left 0
+  -webkit-transform: translateX(0)
+  transform: translateX(0)
+
+.swiper-modal.modal-close
+  height: 0
+  left -100%
+  -webkit-transform: translateX(-100%)
+  transform: translateX(-100%)
+
+.swiper-modal-desc-wrapper
+  width 30%
+  margin 0 55%
+
+.swiper-modal-img
+  position: relative;
+  width: 50%;
+  height: 100%;
+
+.swiper-modal-img img
+  width auto
+  max-width 100%
+  height 100%
+
+.swiper-modal-desc
+  width: 50%;
+  height: auto;
+
+.arrow-close
+  cursor: pointer
+  position: absolute
+  top: 50%
+  left: 5%
+
+.arrow-close img
+  width: 25px
+  height: 25px
+
+.swiper-modal-desc-wrapper
+  font-size: 1.2em
+  font-family: 'Gotham-Book'
+  color: #b3b3b5
+  width: 40%
+  margin: 0
+  margin: 0 auto
+
+
+.swiper-modal-desc-wrapper p
+  margin-top: 1em
+  text-align: justify
+
+span.titleBottle
+  display: block
+  font-family: 'Gotham-Bold'
+  font-size: 4.5em
+  color: #000
+  line-height: .8em
+  margin-bottom: .5em
+
+span.subtitleBottle
+  display: block
+  font-size: 1.5em
+  color: #000
+  margin-bottom: 1.5em
+
+@media(max-width: 1680px)
+  .swiper-modal-desc-wrapper
+    width: 40%
+    font-size: 1em
+
+@media(max-width: 1366px)
+  .swiper-modal-desc-wrapper
+    width: 50%
+    font-size: .9em
+
+  span.titleBottle
+    font-size: 3em
+
+@media(max-width:1024px)
+  .swiper-container
+    width 80%
+
+  .swiper-modal-desc-wrapper
+    width 60%
+    font-size 1em
+
+@media(max-width:970px)
+  .slider-bottles-wrapper
+    width: 70%
+    margin-top: 50px
+
+  .swiper-modal
+    left -350%
+
+  .swiper-modal-img img
+    max-width: none;
+    width: 100%
+
+  .swiper-modal-desc-wrapper
+    width: 85%;
+    margin: 0 auto;
+
+  .swiper-modal-desc-wrapper
+    width: 50%;
+    font-size: .9em;
+
+  .swiper-modal-img
+    background: red
+    width: 100%
+    height: auto
+
+  .swiper-modal
+    flex-direction column
+    height auto
+    position: relative;
+
+  .swiper-modal-desc
+    width: 100%;
+    height: auto;
+    margin: 0 auto;
+
+  .swiper-modal-desc-wrapper
+    margin: 0 auto
+    width: 90%
+    padding: 45px 0
+
+  .arrow-close
+    top: 5%
+    left: initial
+    right: 5%
+
+@media(max-width:768px)
+  .swiper-container
+    height 90vw
+    width 85%
+  .swiper-slide img, .swiper-slide.swiper-slide-next img, .swiper-slide.swiper-slide-prev img,.swiper-slide.swiper-slide-active img
+    height 35vw
+
+  .swiper-slide.swiper-slide-active span.name-bottle
+    bottom: 15%
+
+  .swiper-slide.swiper-slide-prev img, .swiper-slide.swiper-slide-next img
+    transform translateY(75%)
+
+  .swiper-slide.swiper-slide-active img
+    transform translateY(100%)
+
+  span.name-bottle
+    font-size 18px
+
+@media(max-width:640px)
+  .swiper-container
+    height 100vw
+  .swiper-slide img, .swiper-slide.swiper-slide-next img, .swiper-slide.swiper-slide-prev img,.swiper-slide.swiper-slide-active img
+    height 45vw
+    transform translateY(65%)
+
+  .swiper-slide.swiper-slide-active span.name-bottle
+    bottom: 20%;
+
+  .slider-bottles-wrapper
+    width: 100%
+
+
+@media(max-width:480px)
+  .swiper-container
+    height 100vw
+  .swiper-slide img, .swiper-slide.swiper-slide-next img, .swiper-slide.swiper-slide-prev img,.swiper-slide.swiper-slide-active img
+    height 55vw
+    transform translateY(45%)
+
+  .swiper-slide.swiper-slide-active span.name-bottle
+    bottom: 10%;

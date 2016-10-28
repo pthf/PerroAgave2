@@ -1,0 +1,453 @@
+.left-service
+  margin-left: -100%;
+  transition: .5s;
+
+.right-service
+  margin-left: 100%;
+  transition: .5s;
+
+.container-services
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+  font-size: 1em;
+  position: relative;
+  overflow: hidden;
+
+.container-services div.service-item
+  width: 50%;
+  height: 35.2vw;
+  position: relative;
+
+.container-services div.service-item img.back
+  width: 100%;
+  height: 35.2vw;
+
+.service-item .title-service
+  position: absolute;
+  z-index: 2;
+  width: 100%;
+  height: 100%;
+  top:0;
+  left: 0;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  align-content: center;
+  background-color: rgba(0, 0, 0, 0);
+  transition: 1s
+
+.service-item .title-service:hover
+  background-color: rgba(0, 0, 0, .7);
+  cursor: pointer;
+
+.service-item .title-service span
+  display: block;
+  font-family: 'Gotham-Book';
+  color: #FFF;
+  text-transform: uppercase;
+  font-size: 3.5em;
+  margin: 10%;
+  text-align: center;
+  padding-left: 5%;
+  padding-right: 5%;
+  padding-bottom: 10px;
+
+.service-item .right-aling
+  justify-content: flex-end;
+
+.service-item .left-aling
+  justify-content: flex-start;
+
+.title-service span img
+  width: 120%;
+  height: auto;
+  display: block;
+  margin-left: -10%;
+
+.service-description
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #FFF;
+  z-index: 2;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  align-content: center;
+  justify-content: center;
+
+.short-desc
+  width: 100%;
+  max-width: 250px;
+  height: auto;
+  margin: 100px;
+  font-size: 1.2em !important;
+  text-align: justify !important;
+  font-family: 'Gotham-Book';
+
+.general-desc
+  width: 100%;
+  max-width: 480px;
+  height: auto;
+  margin: 50px;
+  font-size: .8em !important;
+
+.general-desc ul, .general-desc li
+  width: 100%;
+  position: relative;
+
+.general-desc .title
+  background: #FFF;
+  position: absolute;
+  top:0%;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  font-family: 'Gotham-Bold';
+  font-size: 2.2em;
+  text-transform: uppercase;
+  text-align: left;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  align-content: center;
+  justify-content: flex-start;
+  cursor: pointer;
+  opacity: 1;
+  transition: 1s;
+
+.general-desc .description-info
+  background: #000;
+  color: #FFF;
+  padding: 20px;
+  margin: 2.5px;
+
+.general-desc .title div
+  position: relative;
+  margin-left: 5%;
+
+.general-desc .title span
+  font-family: 'Gotham-Light';
+  display: inline-block;
+  position: absolute;
+  left: -20px;
+
+.close-service
+  width: auto;
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  align-content: center;
+  justify-content: center;
+  margin-left: 2.5%;
+
+.close-service:hover
+  cursor: pointer;
+  opacity: .5;
+
+.close-service img
+  width: 20px;
+  height: auto;
+  animation-name: close;
+  animation-duration: .5s;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+  margin-left: -20%;
+
+.right-close img
+  animation-name: close-right;
+  margin-left: 20%;
+
+.arrow-close img 
+  animation-name: close-botella;
+  animation-duration: .5s;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+
+@keyframes close-botella{
+  0% { margin-left: -20%; }
+  100% { margin-left: 20%; }
+}
+
+
+@keyframes close{
+  0% { margin-left: -20%; }
+  100% { margin-left: 20%; }
+}
+
+@keyframes close-right{
+  0% { margin-left: 20%; }
+  100% { margin-left: -20%; }
+}
+
+.list-desc
+  width: 60%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+
+.list-desc .item-desc
+  width: 40%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  align-items: center;
+  align-content: center;
+  margin:5%;
+
+.list-desc .item-desc span
+  display: block;
+
+.list-desc .item-desc span.image-descr
+  width: 30%;
+
+.list-desc .item-desc span.text-descr
+  width: 60%;
+  font-size: 1.1em;
+  font-family: 'Gotham-Book';
+
+.list-desc .item-desc span img
+  width: 80%;
+  height: auto;
+  margin: 0 auto;
+  display: block;
+
+
+@media(max-width: 1680px)
+  .general-desc
+    max-width: 560px;
+    font-size: .8em !important;
+
+  .list-desc
+    width: 70%;
+
+  .list-desc .item-desc
+    width: 45%;
+    margin:2.5%;
+
+  .list-desc .item-desc span.image-descr
+    width: 30%;
+
+  .list-desc .item-desc span.text-descr
+    width: 60%;
+    font-size: 1.05em;
+
+
+@media(max-width: 1366px)
+  .container-services
+    font-size: .9em;
+
+  .title-service span img
+    width: 100%;
+    margin-left: -0%;
+
+  .short-desc
+    width: 100%;
+    max-width: 250px;
+    margin: 70px;
+    font-size: 1.25em !important;
+
+  .general-desc
+    max-width: 490px;
+    font-size: .8em !important;
+    margin: 30px;
+
+  .general-desc .description-info
+    padding: 13px;
+
+  .list-desc
+    width: 90%;
+
+  .list-desc .item-desc
+    width: 50%;
+    margin:0%;
+    margin-bottom: 5%;
+
+  .list-desc .item-desc span.image-descr
+    width: 20%;
+
+  .list-desc .item-desc span.text-descr
+    width: 60%;
+    font-size: 1.15em;
+
+
+@media(max-width: 1024px)
+
+  .short-desc
+    margin: 40px;
+
+  .close-service
+    margin: 0;
+    padding: 0;
+
+  .close-service img
+    width: 20px;
+    height: auto;
+
+  .list-desc .item-desc span.text-descr
+    width: 65%;
+    font-size: 1.25em;
+
+@media(max-width: 970px)
+
+  .general-desc .title
+    font-size: 2em;
+
+  .close-service
+    width: auto;
+    padding: 0;
+    height: auto;
+    position: absolute;
+    top:3%;
+    left: 50%;
+
+  .short-desc
+    width: 80%;
+    max-width: 550px;
+    margin: 15px;
+    font-size: 1.37em !important;
+
+  .general-desc
+    max-width: 520px;
+    font-size: 1em !important;
+    margin: 15px;
+
+  .general-desc .description-info
+    padding: 15px;
+
+  .container-services div.service-item
+    width: 70%;
+    height: 48.9vw;
+
+  .container-services div.service-item img.back
+    width: 100%;
+    height: 48.9vw;
+
+  .service-item .right-aling, .service-item .left-aling
+    justify-content: center;
+
+
+  .list-desc
+    width: 70%;
+
+  .list-desc .item-desc
+    width: 100%;
+    margin: 0%;
+    margin-bottom: 10%;
+
+  .list-desc .item-desc span.image-descr
+    width: 20%;
+
+  .list-desc .item-desc span.text-descr
+    width: 60%;
+    font-size: 1.2em;
+
+@media(max-width: 640px)
+
+  .service-description
+    height: auto;
+
+  .left-service
+    transition: 0s;
+
+  .right-service
+    transition: 0s;
+
+  .gray .title, .list-desc .gray
+    background: #F0f0f0;
+
+  .general-desc .title
+    font-size: 1.9em;
+
+  .close-service
+    top: 0%;
+
+  .close-service img
+    width: 15px;
+    height: auto;
+
+  .short-desc
+    font-size: 1.55em !important;
+    margin: 15px;
+    margin-top: 50px;
+    margin-bottom: 30px;
+    width: 80%;
+
+  .general-desc
+    font-size: 1.2em !important;
+    margin: 15px;
+    width: 80%;
+
+  .general-desc .description-info
+    padding: 15px;
+
+  .container-services div.service-item
+    width: 100%;
+    height: 69.1vw;
+
+  .container-services div.service-item img.back
+    width: 100%;
+    height: 69.1vw;
+
+  .list-desc
+    margin-top: 50px;
+    width: 70%;
+
+  .list-desc .item-desc
+    width: 100%;
+    margin: 0%;
+    padding-bottom: 10%;
+    padding-top: 10%;
+
+  .list-desc .item-desc span.image-descr
+    width: 30%;
+
+  .list-desc .item-desc span.text-descr
+    width: 80%;
+    margin-left: 10%;
+    margin-right: 10%;
+    margin-top: 5%;
+    font-size: 1.195em;
+
+@media(max-width: 480px)
+
+  .list-desc
+    width: 80%;
+
+  .list-desc .item-desc span.image-descr
+    width: 50%;
+
+  .short-desc
+    font-size: 1.75em !important;
+    margin: 15px;
+    margin-top: 50px;
+    margin-bottom: 30px;
+    width: 80%;
+
+  .general-desc .title
+    font-size: 1.8em;
+
+  .general-desc .title span
+    display: none;
+
+  .general-desc
+    width: 80%;
+
+  .list-desc .item-desc span.text-descr
+    font-size: 1.185em;

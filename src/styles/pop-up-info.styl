@@ -1,0 +1,306 @@
+#popup-info
+  font-size: 1em;
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.7);
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  align-items: center;
+  align-content: center;
+  justify-content: center;
+  opacity: 0;
+  z-index: -1;
+  transition: .25s;
+
+.info-pop-up
+  width: 520px;
+  height: 560px;
+  background: #FFF;
+  overflow: auto;
+  margin: 0 auto;
+  position: relative;
+
+.info-pop-up span
+  display: block;
+  width: 100%;
+  margin-top: 50px;
+  margin-bottom: 50px;
+  font-family: 'Gotham-Bold';
+  font-size: 1.5em;
+  text-align: center;
+
+.info-pop-up p
+  width: 70%;
+  height: auto;
+  margin: 0 auto;
+  text-align: justify;
+  margin-bottom: 30px;
+
+.info-pop-up .close, .login-info .close
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  color: #000 !important;
+  width: auto;
+  height: auto;
+  margin: 0;
+
+.cart-items
+  width: 420px;
+  height: 100%;
+  background: #FFF;
+  overflow: auto;
+  margin: 0 auto;
+  position: absolute;
+  top: 0;
+  left: 100%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+  font-size: 1em;
+  overflow: auto;
+  padding-top: 50px;
+  padding-bottom: 50px;
+  transition: .5s;
+
+.cart-items span.title
+  font-family: 'Gotham-Bold';
+  font-size: 1.5em;
+  display: block;
+  text-align: center;
+  margin-bottom: 30px;
+  margin-top: 30px;
+
+.cart-items .containerCart
+  width: 80%;
+  height: auto;
+  margin: 0 auto;
+  position: relative;
+
+.hiddenCart
+  position: absolute;
+  top: 36px;
+  left: 0%;
+  width: 5%;
+  height: auto;
+  animation-name: cartnotshow;
+  animation-duration: .5s;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+
+@keyframes cartnotshow{
+  0% { left: 0%; }
+  100% { left: 2.5%; }
+}
+
+.hiddenCart:hover
+  cursor: pointer;
+  opacity: .5;
+
+.hiddenCart img
+  width: 100%;
+  height: auto;
+
+.containerCart ul, .containerCart ul li
+  width: 100%;
+  height: auto;
+
+.containerCart ul li
+  border: 2px solid #f2f2f2;
+  margin-top: 8px;
+  margin-bottom: 8px;
+
+.containerCart ul li .info-cart-botle
+  width: 70%;
+  height: auto;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  align-items: center;
+  align-content: center;
+  margin: 0 auto;
+  margin-top: 30px;
+  margin-bottom: 30px;
+
+li .info-cart-botle .image
+  width: 30%;
+  height: auto;
+
+li .info-cart-botle .image img
+  width: 100%;
+  height: auto;
+
+li .info-cart-botle .info
+  width: 60%;
+  height: auto;
+
+.info-cart-botle .info span
+  font-family: 'Gotham-Book';
+  font-size: 1em;
+  margin: 5px;
+
+.info-cart-botle .info span.desc
+  display: block;
+  margin-top: 10px;
+  margin-bottom: 10px;
+
+.info-cart-botle .info span.subtitle
+  font-family: 'Gotham-Bold';
+  font-size: 1.3em;
+  display: block;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+
+.info-cart-botle .info .counter
+  font-family: 'Gotham-Bold';
+  margin-top: 10px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  align-items: center;
+  align-content: center;
+
+.info-cart-botle .info .counter span
+  width: 10px;
+  height: auto;
+  display: inline-block;
+  margin-right: 10px;
+  margin-left: 10px;
+
+.info-cart-botle .info .counter span:hover
+  cursor: pointer;
+  opacity: .5;
+
+.info-cart-botle .info .counter span img
+  width: 100%;
+  height: auto;
+
+.status .title
+  text-align: left !important;
+  margin-top: 20px;
+  margin-bottom: 0px !important;
+
+.status span
+  font-size: 1.2em;
+  font-family: 'Gotham-Bold';
+  display: inline-block;
+
+.status .cantcart
+  margin-right: 28%;
+
+.status .price
+  margin-left: 10px;
+  margin-right: 10px;
+
+.comprarbutton
+  text-align: center;
+
+.comprarbutton span
+  display: inline-block !important;
+  width: auto !important;
+  border: 2px solid #000;
+  font-family: 'Gotham-Bold';
+  font-size: 1.6em;
+  padding: 10px 20px 10px 20px;
+  margin: 0 auto !important;
+  margin-top: 50px !important;
+
+.comprarbutton:hover
+  cursor: pointer;
+  opacity: .5;
+
+.login-info
+  background: #FFF;
+  padding: 100px;
+  position: relative;
+  font-family: 'Gotham-Book';
+  font-size: 1.2em;
+  text-align: center;
+
+.login-info p
+  width: 360px;
+  height: auto;
+  margin: 0 auto;
+  text-align: center;
+  margin-bottom: 40px;
+
+.login-info .buttom-login
+  display: inline-block;
+  padding: 10px 40px 10px 40px;
+  border: 2px solid #000;
+  font-family: 'Gotham-Bold';
+  margin: 0 auto;
+
+.login-info .buttom-login:hover
+  cursor: pointer;
+  opacity: .5;
+
+@media(max-width: 1366px)
+  .cart-items
+    width: 360px;
+
+  .status .cantcart
+    margin-right: 20%;
+
+  .status .price
+    margin-left: 5px;
+    margin-right: 5px;
+
+@media(max-width: 1024px)
+  .info-pop-up
+    width: 520px;
+    height: 360px;
+
+  #popup-info
+    font-size: 1.1em;
+
+@media(max-width: 768px)
+  .cart-items
+    width: 420px;
+
+  .login-info
+    width: 80%;
+    margin-left: 10%;
+    background: #FFF;
+    padding: 6vw 3vw 6vw 3vw;
+
+  .login-info p
+    width: 60%;
+    height: auto;
+
+@media(max-width: 640px)
+
+  .hiddenCart
+    position: absolute;
+    top: 3px;
+    left: 0%;
+    width: 3.5%;
+    height: auto;
+
+  .cart-items
+    width: 100%;
+
+  #popup-info
+    font-size: 1.2em;
+
+  .info-pop-up
+    width: 90%;
+    height: 360px;
+
+  .cart-items
+    display: block;
+
+
+
+@media(max-width: 480px)
+  #popup-info
+    font-size: 1.3em;

@@ -1,0 +1,474 @@
+.container-events
+  width: 60%;
+  margin: 0 auto;
+  margin-top: 80px;
+
+.container-events .container-title span
+  margin-top: 60px;
+  margin-bottom: 60px;
+  display: block;
+
+
+.container-carrusel-grid
+  position: relative;
+  overflow: hidden;
+
+.container-gen
+  width: 100%;
+  height: auto;
+  overflow: hidden;
+  position: relative;
+  z-index: 2;
+  background: #FFF;
+  // margin-top: 60px;
+  // margin-bottom: 60px;
+
+
+.container-carrusel
+  // width: 500%;
+  // margin-left: 0%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+  transition: 1s;
+
+
+.group-items
+  // width: 20%;
+  height: auto;
+  transition: 1s;
+
+.group-items ul, .group-items ul li img
+  width: 100%;
+  height: auto;
+
+.group-items ul
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  align-items: center;
+  align-content: center;
+
+.group-items ul li
+  width: 25%;
+  height: auto;
+  position: relative;
+
+.group-items ul li span
+  display: block;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+  position: absolute;
+  transition: 1s;
+
+.group-items ul li span:hover
+  cursor: pointer;
+  background-color: rgba(0, 0, 0, 0.0);
+
+.displace
+  position: absolute;
+  top: 0;
+  width: auto;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  padding: 5px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+  transition: 1s;
+  z-index: 1;
+
+.left-displace
+  left: 0;
+
+.right-displace
+  right: 0;
+
+
+.displace:hover
+  cursor: pointer;
+  opacity: .5;
+
+.displace img
+  width: 25px;
+  height: auto;
+
+
+
+
+
+
+
+
+
+
+
+.info-event
+  transition: .5s;
+  width: 100%;
+  height: auto;
+  position: absolute;
+  top: -150%;
+  left: 0;
+  background: #000;
+  z-index: 1;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+
+
+.info-event .image-event
+  width: 30%;
+  overflow: hidden;
+
+.info-event .desc-event
+  width: 70%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  align-items: center;
+  align-content: center;
+  color: #FFF;
+  font-size: 1em;
+
+.info-event .image-event img
+  width: auto;
+  height: 100%;
+
+.desc-event .date
+  width: 10%;
+  height: auto;
+
+.desc-event .date
+  width: 10%;
+  height: auto;
+
+.desc-event .date span
+  display: block;
+  width: 100%;
+  text-align: center;
+  font-family: 'Gotham-Bold';
+  line-height: 1em;
+
+.desc-event .date span.day
+  font-size: 2.5em;
+
+.desc-event .date span.month
+  font-size: 1.2em;
+
+.desc-event .title
+  width: 75%;
+  height: auto;
+  font-family: 'Gotham-Bold';
+  font-size: 1.3em;
+  text-transform: uppercase;
+
+.actions
+  width: 5%;
+  height: auto;
+  margin-top: 20px;
+
+.gallery
+  font-family: 1em;
+
+.gallery .actions
+  width: 3.5%;
+  margin-left: 0.75%;
+
+.actions ul
+  width: 100%;
+  height: auto;
+  text-align: center;
+
+.actions ul li
+  width: 30%;
+  margin-left: 35%;
+  margin-right: 35%;
+  margin-bottom: 5px;
+  height: auto;
+
+.actions ul li:hover
+  cursor: pointer;
+  opacity: .5;
+
+.actions ul li img
+  width: 100%;
+  height: auto;
+
+.desc-event .description
+  width: 69%;
+  margin-top: 1em;
+  height: auto;
+  font-family: 'Gotham-Book';
+  font-size: .85em;
+  text-align: justify;
+
+.desc-event .description .info
+  margin-top: 1em;
+  font-family: 'Gotham-Bold';
+
+.desc-event .description .info span
+  display: block;
+
+.info-event .gallery
+  width: 100%;
+  height: auto;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content:center;
+  align-items: flex-start;
+  align-content: center;
+
+.info-event .gallery .preview
+    width: 70%;
+    height: auto;
+    position: relative;
+
+.info-event .gallery .list-gallery-images
+    width: 25%;
+    height: 27.5vw;
+    overflow: hidden;
+    position: relative;
+
+.info-event .gallery .preview img, .info-event .gallery .list-gallery-images ul, .info-event .gallery .list-gallery-images ul li, .info-event .gallery .list-gallery-images ul li img
+    width: 100%;
+
+.list-gallery-images ul
+  transition: 1s;
+  margin-top: 0px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content:center;
+  align-items: flex-start;
+  align-content: center;
+  position: relative;
+
+.list-gallery-images ul li
+  height: 160px;
+  overflow: hidden;
+  transition: .5s;
+
+.list-gallery-images ul li:hover
+  opacity: .7;
+  cursor: pointer;
+
+.gotopicon, .godownicon
+  background: #000;
+  opacity: .5;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content:center;
+  align-items: center;
+  align-content: center;
+  position: absolute;
+  z-index: 2;
+  cursor: pointer;
+
+.gotopicon img, .godownicon img
+  width: 30px;
+  height: auto;
+
+.gotopicon
+  top: 2.5%;
+
+.godownicon
+  bottom: 2.5%;
+
+.title-event-preview
+  background: rgba(0, 0, 0, 0.8);
+  color: #FFF;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  font-size: 1.3em;
+  font-family: 'Gotham-Bold';
+  padding-top: 1em;
+  padding-bottom: 1em;
+
+.title-event-preview span
+  text-transform: uppercase;
+
+.title-event-preview span, .description-event-preview span
+  display: block;
+  width: 80%;
+  margin: 0 auto;
+
+
+.description-event-preview
+  background: rgba(0, 0, 0, 0.8);
+  color: #FFF;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  font-size: .8em;
+  font-family: 'Gotham-Book';
+  padding-top: 1em;
+  padding-bottom: 1em;
+
+
+@media(max-width: 1680px)
+  .container-events
+    width: 70%;
+
+  .list-gallery-images ul li
+    height: 150px;
+
+@media(max-width: 1366px)
+
+  .gotopicon img, .godownicon img
+    width: 28px;
+    height: auto;
+
+  .container-events
+    width: 80%;
+
+  .list-gallery-images ul li
+    height: 140px;
+
+@media(max-width: 1024px)
+  .container-events
+    width: 90%;
+
+  .gotopicon img, .godownicon img
+    width: 25px;
+    height: auto;
+
+@media(max-width: 970px)
+
+  .gotopicon img, .godownicon img
+    width: 22px;
+    height: auto;
+
+  .list-gallery-images ul li
+    height: 62px;
+
+  .list-gallery-images ul li img
+    height: 100%;
+    width: auto !important;
+
+
+  .info-event .gallery .preview
+    width: 80%;
+    height: auto;
+
+  .info-event .gallery .list-gallery-images
+    width: 13%;
+
+  .info-event .events-gallery
+    width: 6%;
+
+  .container-events
+    width: 70%;
+
+  .group-items ul li
+    width: 50%;
+    height: auto;
+    position: relative;
+
+  .info-event
+    flex-direction:column-reverse;
+
+  .info-event .image-event
+    width: 50%;
+    margin-top: 20px;
+    margin-bottom: 20px;
+
+  .info-event .image-event img
+    width: 100%;
+    height: auto;
+
+  .info-event .desc-event
+    width: 100%;
+    margin-top: 20px;
+    margin-bottom: 20px;
+
+  .info-event .desc-event
+    font-size: 1.25em;
+
+  .gallery
+    font-size: .9em;
+
+@media(max-width: 768px)
+  .gallery
+    font-size: .8em;
+
+@media(max-width: 640px)
+  .gallery
+    font-size: 1em;
+
+  .container-events
+    width: 100%;
+
+  .info-event .image-event
+    width: 100%;
+    margin-top: 20px;
+    margin-bottom: 20px;
+
+  .info-event .desc-event
+    font-size: 1.5em;
+
+
+@media(max-width: 480px)
+  .gallery
+    font-size: 1em;
+
+  .info-event .gallery .preview
+    width: 100%;
+    height: auto;
+
+  .events-gallery
+    position: absolute;
+    top: 0%;
+    right: 2%;
+
+  .info-event .gallery .list-gallery-images
+    width: 50%;
+    height: auto;
+    margin-top: 50px;
+    margin-bottom: 50px;
+
+  .list-gallery-images ul li
+    width: 100%;
+    height: auto;
+
+  .list-gallery-images ul li img
+    width: 100% !important;
+    height: auto !important;
+
+  .info-event .gallery
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: column-reverse;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-items: center;
+    align-content: center;
+
+  .group-items ul li
+    width: 100%;
+    height: auto;
+    position: relative;
+
+  .displace
+    position: absolute;
+    width: 50%;
+    height: auto;

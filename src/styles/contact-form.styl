@@ -1,0 +1,123 @@
+.container-contact form
+  width: 35%;
+  height: auto;
+  margin: 0 auto;
+  margin-top: 60px;
+  margin-bottom: 60px;
+
+.container-contact form label
+  width: 100%;
+  height: auto;
+  font-family: 'Gotham-Book';
+  font-size: 1.2em;
+  margin-bottom: 35px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  align-items: flex-start;
+  align-content: center;
+
+.container-contact form label span:nth-child(1)
+  display: inline-block;
+  width: 20%;
+  height: 5px;
+  font-family: 'Gotham-Bold';
+  margin-top: 5px;
+
+.container-contact form label span:nth-child(3)
+  font-family: 'Gotham-Book';
+  font-size: .8em;
+  display: inline-block;
+  margin-left: 10px;
+
+
+.container-contact form label input.data, .container-contact form label textarea
+  width: 80%;
+  height: auto;
+  border: 2px solid #e5e5e5;
+  background: none;
+  padding: 5px 5px 5px 5px;
+  font-size: .9em;
+  font-family: 'Gotham-Book';
+
+.container-contact form label textarea
+  height: 10em;
+
+.submit-form
+  width: 100%;
+  text-align: center;
+
+.submit-form .buttom-sm
+  display: inline-block;
+  width: auto;
+  height: auto;
+  border: 2px solid #000;
+  font-family: 'Gotham-Bold';
+  font-size: 1.2em;
+  padding: 5px 15px 5px 15px;
+  margin-top: 30px;
+
+.submit-form .buttom-sm:hover
+  cursor: pointer;
+  opacity: .5;
+
+.msgSendend
+  width: 50%;
+  height: auto;
+  margin: 0 auto;
+  text-align: center;
+  font-size: 1.2em;
+  line-height: 1.8em;
+  font-family: 'Gotham-Book';
+  margin-bottom: 60px;
+
+.msgSendend .title-send
+  font-size: 2em;
+  font-family: 'Gotham-Bold';
+  display: block;
+
+
+@media(max-width: 1680px)
+  .container-contact form
+    width: 40%;
+
+@media(max-width: 1366px)
+  .container-contact form
+    width: 50%;
+
+@media(max-width: 1024px)
+  .container-contact form
+    width: 60%;
+
+  .container-contact form label
+    margin-bottom: 30px;
+
+@media(max-width: 768px)
+  .container-contact form
+    width: 50%;
+
+  .container-contact form label span:nth-child(1)
+    width: 100%;
+    height: auto;
+
+  .container-contact form label input.data, .container-contact form label textarea
+    width: 100%;
+
+  .container-contact form label
+    margin-bottom: 25px;
+
+
+@media(max-width: 640px)
+  .container-contact form
+    width: 65%;
+
+  .container-contact form label
+    margin-bottom: 20px;
+
+@media(max-width: 480px)
+  .container-contact form
+    width: 85%;
+
+  .container-contact form label
+    margin-bottom: 10px;
