@@ -37,6 +37,28 @@
         <p>El mezcal Los Portrillos se elabora tradicionalmente con la experiencia heredada en tres generaciones. Todo el proceso certificado por el consejo Mexicano Regulador de la Calidad del Mezcal (COMERCAM) lo que garantiza productos auténticos y confiables.</p>
         <p>Maestro Mezcalero: Jaime Bañuelos Villalobos.</p>
       </div>
+      <div class="swiper-modal-desc-wrapper" ng-if="itemselected === 6">
+        <span class="titleBottle">LA VENIA CITRUS</span>
+        <span class="subtitleBottle">100% AGAVE</span>
+        <p>El mezcal Los Portrillos se elabora tradicionalmente con la experiencia heredada en tres generaciones. Todo el proceso certificado por el consejo Mexicano Regulador de la Calidad del Mezcal (COMERCAM) lo que garantiza productos auténticos y confiables.</p>
+        <p>Maestro Mezcalero: Jaime Bañuelos Villalobos.</p>
+      </div>
+      <div class="swiper-modal-desc-wrapper" ng-if="itemselected === 7">
+        <span class="titleBottle">VENTA</span>
+        <span class="subtitleBottle">100% AGAVE JOVEN</span>
+        <p>Maguey: Espadín</p>
+        <p>Agave: Angustifolia Haw</p>
+
+        <br>
+
+        <p>Horneado: El cocido del maguey troceado se hace en horno a flor de suelo, revestido con piedra de rio durante 72 horas continuas. </p>
+        <p>Molienda: En tahona tradicional de cantera rosa.</p>
+        <p>Formulación: se realiza de forma manual para lograr una excelente mezcla del mosto.</p>
+        <p>Fermentado: Se realiza en tinas de madera de pino.</p>
+        <p>Destilado: Doble destilado en alambique de cobra calentado con leña regional.</p>
+        <p>Homogenización: El mezcal obtenido se gradúa a 45% Vol. Alc.</p>
+      </div>
+
     </div>
     <div class="swiper-modal-img">
       <img src="./src/images/imagenproducto.png" alt="" ng-if="itemselected === 1" class="image-present">
@@ -45,6 +67,7 @@
       <img src="./src/images/imagenproducto4.png" alt="" ng-if="itemselected === 4" class="image-present">
       <img src="./src/images/imagenproducto5.png" alt="" ng-if="itemselected === 5" class="image-present">
       <img src="./src/images/imagenproducto6.png" alt="" ng-if="itemselected === 6" class="image-present">
+      <img src="./src/images/imagenproducto7.png" alt="" ng-if="itemselected === 7" class="image-present">
     </div>
   </div>
 
@@ -75,13 +98,25 @@
           <div class="swiper-slide">
             <img src="./src/images/laveniacuishe.png">
             <span class="name-bottle">
-              <span class="underline-white" ng-click="changeItemSelected(4)">LA VENIA</span>
+              <span class="underline-white" ng-click="changeItemSelected(4)">LA VENIA CUISHE</span>
+            </span>
+          </div>
+          <div class="swiper-slide">
+            <img src="./src/images/lavenia-citrus.png">
+            <span class="name-bottle">
+              <span class="underline-white" ng-click="changeItemSelected(6)">LA VENIA CITRUS </span>
             </span>
           </div>
           <div class="swiper-slide">
             <img src="./src/images/lospotrillos.png">
             <span class="name-bottle">
               <span class="underline-white" ng-click="changeItemSelected(5)">LOS POTRILLOS</span>
+            </span>
+          </div>
+          <div class="swiper-slide">
+            <img src="./src/images/venta.png">
+            <span class="name-bottle">
+              <span class="underline-white" ng-click="changeItemSelected(7)">VENTA</span>
             </span>
           </div>
       </div>

@@ -387,19 +387,36 @@
         },150);
 
         $( "span.name-bottle" ).click(function() {
+          //cambiar a modal abierto
           $('.swiper-modal').removeClass('modal-close');
           $('.swiper-modal').addClass('modal-open');
+
+          //ocultar botellas
+          if ($(window).width() <= 970){$('.swiper-container.swiper-container-horizontal').css('display','none');}
+
+          //adicionalmente, ocultar botellas si hacen resize
           $(window).resize(function(){
-          	if ($(window).width() <= 970){
-              $('.swiper-container').css('display','none');
-          	}
+            if ($(window).width() <= 970){
+              console.log('ayy');
+              $('.swiper-container.swiper-container-horizontal').css('display','none');
+            }
           });
         });
 
         $( ".arrow-close" ).click(function() {
+          //cambiar a modal cerrado
           $('.swiper-modal').removeClass('modal-open');
           $('.swiper-modal').addClass('modal-close');
-          $('.swiper-container').css('display','flex');
+
+          //mostrar botellas
+          if ($(window).width() <= 970){ $('.swiper-container.swiper-container-horizontal').css('display','flex'); }
+
+          //adicionalmente, mostrar botellas si hacen resize
+          $(window).resize(function(){
+            if ($(window).width() <= 970){
+              $('.swiper-container.swiper-container-horizontal').css('display','flex');
+            }
+          });
         });
 
       }
