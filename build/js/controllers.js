@@ -74,7 +74,7 @@
     }
   }])
   .controller("igCtrl", ['$scope', '$http', function($scope,$http){
-    $http.jsonp('https://api.instagram.com/v1/users/self/media/recent/?access_token=2180432354.3b55ab4.b797aa69977e4d359a25a5d322cb7de0&callback=JSON_CALLBACK').success(function(data) {
+    $http.jsonp('https://api.instagram.com/v1/users/self/media/recent/?access_token=2180432354.3b55ab4.b797aa69977e4d359a25a5d322cb7de0&callback=JSON_CALLBACK&count=18').success(function(data) {
       $scope.data = data;
     });
   }])
