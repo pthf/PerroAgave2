@@ -168,13 +168,6 @@
       restrict: 'E',
       templateUrl: './partials/grid-carrusel-gallery.html',
       controller: function($document){
-        $('.partial-container .container-gen').each(function(){
-          var tam = $('.container-carrusel .group-items', this).length;
-          $('.container-carrusel', this).css({'width': 100*tam+'%', 'margin-left':'0'});
-          $('.container-carrusel .group-items', this).css({'width': 100/tam+'%'});
-          if(tam<=1)
-          $('.displace', this).css({'display':'none'});
-        });
         $('.proximos .right-displace').click(function(){
           var pos = parseInt($(this).siblings('.container-carrusel').attr('data-pos'));
           var elements = $(this).siblings('.container-carrusel').children('.group-items').length;
@@ -191,17 +184,68 @@
           pos = parseInt($(this).siblings('.container-carrusel').attr('data-pos'));
           $(this).siblings('.container-carrusel').css({'margin-left':"-"+((pos-1)*100)+"%"});
         });
-        $('.proximos .group-items').click(function(){
-          var element = $(this);
+        $(document).on('click', '.proximos .group-items ul li', function(){
+          var element = $(this).parent().parent();
           var position = $(this).parent().parent().offset().top;
-          element.parent().parent().siblings('.info-event').css({'top':'0%'});
-          element.parent().parent().css({'opacity':'0'});
-          $('body, html').animate({
-            scrollTop : position - 250
-          }, 1000, function(){
-            element.parent().parent().siblings('.info-event').css({'position': 'relative'});
-            element.parent().parent().css({'display' : 'none'});
-            element.parent().parent().parent().css({'overflow':'inherit'});
+          var idevent = $(this).attr('data-id');
+          $.ajax({
+            url: './php/services.php',
+            type: 'GET',
+            data: "namefunction=getEvent&idevent="+idevent,
+            success: function(result){
+              var data = JSON.parse(result);
+              console.log(result);
+              var eventCover = data.eventCover;
+              var eventname = data.eventname.toUpperCase();
+              var eventdescription = data.eventdescription;
+              var eventscheduledescription = data.eventscheduledescription;
+              var eventaddress = data.eventaddress;
+              var eventcity = data.eventcity;
+              var eventstate = data.eventstate;
+              var eventneighborhood = data.eventneighborhood;
+              var eventzipcode = data.eventzipcode;
+              var eventphonenumer = data.eventphonenumer;
+              var eventurl = data.eventurl;
+              var eventdate = data.eventdate;
+              var arraydate = eventdate.split("-");
+              var day = arraydate[2];
+              switch (arraydate[1]) {
+                case '1': var month = "ENE"; break;
+                case '2': var month = "FEB"; break;
+                case '3': var month = "MAR"; break;
+                case '4': var month = "ABR"; break;
+                case '5': var month = "MAY"; break;
+                case '6': var month = "JUN"; break;
+                case '7': var month = "JUL"; break;
+                case '8': var month = "AGO"; break;
+                case '9': var month = "SEP"; break;
+                case '10': var month = "OCT"; break;
+                case '11': var month = "NOV"; break;
+                case '12': var month = "DIC"; break;
+              }
+              $('.info-event .image-event img').attr('./admin/src/images/'+eventCover);
+              $('.info-event .desc-event .date .day').text(day);
+              $('.info-event .desc-event .date .month').text(month);
+              $('.info-event .desc-event .title').text(eventname);
+              $('.info-event .desc-event .actions li[name="saveevent"]').attr('data-id', idevent);
+              $('.info-event .desc-event .actions li[name="shareevent"]').attr('data-url', eventurl);
+              $('.info-event .desc-event .description .gen').text(eventdescription);
+              $('.info-event .desc-event .description .info .eventscheduledescription').text(eventscheduledescription);
+              $('.info-event .desc-event .description .info .phonenumber').text("Tel: "+eventphonenumer);
+              $('.info-event .desc-event .description .info .address').text(eventcity+", "+eventstate+", "+eventaddress+", Col: "+eventneighborhood+", CP: "+eventzipcode);
+              element.parent().parent().siblings('.info-event').css({'top':'0%'});
+              element.parent().parent().css({'opacity':'0'});
+              $('body, html').animate({
+                scrollTop : position - 250
+              }, 1000, function(){
+                element.parent().parent().siblings('.info-event').css({'position': 'relative'});
+                element.parent().parent().css({'display' : 'none'});
+                element.parent().parent().parent().css({'overflow':'inherit'});
+              });
+            },
+            error: function(error){
+            },
+            timeout: 10000
           });
         });
         $('.close-view').click(function(){
@@ -220,20 +264,17 @@
       restrict: 'E',
       templateUrl: './partials/grid-carrusel-event.html',
       controller: function($document){
-
         $(window).resize(function(){
           var h_event = $('.info-event .gallery .preview').height();
           $('.info-event .gallery .list-gallery-images').css({'height':h_event+'px'});
         });
-
-        $('.partial-container .container-gen').each(function(){
-          var tam = $('.container-carrusel .group-items', this).length;
-          $('.container-carrusel', this).css({'width': 100*tam+'%', 'margin-left':'0'});
-          $('.container-carrusel .group-items', this).css({'width': 100/tam+'%'});
-          if(tam<=1)
-          $('.displace',this).css({'display':'none'});
-        });
-
+        // $('.partial-container .container-gen').each(function(){
+        //   var tam = $('.container-carrusel .group-items', this).length;
+        //   $('.container-carrusel', this).css({'width': 100*tam+'%', 'margin-left':'0'});
+        //   $('.container-carrusel .group-items', this).css({'width': 100/tam+'%'});
+        //   if(tam<=1)
+        //   $('.displace',this).css({'display':'none'});
+        // });
         $('.eventos .right-displace').click(function(){
           var pos = parseInt($(this).siblings('.container-carrusel').attr('data-pos'));
           var elements = $(this).siblings('.container-carrusel').children('.group-items').length;
@@ -242,7 +283,6 @@
           pos = parseInt($(this).siblings('.container-carrusel').attr('data-pos'));
           $(this).siblings('.container-carrusel').css({'margin-left':"-"+((pos-1)*100)+"%"});
         });
-
         $('.eventos .left-displace').click(function(){
           var pos = parseInt($(this).siblings('.container-carrusel').attr('data-pos'));
           var elements = $(this).siblings('.container-carrusel').children('.group-items').length;
@@ -251,7 +291,6 @@
           pos = parseInt($(this).siblings('.container-carrusel').attr('data-pos'));
           $(this).siblings('.container-carrusel').css({'margin-left':"-"+((pos-1)*100)+"%"});
         });
-
         $('.eventos .group-items').click(function(){
           var element = $(this);
           var position = $(this).parent().parent().offset().top;
@@ -267,7 +306,6 @@
             element.parent().parent().css({'display' : 'none'});
           });
         });
-
         $('.close-view').click(function(){
           $(this).parent().parent().parent().parent().css({'position': 'absolute'});
           $(this).parent().parent().parent().parent().css({'top':'-150%'});
@@ -276,14 +314,12 @@
           $(this).parent().parent().parent().parent().parent().css({'overflow':'hidden'});
         });
         var h_ul_gallery = $('.list-gallery-images ul').height();
-
         $('.gotopicon').on('mouseover', function(){
           var h_ul_gallery = $('.list-gallery-images ul').height();
           var position = parseInt($('.list-gallery-images ul').css('margin-top').replace(/[^-\d\.]/g, ''));
           if(position<0)
           $('.list-gallery-images ul').css({'margin-top':(position+150)+'px'});
         });
-
         $('.godownicon').on('mouseover', function(){
           var h_ul_gallery = $('.list-gallery-images ul').height();
           var h_event = $('.info-event .gallery .preview').height();
@@ -291,13 +327,23 @@
           if(((position*-1))<h_event)
           $('.list-gallery-images ul').css({'margin-top':(position-150)+'px'});
         });
-
         $('.list-gallery-images ul li').click(function(){
           var getImage = $('img', this).attr('src');
           $('.preview img').attr('src',getImage);
         });
-
       }
+    }
+  })
+
+  .directive('loadGridCarrusel', function(){
+    return function(){
+      $('.partial-container .container-gen').each(function(){
+        var tam = $('.container-carrusel .group-items', this).length;
+        $('.container-carrusel', this).css({'width': 100*tam+'%', 'margin-left':'0'});
+        $('.container-carrusel .group-items', this).css({'width': 100/tam+'%'});
+        if(tam<=1)
+        $('.displace', this).css({'display':'none'});
+      });
     }
   })
 
@@ -306,29 +352,6 @@
       restrict: 'E',
       templateUrl: './partials/shop-carrusel.html',
       controller: function($document){
-
-        $('.container-guide').slideUp(0);
-
-        $('.openGuide').click(function(){
-          $('.container-guide').slideDown(500);
-        });
-
-        $('.partial-container .container-shop').each(function(){
-          var tam = $('.container-carrusel .group-items', this).length;
-          $('.container-carrusel', this).css({'width': 100*tam+'%', 'margin-left':'0'});
-          $('.container-carrusel .group-items', this).css({'width': 100/tam+'%'});
-          if(tam<=1)
-          $('.displace', this).css({'display':'none'});
-        });
-
-        $('li .view-most').click(function(){
-          $(this).siblings('.information-bottle').css({'top':'0%'});
-        });
-
-        $('.close-info-bottle').click(function(){
-          $(this).parent().css({'top':'-100%'});
-        });
-
         $('.container-gall-shop-list .vmr').click(function(){
           var pos = parseInt($(this).siblings('.carrusel-shop-container').children('.container-carrusel').attr('data-pos'));
           var elements = $(this).siblings('.carrusel-shop-container').children('.container-carrusel').children('.group-items').length;
@@ -337,7 +360,6 @@
           pos = parseInt($(this).siblings('.carrusel-shop-container').children('.container-carrusel').attr('data-pos'));
           $(this).siblings('.carrusel-shop-container').children('.container-carrusel').css({'margin-left':"-"+((pos-1)*100)+"%"});
         });
-
         $('.container-gall-shop-list .vml').click(function(){
           var pos = parseInt($(this).siblings('.carrusel-shop-container').children('.container-carrusel').attr('data-pos'));
           var elements = $(this).siblings('.carrusel-shop-container').children('.container-carrusel').children('.group-items').length;
@@ -346,8 +368,29 @@
           pos = parseInt($(this).siblings('.carrusel-shop-container').children('.container-carrusel').attr('data-pos'));
           $(this).siblings('.carrusel-shop-container').children('.container-carrusel').css({'margin-left':"-"+((pos-1)*100)+"%"});
         });
-
       }
+    }
+  })
+
+  .directive('loadShopCarrusel', function(){
+    return function(){
+      $('.container-guide').slideUp(0);
+      $('.openGuide').click(function(){
+        $('.container-guide').slideDown(500);
+      });
+      $('.partial-container .container-shop').each(function(){
+        var tam = $('.container-carrusel .group-items', this).length;
+        $('.container-carrusel', this).css({'width': 100*tam+'%', 'margin-left':'0'});
+        $('.container-carrusel .group-items', this).css({'width': 100/tam+'%'});
+        if(tam<=1)
+        $('.displace', this).css({'display':'none'});
+      });
+      $(document).on('click', 'li .view-most', function(){
+        $(this).siblings('.information-bottle').css({'top':'0%'});
+      });
+      $(document).on('click', '.close-info-bottle', function(){
+        $(this).parent().css({'top':'-100%'});
+      });
     }
   })
 
@@ -535,7 +578,19 @@
       restrict: 'E',
       templateUrl: './partials/form-register.html',
       controller: function($document){
+        $('#register-form label input[name=nombre], #register-form label input[name=lastname]').change(function(){
+          var expresion = new RegExp("^[a-z]+ ?[a-z]+$");
+          if(expresion.test($(this).val())){
+            $(this).css({"border":"2px solid #3ADF00"});
+            $(this).attr("data-status", "acepted");
+          }else{
+            $(this).attr("data-status", "denied");
+            $(this).css({"border":"2px solid #DF0101"});
+          }
+        });
+        $('#register-form label input[name=password]').change(function(){
 
+        });
       }
     }
   })

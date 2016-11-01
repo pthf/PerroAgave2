@@ -1,5 +1,12 @@
 (function(){
   angular.module('perroAgave.controllers', [])
+  .controller("checkLoginUserController", ["$rootScope", "perroAgaveservice", function($rootScope, perroAgaveservice){
+    perroAgaveservice.getUserConnection().then(function(data){
+      $rootScope.userLogin = data;
+      // alert(data);
+    });
+
+  }])
   .controller('itemProductosController', ['$scope', function($scope){
     $scope.itemselected = 0;
     $scope.changeItemSelected = function(item){
@@ -43,7 +50,8 @@
     }
   }])
   .controller('introSiteController', ['$rootScope', '$scope', function($rootScope, $scope){
-    if(!$rootScope.open){
+    //if(!$rootScope.open){
+    if($rootScope.open){
       $('body, html').css({'overflow':'hidden'});
       $('#intro-page').css({'z-index': '10'});
       $('#intro-page').css({'opacity': '1'});
@@ -68,13 +76,22 @@
   .controller("igCtrl", ['$scope', '$http', function($scope,$http){
     $http.jsonp('https://api.instagram.com/v1/users/self/media/recent/?access_token=2180432354.3b55ab4.b797aa69977e4d359a25a5d322cb7de0&callback=JSON_CALLBACK').success(function(data) {
       $scope.data = data;
-      console.log(data);
     });
   }])
-
-
-
-
-
-
+  .controller("getProductsController", ['$scope','perroAgaveservice', function($scope,perroAgaveservice){
+    $scope.productsloaded = false;
+    $scope.productList  = [];
+    perroAgaveservice.getProducts().then(function(data){
+      $scope.productList = data;
+      $scope.productsloaded = true;
+    });
+  }])
+  .controller("getNextEventsController", ['$scope', 'perroAgaveservice', function($scope, perroAgaveservice){
+    $scope.eventsloaded = false;
+    $scope.eventsList = [];
+    perroAgaveservice.getNextEvents().then(function(data){
+      $scope.eventsList = data;
+      $scope.eventsloaded = true;
+    });
+  }])
 })();

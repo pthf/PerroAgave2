@@ -2,7 +2,8 @@
 	var app = angular.module('perroAgave', [
 		'ngRoute',
 		'perroAgave.controllers',
-		'perroAgave.directives'
+		'perroAgave.directives',
+		'perroAgave.services'
 	]);
 	app.config(['$routeProvider', '$locationProvider' , function($routeProvider, $locationProvider){
 		$routeProvider
@@ -26,5 +27,6 @@
 	}]);
 	app.run(['$rootScope', function($rootScope){
 		$rootScope.open = false;
+		$rootScope.userLogin = 0;
 	}]);
 })();

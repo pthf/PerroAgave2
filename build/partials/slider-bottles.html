@@ -1,3 +1,18 @@
+<style>
+  .icon-swiper{
+    background: #000;
+    height: auto !important;
+    width: auto !important;
+    padding: 10px 5px 10px 5px;
+    margin: 0 !important;
+  }
+
+  .icon-swiper img{
+    width: 25px !important;
+    height: auto !important;
+  }
+</style>
+
 <div ng-controller="itemProductosController" class="slider-bottles-wrapper" style="background-image: url('./src/images/bg.png');background-size:cover;">
 
   <div class="swiper-modal">
@@ -8,10 +23,15 @@
       <div class="swiper-modal-desc-wrapper" ng-if="itemselected === 1">
         <span class="titleBottle">ORO DE COYAME</span>
         <span class="subtitleBottle">100% ORGÁNICO</span>
-        <p>El Sotol Oro de Coyame es un destilado con denominación de origen, su producción se da en la región de Chihuahua.</p>
-        <p>El sotol se produce a partir del sereque, no es un agave como el mezcal o el tequila, es una palmilla de la familia de las liliáceas que crece en el desierto de forma silvestre.</p>
-        <p>Sotol Oro de Coyame es elaborado por Casa Ruelas, conservando su tradición lo que implica no sólo el uso de ingredientes totalmente naturales, sino además un proceso realizado a mano y con elementos como la madera, piedra, agua y tierra como factor nase para lograr la calidad requerida.</p>
-        <p>Maestro Sotolero: Gerardo Ruelas</p>
+        <p>Variedad: 100% Dasylirion Wheeleri. Sereque Madurez de la planta: 18 a 22 años requeridos para su corte.</p>
+        <br>
+        <p><strong>Elaboración</strong></p>
+        <p>Horneado: Se hornea a en pie de tierra a baja profundidad.</p>
+        <p>Molienda: 1a fase hacha y 2da fase cuchillo.</p>
+        <p>Formulación: Se realiza de forma manual para lograr una excelente mezcla del mosto.</p>
+        <p>Fermentado: 100% natural, de 5 a 7 días en pilas de hormigón al aire libre.</p>
+        <p>Destilado: Triple destilación contínua en alambique Artesanal de cobre.</p>
+        <p>Homogenización: El mezcal obtenido se gradúa a 48% Vol. Alc.</p>
       </div>
       <div class="swiper-modal-desc-wrapper" ng-if="itemselected === 2">
         <span class="titleBottle">PERRO AGAVE</span>
@@ -28,14 +48,50 @@
       <div class="swiper-modal-desc-wrapper" ng-if="itemselected === 4">
         <span class="titleBottle">LA VENIA</span>
         <span class="subtitleBottle">100% AGAVE SILVESTRE JOVEN</span>
-        <p>El mezcal La Venia se elabora artesanalmente con la experiencia heredada en cinco generaciones, los magueyes utilizados son cuidadosamente seleccionados durante 8 a 23 años de madurez según el tipo de agave, todo el proceso es certificado por el Consejo Mexicano Regulador de la Calidad del Mezcal (COMERCAM) lo que garantiza productos auténticos y confiables. El palenque se ubica en Santiago Matatlán “La capital mundial del Mezcal”, comunidad Zapoteca situada a 50 kilómetros de la ciudad de Oaxaca, su clima es templado-seco y su altitud 1,740 metros sobre el nivel del mar.</p>
-        <p>Maestro mezcalero: Celestino Sernas López</p>
+        <p>Maguey: Cuishe ó Cirial</p>
+        <p>Agave: Karwinskii zuuc (Cirial)</p>
+        <br>
+        <p><strong>Elaboración</strong></p>
+        <p>Horneado: Hornos a flor de suelo revestidos con piedra de rio por 72hrs.</p>
+        <p>Molienda: En tahona tradicional de cantera rosa.</p>
+        <p>Formulación: Se realiza de forma manual para lograr una excelente mezcla del mosto.</p>
+        <p>Fermentado: Se realiza en tinas de madera de pino.</p>
+        <p>Destilado: Doble destilado en alambique de cobra calentado con leña regional.</p>
+        <p>Homogenización: El mezcal obtenido se gradúa a 45% Vol. Alc.</p>
       </div>
       <div class="swiper-modal-desc-wrapper" ng-if="itemselected === 5">
         <span class="titleBottle">LOS POTRILLOS</span>
         <span class="subtitleBottle">100% AGAVE JOVEN</span>
+        <p>Maguey: Azul</p>
+        <p>Agave: Tequilana Weber</p>
+        <br>
+        <p><strong>Elaboración</strong></p>
+        <p>Horneado: Cocido con vapor en autoclave de acero inoxidable. </p>
+        <p>Molienda: En molinos mecánicos de 3 masas.</p>
+        <p>Formulación: Se realiza de forma manual para lograr una excelente mezcla del mosto.</p>
+        <p>Fermentado: 100% natural, con levaduras propias de agave en tinas de madera de pino.</p>
+        <p>Destilado: Doble destilado en alambique de acero inoxidable y cobre.</p>
+        <p>Homogenización: El mezcal obtenido se gradúa a 45% Vol. Alc.</p>
+      </div>
+      <div class="swiper-modal-desc-wrapper" ng-if="itemselected === 6">
+        <span class="titleBottle">LA VENIA CITRUS</span>
+        <span class="subtitleBottle">100% AGAVE</span>
         <p>El mezcal Los Portrillos se elabora tradicionalmente con la experiencia heredada en tres generaciones. Todo el proceso certificado por el consejo Mexicano Regulador de la Calidad del Mezcal (COMERCAM) lo que garantiza productos auténticos y confiables.</p>
         <p>Maestro Mezcalero: Jaime Bañuelos Villalobos.</p>
+      </div>
+      <div class="swiper-modal-desc-wrapper" ng-if="itemselected === 7">
+        <span class="titleBottle">LA VENIA JOVEN</span>
+        <span class="subtitleBottle">100% AGAVE</span>
+        <p>Maguey: Espadín</p>
+        <p>Agave: Angustifolia Haw</p>
+        <br>
+        <p><strong>Elaboración</strong></p>
+        <p>Horneado: El cocido del maguey troceado se hace en horno a flor de suelo, revestido con piedra de rio durante 72 horas continuas. </p>
+        <p>Molienda: En tahona tradicional de cantera rosa.</p>
+        <p>Formulación: se realiza de forma manual para lograr una excelente mezcla del mosto.</p>
+        <p>Fermentado: Se realiza en tinas de madera de pino.</p>
+        <p>Destilado: Doble destilado en alambique de cobra calentado con leña regional.</p>
+        <p>Homogenización: El mezcal obtenido se gradúa a 45% Vol. Alc.</p>
       </div>
     </div>
     <div class="swiper-modal-img">
@@ -45,6 +101,7 @@
       <img src="./src/images/imagenproducto4.png" alt="" ng-if="itemselected === 4" class="image-present">
       <img src="./src/images/imagenproducto5.png" alt="" ng-if="itemselected === 5" class="image-present">
       <img src="./src/images/imagenproducto6.png" alt="" ng-if="itemselected === 6" class="image-present">
+      <img src="./src/images/imagenproducto7.png" alt="" ng-if="itemselected === 7" class="image-present">
     </div>
   </div>
 
@@ -75,7 +132,13 @@
           <div class="swiper-slide">
             <img src="./src/images/laveniacuishe.png">
             <span class="name-bottle">
-              <span class="underline-white" ng-click="changeItemSelected(4)">LA VENIA</span>
+              <span class="underline-white" ng-click="changeItemSelected(4)">LA VENIA CUISHE</span>
+            </span>
+          </div>
+          <div class="swiper-slide">
+            <img src="./src/images/lavenia-citrus.png">
+            <span class="name-bottle">
+              <span class="underline-white" ng-click="changeItemSelected(6)">LA VENIA CITRUS </span>
             </span>
           </div>
           <div class="swiper-slide">
@@ -84,10 +147,16 @@
               <span class="underline-white" ng-click="changeItemSelected(5)">LOS POTRILLOS</span>
             </span>
           </div>
+          <div class="swiper-slide">
+            <img src="./src/images/venta.png">
+            <span class="name-bottle">
+              <span class="underline-white" ng-click="changeItemSelected(7)">LA VENIA ESPADÍN</span>
+            </span>
+          </div>
       </div>
       <!-- Add Arrows -->
-      <div class="swiper-button-next"></div>
-      <div class="swiper-button-prev"></div>
+      <div class="swiper-button-prev icon-swiper"><img src="./src/images/sicon-02.png"></div>
+      <div class="swiper-button-next icon-swiper"><img src="./src/images/sicon-02.png"></div>
   </div>
 
 </div>

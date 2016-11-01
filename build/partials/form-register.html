@@ -5,33 +5,33 @@
       <span class="message-span register-msg">Puedes registrarte para realizar tus compras más rapido. <br> Crea una cuenta y recibe contenido único.</span>
       <label>
         <span>NOMBRE</span>
-        <input type="text" required></input>
+        <input type="text" name="nombre" data-status="denied"></input>
       </label>
       <label>
         <span>APELLIDOS</span>
-        <input type="text" required></input>
+        <input type="text" name="lastname" data-status="denied"></input>
       </label>
       <label>
         <span>E-MAIL</span>
-        <input type="email" required></input>
+        <input type="email" name="email" data-status="denied"></input>
       </label>
       <label>
         <span>CONTRASEÑA</span>
-        <input type="password" required></input>
+        <input type="password" name="password" data-status="denied"></input>
       </label>
       <label>
         <span>CONFIRMAR CONTRASEÑA</span>
-        <input type="password" required></input>
+        <input type="password" name="passwordagain" data-status="denied"></input>
       </label>
 
 
       <label class="checkedinput">
         <span></span>
-        <input type="checkbox" required></input> Estoy de acuerdo con el <a href="" ng-click="changeItem(1)">Aviso de Privacidad</a>
+        <input type="checkbox" checked></input> Estoy de acuerdo con el <a href="" ng-click="changeItem(1)">Aviso de Privacidad</a>
       </label>
       <label class="checkedinput">
         <span></span>
-        <input type="checkbox"></input> Quiero suscribirme al boletin.
+        <input type="checkbox" checked></input> Quiero suscribirme al boletin.
       </label>
 
       <div class="login-buttom">REGISTRARTE</div>
