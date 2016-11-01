@@ -6,6 +6,14 @@
       $scope.itemselected = item;
     };
   }])
+
+  .controller('EventsController', ['$scope', function($scope){
+    $scope.eventSelected = 0;
+    $scope.showEventSelected = function(item){
+      $scope.eventSelected = item;
+    };
+  }])
+
   .controller('popUpController', ['$scope', function($scope){
     $scope.item = 0;
     $scope.changeItem = function(item){
@@ -68,7 +76,6 @@
   .controller("igCtrl", ['$scope', '$http', function($scope,$http){
     $http.jsonp('https://api.instagram.com/v1/users/self/media/recent/?access_token=2180432354.3b55ab4.b797aa69977e4d359a25a5d322cb7de0&callback=JSON_CALLBACK').success(function(data) {
       $scope.data = data;
-      console.log(data);
     });
   }])
 

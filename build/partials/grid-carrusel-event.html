@@ -1,19 +1,59 @@
-<div class="row partial-container">
+<div class="row partial-container" ng-controller="EventsController" >
   <div class="container-carrusel-grid">
-    <div class="info-event">
+    <div class="info-event" ng-if="eventSelected === 1">
       <div class="gallery">
         <div class="preview">
-          <div class="title-event-preview"><span>AL SON DE AUTOR AL TON DEL BARRIO</span></div>
+          <div class="title-event-preview"><span>EXPO TEQUILA</span></div>
           <img src="./src/images/events-example.png">
-          <div class="description-event-preview"><span>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu.</span></div>
+          <div class="description-event-preview"><span>
+            Fue todo un gusto poder compartir historias, anécdotas y mezcales con todos ustedes en la pasada Expo Tequila Tlaquepaque Les dejamos un extracto de lo que fue este viaje legal con nuestros amigos de Mezcal Tier
+
+            El comienzo del viaje legal...
+
+            #PerroAgave #MezcalDealers #ViajeLegal
+            Toda la jauría fue convocada para la presentación oficial de nuestro
+             e-commerce
+          </span></div>
         </div>
         <div class="list-gallery-images">
           <div class="gotopicon"><img src="./src/images/icontop.png"></div>
           <ul>
-            <li><img src="./src/images/events.png"></li>
-            <li><img src="./src/images/events-example.png"></li>
-            <li><img src="./src/images/imagen2editada.jpg"></li>
-            <li><img src="./src/images/events.png"></li>
+            <li>
+              <img src="./src/images/eventos/evento-1/IMG_2008.jpg">
+            </li>
+
+            <li>
+              <img src="./src/images/eventos/evento-1/IMG_1993.jpg">
+            </li>
+
+            <li>
+              <img src="./src/images/eventos/evento-1/IMG_1988.jpg">
+            </li>
+
+            <li>
+              <img src="./src/images/eventos/evento-1/IMG_1987.jpg">
+            </li>
+
+            <li>
+              <img src="./src/images/eventos/evento-1/IMG_1980.jpg">
+            </li>
+
+            <li>
+              <img src="./src/images/eventos/evento-1/IMG_1978.jpg">
+            </li>
+
+            <li>
+              <img src="./src/images/eventos/evento-1/IMG_1977.jpg">
+            </li>
+
+            <li>
+              <img src="./src/images/eventos/evento-1/IMG_1971.jpg">
+            </li>
+
+            <li>
+              <img src="./src/images/eventos/evento-1/IMG_1969.jpg">
+            </li>
+
           </ul>
           <div class="godownicon"><img src="./src/images/iconbottom.png"></div>
         </div>
@@ -25,35 +65,83 @@
         </div>
       </div>
     </div>
+
+    <div class="info-event" ng-if="eventSelected === 2">
+      <div class="gallery">
+        <div class="preview">
+          <div class="title-event-preview"><span>Impulsa Moda 20 Mujeres</span></div>
+          <img src="./src/images/events-example.png">
+          <div class="description-event-preview"><span>PERRO AGAVE fiel creyente que la inclusión de la mujer es una necesidad para hacer de nuestro país un lugar digno y prospero. </span></div>
+        </div>
+        <div class="list-gallery-images">
+          <div class="gotopicon"><img src="./src/images/icontop.png"></div>
+          <ul>
+            <li>
+              <img src="./src/images/eventos/evento-2/IMG_2008.jpg">
+            </li>
+
+            <li>
+              <img src="./src/images/eventos/evento-2/IMG_1993.jpg">
+            </li>
+
+            <li>
+              <img src="./src/images/eventos/evento-2/IMG_1988.jpg">
+            </li>
+
+            <li>
+              <img src="./src/images/eventos/evento-2/IMG_1987.jpg">
+            </li>
+
+            <li>
+              <img src="./src/images/eventos/evento-2/IMG_1980.jpg">
+            </li>
+
+            <li>
+              <img src="./src/images/eventos/evento-2/IMG_1978.jpg">
+            </li>
+
+            <li>
+              <img src="./src/images/eventos/evento-2/IMG_1977.jpg">
+            </li>
+
+            <li>
+              <img src="./src/images/eventos/evento-2/IMG_1971.jpg">
+            </li>
+
+            <li>
+              <img src="./src/images/eventos/evento-2/IMG_1969.jpg">
+            </li>
+          </ul>
+          <div class="godownicon"><img src="./src/images/iconbottom.png"></div>
+        </div>
+        <div class="actions events-gallery">
+          <ul>
+            <li class="close-view"><img src="./src/images/iconoerrarventana.png"></li>
+            <li><img src="./src/images/iconocompartir.png"></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
     <div class="container-gen eventos">
       <div class="displace left-displace"><img src="./src/images/sicon-01.png"></div>
       <div class="container-carrusel" data-pos="1">
         <div class="group-items">
           <ul>
-            <li><span></span><img src="./src/images/event.png"></li>
-            <li><span></span><img src="./src/images/event2.png"></li>
-            <li><span></span><img src="./src/images/event.png"></li>
-            <li><span></span><img src="./src/images/event.png"></li>
-          </ul>
-        </div>
-        <div class="group-items">
-          <ul>
-            <li><span></span><img src="./src/images/event.png"></li>
-            <li><span></span><img src="./src/images/event2.png"></li>
-            <li><span></span><img src="./src/images/event.png"></li>
-            <li><span></span><img src="./src/images/event.png"></li>
-          </ul>
-        </div>
-        <div class="group-items">
-          <ul>
-            <li><span></span><img src="./src/images/event.png"></li>
-            <li><span></span><img src="./src/images/event2.png"></li>
-            <li><span></span><img src="./src/images/event.png"></li>
-            <li><span></span><img src="./src/images/event.png"></li>
+            <li ng-click="showEventSelected(1)">
+              <span></span>
+              <img src="./src/images/eventos/evento-1/EXPO-TEQUILA-1 copia.jpg">
+            </li>
+
+            <li ng-click="showEventSelected(2)">
+              <span></span>
+              <img src="./src/images/eventos/evento-2/IMG_1969 copia.jpg">
+            </li>
           </ul>
         </div>
       </div>
       <div class="displace right-displace"><img src="./src/images/sicon-02.png"></div>
     </div>
+
   </div>
 </div>
