@@ -1,3 +1,35 @@
+<style>
+
+  .comprarbutton{
+    margin-bottom: 30px;
+  }
+
+  .itemMessage{
+    margin: 0 auto;
+    width: 80%;
+    height: auto;
+    border: 2px solid #e5e5e5;
+    margin-top: 60px;
+    text-align: center;
+  }
+
+  .itemMessage span{
+    display: block;
+    width: 90%;
+    height: auto;
+    margin: 0 auto;
+    padding-top: 60px;
+    padding-bottom: 60px;
+    font-family: 'Gotham-Bold';
+    font-size: 16px;
+  }
+
+  .cantcart span{
+    font-size: .9em;
+  }
+
+</style>
+
 <div class="row partial-container" id="popup-info">
   <div class="container-pop-up">
     <div class="info-pop-up" ng-show="item===1">
@@ -6,44 +38,46 @@
       <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur? At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur? At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur? At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga. </p>
     </div>
     <div class="cart-items" ng-show="item===2">
-      <div class="containerCart">
+      <div class="containerCart" ng-show="getCount()>0">
         <span class="hiddenCart" ng-click="closePopUp()"><img src="./src/images/hiden-service-2.png"></span>
         <span class="title">MI CARRITO</span>
-        <ul>
-          <li>
+        <ul class="ul-cart-items">
+          <li  class="li-items-cart" ng-repeat="(key, data) in listCart">
             <div class="info-cart-botle">
-              <div class="image"><img src="./src/images/laveniacuishe.png"></div>
+              <div class="image"><img src="./admin/src/images/{{data.productimage}}"></div>
               <div class="info">
-                <span class="subtitle">la venia cuishe</span>
-                <span class="desc">750ml</span>
-                <span>$80</span><span style="font-family: Gotham-Bold; color: red;">$70</span>
-                <div class="counter"><span><img src="./src/images/iconomenos.png"></span> 7 <span><img src="./src/images/iconomas.png"></span></div>
-              </div>
-            </div>
-          </li>
-          <li>
-            <div class="info-cart-botle">
-              <div class="image"><img src="./src/images/lospotrillos.png"></div>
-              <div class="info">
-                <span class="subtitle">los potrillos</span>
-                <span class="desc">750ml</span>
-                <span>$80</span><span style="font-family: Gotham-Bold; color: red;">$70</span>
-                <div class="counter"><span><img src="./src/images/iconomenos.png"></span> 7 <span><img src="./src/images/iconomas.png"></span></div>
+                <span class="subtitle_cart">{{data.productname | uppercase}}</span>
+                <span class="desc">{{data.productquantity}} ml</span>
+                <span>{{(data.productrealprice * data.quantity) | currency}}</span><span style="font-family: Gotham-Bold; color: red;" ng-hide="data.discount == 0">{{(data.productdiscountprice * data.quantity) | currency}}</span>
+                <div class="counter">
+                  <span ng-click="modifyStock(0, data.idproduct)"><img src="./src/images/iconomenos.png"></span>
+                  {{data.quantity}}
+                  <span ng-click="modifyStock(1, data.idproduct)"><img src="./src/images/iconomas.png"></span>
+                </div>
               </div>
             </div>
           </li>
         </ul>
         <div class="status">
           <span class="title">SUBTOTAL</span>
-          <span class="cantcart">4 Productos</span><span class="price">$320</span><span class="price" style="color:red">$280</span>
+          <span class="cantcart"><span>{{getCount()}}</span> <span ng-show="getCount()==1">Producto</span><span ng-show="getCount()>1">Productos</span></span>
+          <span class="price" style="display:block; text-align: right;"><h5>{{getPrice() | currency}}</h5></span>
+          <span class="price" style="color:red; display:block; text-align: right;"><h4>{{getDiscount() | currency}}</h4></span>
         </div>
-        <div class="comprarbutton"><span>COMPRAR</span></div>
+        <div class="comprarbutton" ng-click="gotoBuy()"><span>COMPRAR</span></a></div>
+      </div>
+      <div class="containerCart" ng-show="getCount()==0">
+        <span class="hiddenCart" ng-click="closePopUp()"><img src="./src/images/hiden-service-2.png"></span>
+        <span class="title">MI CARRITO</span>
+        <div class="itemMessage">
+          <span>Aún no tienes productos agregados al carrito.</span>
+        </div>
       </div>
     </div>
     <div class="login-info" ng-show="item===3">
       <span class="close" ng-click="closePopUp()">x</span>
       <p>Lo sentimos necesitas tener una sesión activa para poder comprar.</p>
-      <div class="buttom-login">INICIAR SESIÓN</div>
+      <div class="buttom-login" ng-click="gotoLogin()">INICIAR SESIÓN</div>
     </div>
   </div>
 </div>

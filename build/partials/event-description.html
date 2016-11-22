@@ -1,0 +1,144 @@
+<style>
+  #information-event {
+    position: relative;
+    height: auto;
+    background: #000;
+  }
+  #information-event .info-event{
+    top: 0%;
+    position: relative;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: auto;
+    margin-top: 50px !important;
+    margin: 0 auto;
+  }
+
+  #information-event .gallery{
+    width: 100%;
+    height: auto;
+  }
+  #information-event .preview{
+    width: 70%;
+    height: auto;
+
+  }
+  #information-event .preview img, #information-event .list-gallery-images li img{
+    width: 100%;
+    height: auto;
+  }
+  #information-event .list-gallery-images{
+    width: 30%;
+    position: relative;
+  }
+  #information-event .list-gallery-images li{
+    height: auto;
+  }
+  .title-event, .date-event{
+    font-family: 'Gotham-Bold';
+    font-size: 1.5em;
+    display: block;
+    margin-bottom: 1vw;
+    width: 100% !important;
+  }
+  .date-event{
+    text-align: right;
+  }
+
+  .description-event{
+    text-align: justify;
+    display: block;
+    margin-bottom: 1vw;
+    margin-top: 1vw;
+  }
+  .event-details{
+    display: block;
+    margin-bottom: 1vw;
+    font-weight: bold;
+    width: 100% !important;
+  }
+  .container-event{
+    width: 60% !important;
+    height: auto;
+    margin: 0 auto;
+    max-width: 580px;
+  }
+  .coming-info-event, .coming-info-event .gallery, .coming-info-event .gallery .preview{
+    width: 100% !important;
+    height: auto;
+  }
+
+  .coming-info-event{
+    max-width: 740px;
+    margin: 0 auto;
+    padding-top: 60px !important;
+    padding-bottom: 60px !important;
+  }
+
+  @media(max-width: 970px){
+    #information-event .list-gallery-images li img{
+      width: 100% !important;
+      height: auto !important;
+    }
+    .container-event{
+      width: 70% !important;
+      height: auto;
+      margin: 0 auto;
+    }
+  }
+  @media(max-width: 480px){
+    #information-event .list-gallery-images{
+      width: 50%;
+    }
+    #information-event .preview{
+      width: 100%;
+    }
+    .container-event{
+      width: 90% !important;
+      height: auto;
+      margin: 0 auto;
+    }
+  }
+</style>
+<div class="row partial-container" ng-if="loadData">
+  <div class="container-carrusel-grid" id="information-event">
+    <div class="info-event" ng-if="listEvent.eventstatus === '1'">
+      <div class="gallery">
+        <div class="preview">
+          <div class="title-event-preview"><span>{{listEvent.eventname || uppercase}}</span></div>
+          <img src="./admin/src/images/galleryEvents/{{listEvent.eventGallery[0].eventimagegalleryimage}}">
+          <div class="description-event-preview"><span>
+            <span>{{listEvent.eventdescription}}</span>
+          </span></div>
+        </div>
+        <div class="list-gallery-images">
+          <div class="gotopicon"><img src="./src/images/icontop.png"></div>
+          <ul>
+            <li ng-repeat="(key, data) in listEvent.eventGallery">
+              <img src="./admin/src/images/galleryEvents/{{data.eventimagegalleryimage}}">
+            </li>
+          </ul>
+          <div class="godownicon"><img src="./src/images/iconbottom.png"></div>
+        </div>
+      </div>
+    </div>
+    <div class="info-event coming-info-event" ng-if="listEvent.eventstatus === '0'">
+      <div class="gallery">
+        <div class="preview">
+          <img src="./admin/src/images/CoverEvents/{{listEvent.eventCover}}">
+          <div class="description-event-preview">
+            <div class="container-event">
+              <span class="date-event">{{listEvent.eventdate | dateEvent}}</span>
+              <span class="title-event">{{listEvent.eventname | uppercase}}</span>
+              <p class="description-event">{{listEvent.eventdescription}}</p>
+              <span class="event-details">{{listEvent.eventscheduledescription}}</span>
+              <span class="event-details">{{listEvent.eventstate}}, {{listEvent.eventcity}}, {{listEvent.eventaddress}}, {{listEvent.eventneighborhood}}. CP: {{listEvent.eventzipcode}}</span>
+              <span class="event-details">Tel: {{listEvent.eventphonenumer}}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,4 +1,11 @@
-<section class="photos-ig-grid" >
+<style>
+  .container-title{
+    margin-bottom: 60px;
+    margin-top: 60px;
+  }
+</style>
+
+<section class="photos-ig-grid" id="instagram-site" name="instagram-site">
 
   <div class="container-title">
     <span>#PERROAGAVE<span>
@@ -8,7 +15,7 @@
     <div class="photo-container" ng-repeat="(key,items) in data.data"  >
       <a href="{{items.link}}" target="_blank">
         <img src="{{items.images.standard_resolution.url}}" alt="" />
-        <span class="title"> {{items.caption.text}} </span>
+        <span class="titleinst"> {{items.caption.text}} </span>
       </a>
     </div>
   </div>

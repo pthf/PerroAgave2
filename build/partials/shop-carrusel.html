@@ -1,4 +1,69 @@
-<div class="row partial-container">
+<style>
+
+  .container-shop{
+    margin-bottom: 0px !important;
+    padding-bottom: 0px !important;
+  }
+
+  #shop-site{
+    position: relative;
+  }
+
+  .element-msg{
+    position: absolute;
+    bottom: 10px;
+    right: 15px;
+    width: 130px;
+    height: auto;
+    color: #FFF;
+    font-family: 'Gotham-Book';
+    font-size: 12px;
+    z-index: 2;
+  }
+
+  .element-msg ul{
+    width: 100%;
+    height: auto;
+  }
+
+  .element-msg ul li{
+    width: 100%;
+    height: 80px;
+    text-align: center;
+    background: #000;
+    margin-bottom: 5px;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    align-items: center;
+    align-content: center;
+    justify-content: center;
+  }
+
+  .element-msg ul li span{
+    display: block;
+    width: 90%;
+    height: auto;
+    margin: 0 auto;
+    line-height: 1em;
+  }
+
+  @media(max-width: 640px){
+    .element-msg{
+      position: fixed;;
+      top: 10%;
+      right: 15px;
+      width: 130px;
+      height: auto;
+      color: #FFF;
+      font-family: 'Gotham-Book';
+      font-size: 12px;
+    }
+  }
+
+</style>
+
+<div class="row partial-container" id="shop-site">
   <div class="container-shop">
     <div class="container-title"><span>SHOP<span></div>
     <div class="buyGuide">
@@ -36,7 +101,7 @@
           <div class="group-items" ng-repeat="(key, data) in productList" load-shop-carrusel>
             <ul class="shop">
               <li ng-repeat="(key, data) in data">
-                <div class="discount">{{data.discount}}%</div>
+                <div class="discount" ng-if="data.discount>0">{{data.discount}}%</div>
                 <div class="view-most">+</div>
                 <div class="information-bottle">
                   <div class="close-info-bottle">x</div>
@@ -46,8 +111,9 @@
                 <img src="./admin/src/images/{{data.productimage}}">
                 <div class="name">{{data.productname | uppercase}}, {{data.productcategoryname | uppercase}}</div>
                 <div class="cant">{{data.productquantity}} ml</div>
-                <div class="price"><div>{{data.productrealprice | currency}}</div><div style="color:red; font-weight: bold;">{{data.productdiscountprice | currency}}</div></div>
-                <div class="cart" data-id="{{data.idproduct}}" data-stock="{{data.productstock}}"><img src="./src/images/iconoproductocomprado.png"></div>
+                <div class="price"><div>{{data.productrealprice | currency}}</div><div style="color:red; font-weight: bold;" ng-if="data.discount>0">{{data.productdiscountprice | currency}}</div></div>
+                <div ng-if="userLogin == 0" class="cart" ng-click="changeItem(3)"><img src="./src/images/iconoproductocomprado.png"></div>
+                <div ng-if="userLogin != 0" class="cart" ng-click="addProduct(data.idproduct)"><img src="./src/images/iconoproductocomprado.png"></div>
               </li>
             </ul>
           </div>
@@ -55,5 +121,11 @@
       </div>
       <div class="view-more vmr"><img src="./src/images/hiden-service-2.png"></div>
     </div>
+  </div>
+  <div class="element-msg">
+    <ul>
+      <!-- <li><span>Lo sentimos mucho, ya no hay mas productos en inventario.</span></li>
+      <li><span>Lo sentimos mucho, ya no hay mas productos en inventario.</span></li> -->
+    </ul>
   </div>
 </div>

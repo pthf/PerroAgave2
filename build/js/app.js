@@ -3,7 +3,8 @@
 		'ngRoute',
 		'perroAgave.controllers',
 		'perroAgave.directives',
-		'perroAgave.services'
+		'perroAgave.services',
+		'perroAgave.filters'
 	]);
 	app.config(['$routeProvider', '$locationProvider' , function($routeProvider, $locationProvider){
 		$routeProvider
@@ -12,13 +13,18 @@
 			})
 			.when('/login', {
 				templateUrl: './views/login.html',
-        controller: 'formloginregisterController'
+        controller: 'checkLoginUserController'
 			})
 			.when('/profile', {
-				templateUrl: './views/profile-view.html'
+				templateUrl: './views/profile-view.html',
+				controller: 'checkLoginUserController'
 			})
 			.when('/compra', {
 				templateUrl: './views/carrito-view.html'
+			})
+			.when('/event/:name', {
+				templateUrl : './views/event.html',
+				controller: 'dataEventController'
 			})
 			.otherwise({
 				redirectTo: '/'
@@ -28,5 +34,6 @@
 	app.run(['$rootScope', function($rootScope){
 		$rootScope.open = false;
 		$rootScope.userLogin = 0;
+		$rootScope.listCart = [];
 	}]);
 })();

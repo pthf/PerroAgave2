@@ -3,4 +3,4 @@
     RewriteCond %{REQUEST_FILENAME} !-f
     RewriteCond %{REQUEST_FILENAME} !-d
     RewriteCond %{REQUEST_URI} !index
-    RewriteRule (.*) /www/failbox/failbox/build/home/ [L]
+    RewriteRule (.*) /www/pa/PerroAgave2/build/ [L]

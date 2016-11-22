@@ -1,145 +1,244 @@
-<div class="profile-wrapper">
+<style>
+  .wrong-pass{
+    font-family: 'Gotham-Bold';
+    font-weight: bold;
+    width: 100%;
+    margin-top: 25px !important;
+  }
+  .profile-modal-title{
+    font-size: 1.8em;
+  }
+  .titlesetpass{
+    display: block;
+    width: 100%;
+    text-align: left;
+    font-family: 'Gotham-Bold';
+    font-weight: bold;
+    font-size: 1.1em;
+  }
+  .right-side-data{
+    position: relative;
+  }
+  .profile-name-wrapper, .profile-modal-wrapper{
+    max-width: 620px;
+    margin: 0 !important;
+    padding: 0 !important;
+    margin: 0 auto !important;
+    text-align: center;
+  }
+  .profile-modal-wrapper{
+    border: 2px solid #e5e5e;
+  }
+  .profile-modal-wrapper form{
+    width: 70%;
+    height: auto;
+    margin: 0 auto;
+    padding: 7px;
+  }
+  .profile-wrapper{
+    margin-top: 9.3vw;
+    margin-bottom: 9.3vw;
+    font-size: 1em;
+  }
+  .profile-name-wrapper b, .profile-name-wrapper span{
+    font-size: 1.5em;
+  }
+  .user-data{
+    max-width: 520px;
+  }
+  .user-data .left-side-data{
+    width: 30%;
+    text-align: left;
+  }
+  .user-data .right-side-data{
+    width: 65%;
+  }
+  .user-data span{
+    font-size: .8em;
+    font-family: 'Gotham-Bold';
+  }
+  .user-data input, .user-data select{
+    width: 100%;
+    padding: 7px;
+    display: inline-block;
+    font-family: 'Gotham-Bold';
+    color: #000;
+    border: 2px solid #FFF;
+  }
+  .logout-button{
+    cursor: pointer;
+    opacity: .5;
+    font-size: .8em !important;
+  }
+  .edit-button-wrapper{
+    margin-top: 2vw !important;
+    margin-bottom: 2vw !important;
+  }
+  .profile-name{
+    width: 100%;
+    height: auto;
+    margin-top: 2vw !important;
+    margin-bottom: 5vw !important;
+  }
+  .close-setion {
+    display: block !important;
+  }
+  .logout{
+    display: block !important;
+    text-align: right;
+  }
+  .msgError{
+    display: block;
+    width: 100%;
+    position: relative;
+    top: 0%;
+    left: 0%;
+    padding: 5px;
+    text-align: left;
+    color: red;
+  }
 
-  <div class="profile-modal">
-    <div class="close-modal-bg"></div>
-    <div class="profile-modal-wrapper">
-      <span class="close-icon">X</span>
+  .msgeErrorForm{
+    font-weight: bold;
+    width: 100%;
+    display: block;
+    color: red;
+    text-align: center;
+    margin-top: -2vw;
+  }
+  .new-password{
+    display: none;
+  }
+</style>
+<div class="row partial-container" ng-if="dataLoaded">
+  <div class="profile-wrapper">
+    <div class="profile-modal">
+      <div class="close-modal-bg"></div>
+      <div class="profile-modal-wrapper">
+        <span class="close-icon">X</span>
 
-      <div class="profile-modal-title">POR FAVOR, INTRODUZCA SU CONTRASEÑA</div>
+        <div class="profile-modal-title">CAMBIAR CONTRASEÑA</div>
 
-      <div class="input-modal-wrapper">
-        <form>
-
-          <input type="password" class="modal-pass check-pass">
-
-          <span class="change-mail-pass change-passwd">Introduzca su nueva contraseña.</span>
-          <span class="change-mail-pass change-mail-email">Introduzca su nuevo email.</span>
-
-          <input type="password" class="modal-pass">
-
-          <span class="change-mail-pass change-passwd">Confime su nueva contraseña.</span>
-          <span class="change-mail-pass change-mail-email">Confirme su nuevo email.</span>
-
-
-          <input type="submit" name="name" value="Enviar" class="send-info-pass-email">
-
-          <span class="wrong-pass">La contraseña no coincide.</span> <br>
-        </form>
+        <div class="input-modal-wrapper">
+          <form>
+            <div class="current-password">
+              <span class="titlesetpass">Introduce tu contraseña actual: </span>
+              <input type="password" name="password-recovery" data-id-user="{{userLogin}}" class="modal-pass">
+              <input type="submit" name="name" value="Enviar" class="send-info-pass-email">
+            </div>
+            <div class="new-password">
+              <span class="titlesetpass">Introduce tu contraseña nueva: </span>
+              <input type="password" name="password-new" class="modal-pass">
+              <span class="titlesetpass">Confirma tu contraseña nueva: </span>
+              <input type="password" name="password-new-conf" class="modal-pass">
+              <input type="submit" name="name" value="Enviar" class="set-current-password" data-id-user="{{userLogin}}">
+            </div>
+            <span class="wrong-pass">Contraseña incorrecta</span> <br>
+          </form>
+        </div>
       </div>
     </div>
-  </div>
-
-  <div class="profile-name-wrapper">
-    <div class="profile-name">
-      <b>Hola, Diego Fuentes</b>
-    </div>
-
-    <div class="logout">
-      <span class="logout-button">CERRAR SESIÓN</span>
-    </div>
-  </div>
-
-  <div class="user-data">
-
-    <!-- Nombre -->
-    <div class="user-data-row">
-      <div class="left-side-data">
-        <span>NOMBRE</span>
-      </div>
-
-      <div class="right-side-data">
-        <input type="text" name="name" value="Diego" class="profile-input" readonly="true" >
+    <div class="profile-name-wrapper close-setion" ng-controller="sessionUserController">
+      <div class="logout" ng-click="logoutCart()">
+        <span class="logout-button" ng-click="logoutUser()">CERRAR SESIÓN</span>
       </div>
     </div>
-
-    <!-- Apellido -->
-    <div class="user-data-row">
-      <div class="left-side-data">
-        <span>APELLIDOS</span>
-      </div>
-
-      <div class="right-side-data">
-        <input type="text" name="lastname" value="Fuentes Santillan" class="profile-input" readonly="true" >
+    <div class="profile-name-wrapper">
+      <div class="profile-name">
+        <b>Hola, {{userData.username | uppercase}}</b>
       </div>
     </div>
-
-    <!-- Teléfono  -->
-    <div class="user-data-row">
-      <div class="left-side-data">
-        <span>TELÉFONO</span>
+    <div class="user-data" ng-controller="selectedStatesCitiesController">
+      <!-- Nombre -->
+      <div class="user-data-row">
+        <div class="left-side-data">
+          <span>NOMBRE</span>
+        </div>
+        <div class="right-side-data">
+          <input type="text" name="name" value="{{userData.username}}" class="profile-input" readonly="true" data-status="acepted" disabled>
+          <span class="msgError"></span>
+        </div>
       </div>
-
-      <div class="right-side-data">
-        <input type="tel" name="phone" value="33333333" class="profile-input" readonly="true" >
+      <!-- Apellido -->
+      <div class="user-data-row">
+        <div class="left-side-data">
+          <span>APELLIDOS</span>
+        </div>
+        <div class="right-side-data">
+          <input type="text" name="lastname" value="{{userData.userlastname}}" class="profile-input" readonly="true" data-status="acepted" disabled>
+          <span class="msgError"></span>
+        </div>
+      </div>
+      <!-- E-MAIL -->
+      <div class="user-data-row">
+        <div class="left-side-data">
+          <span>E-MAIL</span>
+        </div>
+        <div class="right-side-data">
+          <input type="text" name="email" value="{{userData.useremail}}" data-email="{{userData.useremail}}" class="profile-input" readonly="true" data-status="acepted" disabled>
+          <span class="msgError"></span>
+        </div>
+      </div>
+      <!-- Teléfono  -->
+      <div class="user-data-row">
+        <div class="left-side-data">
+          <span>TELÉFONO</span>
+        </div>
+        <div class="right-side-data">
+          <input type="tel" name="phone" value="{{userData.userphonenumber}}" class="profile-input" readonly="true" data-status="acepted" disabled >
+          <span class="msgError"></span>
+        </div>
+      </div>
+      <!-- ESTADO -->
+      <div class="user-data-row">
+        <div class="left-side-data">
+          <span>ESTADO</span>
+        </div>
+        <div class="right-side-data">
+          <select class="profile-input" readonly="true" ng-model="userState" ng-change="changeState(userState)" data-status="acepted" disabled name="state">
+            <option ng-repeat="(key, data) in states" name="{{data.idEstados}}" value="{{data.idEstados}}">{{data.nombreEstado | uppercase}}</option>
+          </select>
+          <span class="msgError"></span>
+        </div>
+      </div>
+      <!-- CIUDAD -->
+      <div class="user-data-row">
+        <div class="left-side-data">
+          <span>CIUDAD</span>
+        </div>
+        <div class="right-side-data">
+          <select class="profile-input" readonly="true" ng-model="userCity" ng-change="changeCity(userCity)" data-status="acepted" disabled name="city">
+            <option ng-repeat="(key, data) in cities" ng-if="data.Estados_idEstados ===  userState" name="{{data.idCiudades}}" value="{{data.idCiudades}}">{{data.nombreCiudad | uppercase}}</option>
+          </select>
+          <span class="msgError"></span>
+        </div>
+      </div>
+      <!-- CALLE -->
+      <div class="user-data-row">
+        <div class="left-side-data">
+          <span>DIRECCIÓN</span>
+        </div>
+        <div class="right-side-data">
+          <input type="text" name="address" value="{{userData.useraddress}}" class="profile-input" readonly="true" data-status="acepted" disabled>
+          <span class="msgError"></span>
+        </div>
+      </div>
+      <!-- C.P. -->
+      <div class="user-data-row">
+        <div class="left-side-data">
+          <span>CÓDIGO POSTAl</span>
+        </div>
+        <div class="right-side-data">
+          <input type="tel" name="postalcode" value="{{userData.userzipcode}}" class="profile-input" readonly="true" data-status="acepted" disabled>
+          <span class="msgError"></span>
+        </div>
       </div>
     </div>
-
-    <!-- E-MAIL -->
-    <div class="user-data-row">
-      <div class="left-side-data">
-        <span>NOMBRE</span>
-      </div>
-
-      <div class="right-side-data">
-        <input type="text" name="email" value="example@example.com" class="profile-input" readonly="true" >
-      </div>
+    <div class="edit-button-wrapper">
+      <span class="edit-button edit-button-toggle edit-data show-button"> </span>
+      <span class="edit-button save-data hide-button" data-id-user="{{userData.iduser}}">GUARDAR</span>
+      <span class="edit-button edit-passwd hide-button">EDITAR MI CONTRASEÑA</span>
     </div>
-
-    <!-- CONTRASEÑA -->
-    <div class="user-data-row">
-      <div class="left-side-data">
-        <span>CONTRASEÑA</span>
-      </div>
-
-      <div class="right-side-data">
-        <input type="text" name="password" value="*********" class="profile-input" readonly="true" >
-      </div>
-    </div>
-
-    <!-- ESTADO -->
-    <div class="user-data-row">
-      <div class="left-side-data">
-        <span>ESTADO</span>
-      </div>
-
-      <div class="right-side-data">
-        <input type="text" name="estate" value="Jalisco" class="profile-input" readonly="true" >
-      </div>
-    </div>
-
-    <!-- CALLE -->
-    <div class="user-data-row">
-      <div class="left-side-data">
-        <span>CALLE</span>
-      </div>
-
-      <div class="right-side-data">
-        <input type="text" name="address" value="CALLE #123" class="profile-input" readonly="true" >
-      </div>
-    </div>
-
-    <!-- C.P. -->
-    <div class="user-data-row">
-      <div class="left-side-data">
-        <span>CÓDIGO POSTAl</span>
-      </div>
-
-      <div class="right-side-data">
-        <input type="tel" name="CP" value="4555" class="profile-input" readonly="true" >
-      </div>
-    </div>
-
-  </div>
-
-  <div class="edit-button-wrapper">
-    <span class="edit-button edit-button-toggle edit-data show-button"> </span>
-
-    <span class="edit-button edit-mail hide-button">EDITAR MI EMAIL</span>
-
-    <span class="edit-button edit-passwd hide-button">EDITAR MI CONTRASEÑA</span>
-  </div>
-
-  <div class="subtitle">
-    TU VIAJE LEGAL ARMADO
+    <span class="msgeErrorForm"></span>
   </div>
 </div>

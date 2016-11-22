@@ -1,4 +1,4 @@
-<div class="row partial-container">
+<div class="row partial-container" id="eventos-site">
   <div class="container-carrusel-grid">
     <div class="info-event">
       <div class="image-event">
@@ -10,8 +10,7 @@
         <div class="actions">
           <ul>
             <li class="close-view"><img src="./src/images/iconoerrarventana.png"></li>
-            <li data-id="" name="saveevent"><img src="./src/images/iconoguardarevento.png"></li>
-            <li data-url="" name="shareevent"><img src="./src/images/iconocompartir.png"></li>
+            <li name="shareevent" class="sharefacebook" data-url="{{data.eventurl}}"><img src="./src/images/iconocompartir.png"></li>
           </ul>
         </div>
         <div class="description">
@@ -32,7 +31,10 @@
         <div class="openInfoElement"></div>
         <div class="group-items" ng-repeat="(key, data) in eventsList">
           <ul>
-            <li data-id="{{data.idevent}}" ng-repeat="(key, data) in data" ng-click="showevent(data.idevent)" load-grid-carrusel><span></span><img src="./admin/src/images/CoverEvents/{{data.eventCover}}"></li>
+            <li data-id="{{data.idevent}}" ng-repeat="(key, data) in data" load-grid-carrusel>
+              <span></span>
+              <img src="./admin/src/images/CoverEvents/{{data.eventCover}}">
+            </li>
           </ul>
         </div>
       </div>

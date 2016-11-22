@@ -59,7 +59,7 @@ span.logout-button {
   text-transform: uppercase;
 }
 
-.right-side-data input {
+.right-side-data input, .right-side-data select {
   text-align: left;
   border: none;
   color: gray;
@@ -97,16 +97,16 @@ span.edit-button:hover {
 
 input[type="submit"]:hover {
   color: black;
-  border: 3px solid black;
+  border: 2px solid black;
 }
 
 input[type="submit"]:hover {
   color: black;
-  border: 3px solid black;
+  border: 2px solid black;
 }
 
 input.modal-pass:focus,input.modal-pass:hover {
-  border: 3px solid black;
+  border: 2px solid black;
   outline: none;
 }
 
@@ -132,7 +132,7 @@ input.modal-pass:focus,input.modal-pass:hover {
   font-weight: 400;
 }
 
-.right-side-data input {
+.right-side-data input, .right-side-data select {
   font-size: 14px;
 }
 
@@ -175,7 +175,7 @@ span.logout-button {
   margin: 0 auto;
   height: auto;
   background: white;
-  border: 3px solid gray;
+  border: 2px solid gray;
   z-index: 8;
 }
 
@@ -212,9 +212,9 @@ span.close-icon:hover {
   margin: 0 auto;
 }
 
-.input-modal-wrapper input[type="submit"] {
+.input-modal-wrapper input[type="submit"], .input-modal-wrapper select[type="submit"] {
   padding: 5px 25px;
-  border: 3px solid #b7b7b7;
+  border: 2px solid #b7b7b7;
   color: #b7b7b7;
   cursor: pointer;
   font-size: 18px;
@@ -225,14 +225,14 @@ span.close-icon:hover {
 }
 
 .input-modal-wrapper input[type="submit"]:focus,.input-modal-wrapper input[type="submit"]:hover{
-  border:3px solid black;
+  border:2px solid black;
   color: black;
   outline: none;
 }
 
-input.modal-pass {
+.modal-pass {
   padding: 5px;
-  border: 3px solid #b7b7b7;
+  border: 2px solid #b7b7b7;
   color: #000;
   font-size: 18px;
   margin: 0 5px;
@@ -242,7 +242,7 @@ input.modal-pass {
   margin: 5px auto;
 }
 
-input.modal-pass.check-pass{
+.modal-pass.check-pass{
   display: none;
 }
 
@@ -303,7 +303,7 @@ span.change-mail-pass.change-mail-email,span.change-mail-pass.change-passwd {
     font-size: 12px;
   }
 
-  .right-side-data input {
+  .right-side-data input, .right-side-data select {
     font-size: 12px;
   }
 
@@ -371,7 +371,7 @@ span.change-mail-pass.change-mail-email,span.change-mail-pass.change-passwd {
     font-size: 11px;
   }
 
-  .right-side-data input {
+  .right-side-data input, .right-side-data select {
     font-size: 11px;
   }
 }

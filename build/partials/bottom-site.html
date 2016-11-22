@@ -1,13 +1,22 @@
-<div class="row partial-container">
+<style>
+  .ancla-url, .ancla-url:hover{
+    color: #FFF;
+  }
+</style>
+<div class="row partial-container" ng-controller="verifyUrlController">
   <div class="container-bottom">
     <img src="./src/images/logo.png">
-    <ul>
-      <li>NOSOTROS</li>
-      <li>PRODUCTOS</li>
-      <li>EVENTOS</li>
-      <li>SHOP</li>
-      <li>CONTACTO</li>
-      <li>AVISO DE PRIVACIDAD</li>
+    <ul ng-if="menuhome == 1">
+      <li class="ancla-url" ng-click="slideElement()" href="#nosotros-site">NOSOTROS</li>
+      <li class="ancla-url" ng-click="slideElement()" href="#productos-site">PRODUCTOS</li>
+      <li class="ancla-url" ng-click="slideElement()" href="#eventos-site">EVENTOS</li>
+      <li class="ancla-url" ng-click="slideElement()" href="#shop-site">SHOP</li>
+      <li class="ancla-url" ng-click="slideElement()" href="#contacto-site">CONTACTO</li>
+      <a href="" style="color:#FFF;" ng-click="changeItem(1)"><li>AVISO DE PRIVACIDAD</li></a>
+    </ul>
+    <ul ng-if="menuhome == 0">
+      <li><a class="ancla-url" href="#nosotros-site">HOME</a></li>
+      <a href="" style="color:#FFF;" ng-click="changeItem(1)"><li>AVISO DE PRIVACIDAD</li></a>
     </ul>
     <span>Copyright © 2016 Perro Agave.  All rights reserved.</span>
   </div>

@@ -1,41 +1,46 @@
 <div class="row partial-container">
   <div class="container-formlogin">
-    <form id="register-form">
+    <form id="register-form" name="register-form" ng-submit="addUser()" novalidate>
       <span class="title-form">REGISTRO DE USUARIO</span>
       <span class="message-span register-msg">Puedes registrarte para realizar tus compras más rapido. <br> Crea una cuenta y recibe contenido único.</span>
       <label>
         <span>NOMBRE</span>
         <input type="text" name="nombre" data-status="denied"></input>
+        <span class="spacespan" style="display:none;"></span><span style="display:none;color:red; font-size:.9em; padding-left: 5px;" class="msgerror"></span>
       </label>
       <label>
         <span>APELLIDOS</span>
         <input type="text" name="lastname" data-status="denied"></input>
+        <span class="spacespan" style="display:none;"></span><span style="display:none;color:red; font-size:.9em; padding-left: 5px;" class="msgerror"></span>
       </label>
       <label>
         <span>E-MAIL</span>
         <input type="email" name="email" data-status="denied"></input>
+        <span class="spacespan" style="display:none;"></span><span style="display:none;color:red; font-size:.9em; padding-left: 5px;" class="msgerror"></span>
       </label>
       <label>
         <span>CONTRASEÑA</span>
         <input type="password" name="password" data-status="denied"></input>
+        <span class="spacespan" style="display:none;"></span><span style="display:none;color:red; font-size:.9em; padding-left: 5px; width: 50%;" class="msgerror"></span>
       </label>
       <label>
         <span>CONFIRMAR CONTRASEÑA</span>
         <input type="password" name="passwordagain" data-status="denied"></input>
-      </label>
-
-
-      <label class="checkedinput">
-        <span></span>
-        <input type="checkbox" checked></input> Estoy de acuerdo con el <a href="" ng-click="changeItem(1)">Aviso de Privacidad</a>
+        <span class="spacespan" style="display:none;"></span><span style="display:none;color:red; font-size:.9em; padding-left: 5px; width: 50%;" class="msgerror"></span>
       </label>
       <label class="checkedinput">
         <span></span>
-        <input type="checkbox" checked></input> Quiero suscribirme al boletin.
+        <input type="checkbox" checked name="privacy"></input> Estoy de acuerdo con el <a href="" ng-click="changeItem(1)">Aviso de Privacidad</a>
       </label>
-
+      <label class="checkedinput">
+        <span></span>
+        <input type="checkbox" checked name="newsletter"></input> Quiero suscribirme al boletin.
+      </label>
       <div class="login-buttom">REGISTRARTE</div>
-      <input type="submit" style="display:none">
+      <input type="submit" style="display:none"><br>
+      <span class="message-span">Ya tienes una cuenta? <span class="register-user" ng-click="openlogin()">Inicia Sesión</span></span><br><br>
+      <span style="color:red" class="msgformreg"></span>
     </form>
+
   </div>
 </div>
