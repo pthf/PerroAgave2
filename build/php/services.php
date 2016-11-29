@@ -1,7 +1,7 @@
 <?php
   // session_start();
   // session_destroy();
-  require('/../admin/php/connect.php');
+  require('./../admin/php/connect.php');
   class Services extends Connect{
     function __construct($namefunction){
       $this->addConnection();
