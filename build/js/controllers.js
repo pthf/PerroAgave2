@@ -81,10 +81,64 @@
       }
       return sumPrice;
     }
+    $scope.getShippingCost = function(){
+      return 220;
+    }
     $scope.logoutCart = function(){
       $scope.loadCart();
     }
     $scope.loadCart();
+    //Proceso Comprar
+    $scope.itemselected = 1;
+    $scope.checkout = true;
+    $scope.client = false;
+    $scope.address = false;
+    $scope.changeItemBuy = function(item){
+      switch(item){
+        case 1:
+          if($scope.checkout) 
+            $scope.itemselected = item;
+        break;
+        case 2:
+          if($scope.client) 
+            $scope.itemselected = item;
+        break;
+        case 3: 
+          if($scope.address) 
+            $scope.itemselected = item;
+        break;
+      }
+    }
+    $scope.changeStage = function(item){
+      switch(item){
+        case 1:
+          $scope.checkout = true;
+          $scope.itemselected = item
+        break;
+        case 2: 
+          $scope.client = true;
+          $scope.itemselected = item
+        break;
+        case 3: 
+          $scope.address = true;
+          $scope.itemselected = item
+        break;
+      }
+    }
+    //Informacion cliente
+    $scope.userDataLoaded = false;
+    $scope.userCity;
+    $scope.userState;
+    $scope.userData = [];
+    perroAgaveservice.getUserConnection().then(function(data){
+      $rootScope.userLogin = data;
+      perroAgaveservice.getUserData($rootScope.userLogin).then(function(data){
+        $scope.userData = data;
+        $scope.userCity = data.usercity;
+        $scope.userState = data.userstate;
+        $scope.userDataLoaded = true;
+      });
+    });
   }])
   .controller('verifyUrlController', ['$scope', '$routeParams', '$location', function($scope, $routeParams, $location){
     $scope.menuhome = 0;
@@ -108,7 +162,7 @@
   }])
   .controller('introSiteController', ['$rootScope', '$scope', function($rootScope, $scope){
     //if(!$rootScope.open)
-    if(!$rootScope.open){
+    if($rootScope.open){
       $('body, html').css({'overflow':'hidden'});
       $('#intro-page').css({'z-index': '10'});
       $('#intro-page').css({'opacity': '1'});

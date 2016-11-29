@@ -1,5 +1,42 @@
 (function(){
   angular.module('perroAgave.directives', [])
+  .directive('compra', function(){
+    return {
+      restrict: 'E',
+      templateUrl: './partials/compra.html',
+      controller: function($document){
+        //VALIDACIONES//
+        $(document).on('change', '.right-side-data input[name=phone], .right-side-data input[name=address]', function(){
+          if($(this).val().length > 6){
+            $(this).css({"border":"2px solid #3ADF00"});
+            $(this).attr("data-status", "acepted");
+            $(this).siblings('.msgError').text('');
+          }else{
+            $(this).attr("data-status", "denied");
+            $(this).css({"border":"2px solid #DF0101"});
+            $(this).siblings('.msgError').text('Campo muy corto');
+          }
+        });
+        $(document).on('change', '.right-side-data select[name=city], .right-side-data select[name=state]', function(){
+          $(this).css({"border":"2px solid #3ADF00"});
+          $(this).attr("data-status", "acepted");
+          $(this).siblings('.msgError').text('');
+        });
+        $(document).on('change', '.right-side-data input[name=postalcode]', function(){
+          var expresion = new RegExp("^[A-Za-z0-9]{4,7}$");
+          if(expresion.test($(this).val())){
+            $(this).css({"border":"2px solid #3ADF00"});
+            $(this).attr("data-status", "acepted");
+            $(this).siblings('.msgError').text('');
+          }else{
+            $(this).attr("data-status", "denied");
+            $(this).css({"border":"2px solid #DF0101"});
+            $(this).siblings('.msgError').text('Campo inválido');
+          }
+        });
+      }
+    }
+  })
   .directive('headerTop', function(){
     return {
       restrict: 'E',
@@ -796,9 +833,7 @@
       restrict: 'E',
       templateUrl: './partials/pop-up-info.html',
       controller: function(){
-        $('.li-items-cart').click(function(){
-          console.log('ok');
-        });
+
       }
     }
   })
@@ -1033,14 +1068,6 @@
     return {
       restrict: 'E',
       templateUrl: './partials/intro-site.html'
-    }
-  })
-  .directive('compra', function(){
-    return {
-      restrict: 'E',
-      templateUrl: './partials/compra.html',
-      controller: function($document){
-      }
     }
   })
   .directive('instagramPhotos', function(){

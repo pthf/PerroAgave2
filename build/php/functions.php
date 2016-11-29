@@ -1,5 +1,5 @@
 <?php
-  require('/../admin/php/connect.php');
+  require('/../admin/php/connect.php');    
   class Functions extends Connect{
     function __construct($namefunction){
       $this->addConnection();
