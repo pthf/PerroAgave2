@@ -1,33 +1,28 @@
-<style>
-  .ancla-menu-not a, .ancla-menu-not:hover a{
-    color: #333;
-  }
-</style>
 <div class="row partial-container" ng-controller="verifyUrlController">
-  <div class="header">
-    <div class="icon">
-      <a href="#/"><div class="cont-image"><img src="./src/images/PA.png"></div></a>
-    </div>
-    <ul class="menu-nav">
-      <a href="#/login" ng-if="userLogin == 0"><li><div class="cont-image"><img src="./src/images/icon-01.png"></div></li></a>
-      <a href="#/profile" ng-if="userLogin != 0"><li><div class="cont-image"><img src="./src/images/icon-01.png"></div></li></a>
-      <li><div class="cont-image" ng-click="changeItem(2)"><img src="./src/images/icon-02.png"></div></li>
-      <li class="menu-nav-li">
-        <div class="cont-image cont-image-selected" ><img src="./src/images/icon-03.png"></div>
-        <ul class="submenu" ng-if="menuhome == 1">
-          <li class="menu-close"><div class="cont-image"><img src="./src/images/icon-04.png"></div></li>
-          <li class="ancla-top-url" ng-click="slideElement()" href="#nosotros-site">nosotros</li>
-          <li class="ancla-top-url" ng-click="slideElement()" href="#productos-site">productos</li>
-          <li class="ancla-top-url" ng-click="slideElement()" href="#eventos-site">eventos</li>
-          <li class="ancla-top-url" ng-click="slideElement()" href="#shop-site">shop</li>
-          <li class="ancla-top-url" ng-click="slideElement()" href="#instagram-site">#PERROAGAVE</li>
-          <li class="ancla-top-url" ng-click="slideElement()" href="#contacto-site">contacto</li>
-        </ul>
-        <ul class="submenu" ng-if="menuhome == 0">
-          <li class="menu-close"><div class="cont-image"><img src="./src/images/icon-04.png"></div></li>
-          <li class="ancla-menu-not"><a href="#/">Home</a></li>
-        </ul>
-      </li>
-    </ul>
+<div class="header">
+  <div class="icon">
+    <a href="#/"><div class="cont-image"><img src="./src/images/PA.png"></div></a>
   </div>
+  <ul class="menu-nav">
+    <a href="#/login" ng-if="userLogin == 0"><li><div class="cont-image"><img src="./src/images/icon-01.png"></div></li></a>
+    <a href="#/profile" ng-if="userLogin != 0"><li><div class="cont-image"><img src="./src/images/icon-01.png"></div></li></a>
+    <li><div class="cont-image" ng-click="changeItem(2)"><img src="./src/images/icon-02.png"></div></li>
+    <li class="menu-nav-li">
+      <div class="cont-image cont-image-selected" ><img src="./src/images/icon-03.png"></div>
+      <ul class="submenu" ng-if="menuhome == 1">
+        <li class="menu-close"><div class="cont-image"><img src="./src/images/icon-04.png"></div></li>
+        <li class="ancla-top-url" ng-click="slideElement()" href="#nosotros-site">nosotros</li>
+        <li class="ancla-top-url" ng-click="slideElement()" href="#productos-site">productos</li>
+        <li class="ancla-top-url" ng-click="slideElement()" href="#eventos-site">eventos</li>
+        <li class="ancla-top-url" ng-click="slideElement()" href="#shop-site">shop</li>
+        <li class="ancla-top-url" ng-click="slideElement()" href="#instagram-site">#PERROAGAVE</li>
+        <li class="ancla-top-url" ng-click="slideElement()" href="#contacto-site">contacto</li>
+      </ul>
+      <ul class="submenu" ng-if="menuhome == 0">
+        <li class="menu-close"><div class="cont-image"><img src="./src/images/icon-04.png"></div></li>
+        <li class="ancla-menu-not"><a href="#/">Home</a></li>
+      </ul>
+    </li>
+  </ul>
+</div>
 </div>
