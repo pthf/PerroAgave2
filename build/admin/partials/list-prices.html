@@ -4,6 +4,7 @@
     <thead>
       <tr>
         <td>#</td>
+        <td>Estado</td>
         <td>Kg min</td>
         <td>Kg max</td>
         <td>Precio</td>
@@ -13,6 +14,7 @@
     <tbody>
       <tr ng-repeat="(key, data) in pricesItems">
         <td>{{data.idtabulator}}</td>
+        <td>{{data.nombreEstado}}</td>
         <td>{{data.tabulatorkgmin}}</td>
         <td>{{data.tabulatorkgmax}}</td>
         <td>{{data.tabulatorcost | currency}}</td>
@@ -25,26 +27,33 @@
   	<form class="form-horizontal" enctype="multipart/form-data" id="addPrice">
 		<div class="col-md-3">
 			<div class="form-group">
-				<label for="tabulatorKgmin" class="col-sm-12 control-label" style="text-align: left;">Kg min</label>
-		        <div class="col-sm-12">
-		          <input required type="text" class="form-control" id="tabulatorKgmin" name="tabulatorKgmin" value=""></input>
-		        </div>
-            <div class="col-sm-12 text-center error-input-min"></div>
-		        <label for="tabulatorKgmax" class="col-sm-12 control-label" style="text-align: left;">Kg max</label>
-		        <div class="col-sm-12">
-		          <input required type="text" class="form-control" id="tabulatorKgmax" name="tabulatorKgmax" value=""></input>
-		        </div>
-            <div class="col-sm-12 text-center error-input-max"></div>
-		        <label for="tabulatorPrice" class="col-sm-12 control-label" style="text-align: left;">Precio</label>
-		        <div class="col-sm-12">
-		          <input required type="text" class="form-control" id="tabulatorPrice" name="tabulatorPrice" value=""></input>
-		        </div>
-            <div class="col-sm-12 text-center error-input-price"></div>
-            <div class="col-sm-12 text-center result"></div>
-		        <div class="col-sm-12" style="text-align: right;">
-		          <input type="submit" class="btn btn-default" value="Agregar"  name="" style="margin-top: 10px;"></input>
-		          <input type="" class="btn btn-default clickUpdate" value=""  name="" style="display:none" ng-click="update()"></input>
-		        </div>
+        <label for="tabulatorState" class="col-sm-12 control-label" style="text-align: left;">Estado</label>
+        <div class="col-sm-12" ng-controller="statesController">
+          <select required class="form-control" id="tabulatorState" name="tabulatorState" ng-model="valor.model">
+            <option disabled="" selected="" value="">Selecciona estado..</option>
+            <option ng-repeat="(key, data) in stateItems" value="{{data.idEstados}}" data-estado="{{data.nombreEstado}}">{{data.nombreEstado}}</option>
+          </select>
+        </div>
+		    <label for="tabulatorKgmin" class="col-sm-12 control-label" style="text-align: left;">Kg min</label>
+        <div class="col-sm-12">
+          <input required type="text" class="form-control" id="tabulatorKgmin" name="tabulatorKgmin" value=""></input>
+        </div>
+        <div class="col-sm-12 text-center error-input-min"></div>
+        <label for="tabulatorKgmax" class="col-sm-12 control-label" style="text-align: left;">Kg max</label>
+        <div class="col-sm-12">
+          <input required type="text" class="form-control" id="tabulatorKgmax" name="tabulatorKgmax" value=""></input>
+        </div>
+        <div class="col-sm-12 text-center error-input-max"></div>
+        <label for="tabulatorPrice" class="col-sm-12 control-label" style="text-align: left;">Precio</label>
+        <div class="col-sm-12">
+          <input required type="text" class="form-control" id="tabulatorPrice" name="tabulatorPrice" value=""></input>
+        </div>
+        <div class="col-sm-12 text-center error-input-price"></div>
+        <div class="col-sm-12 text-center result"></div>
+        <div class="col-sm-12" style="text-align: right;">
+          <input type="submit" class="btn btn-default" value="Agregar"  name="" style="margin-top: 10px;"></input>
+          <input type="" class="btn btn-default clickUpdate" value=""  name="" style="display:none" ng-click="update()"></input>
+        </div>
 			</div>
 		</div>
     </form>

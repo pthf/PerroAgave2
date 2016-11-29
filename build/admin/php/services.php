@@ -255,7 +255,7 @@
       print_r(json_encode($arrayImages));
     }
     private function getTabulatorPrices(){
-      $query = "SELECT * FROM tabulator_prices";
+      $query = "SELECT * FROM tabulator_prices tp INNER JOIN estados e ON e.idEstados = tp.tabulatorstate";
       $result = $this->connection->query($query);
       $arrayPrices = array();
       while ($line = mysqli_fetch_array($result)) {
@@ -263,7 +263,9 @@
           'idtabulator' => $line['idtabulator'],
           'tabulatorkgmin' => $line['tabulatorkgmin'],
           'tabulatorkgmax' => $line['tabulatorkgmax'],
-          'tabulatorcost' => $line['tabulatorcost']
+          'tabulatorcost' => $line['tabulatorcost'],
+          'tabulatorstate' => $line['tabulatorstate'],
+          'nombreEstado' => $line['nombreEstado']
         );
         array_push($arrayPrices, $data);
       }

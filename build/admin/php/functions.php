@@ -196,7 +196,7 @@
       }
       // print_r(json_encode($bandera,true));
       if ($bandera == null) {
-        $query = "INSERT INTO tabulator_prices VALUES(null,'".$data['tabulatorKgmin']."','".$data['tabulatorKgmax']."','".$data['tabulatorPrice']."')";
+        $query = "INSERT INTO tabulator_prices VALUES(null,'".$data['tabulatorKgmin']."','".$data['tabulatorKgmax']."','".$data['tabulatorPrice']."','".$data['tabulatorState']."')";
         $result = $this->connection->query($query);
         $bandera[] = 0;
       }
