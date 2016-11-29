@@ -1,5 +1,5 @@
 <?php
-  require('./config.inc');
+  require('config.inc');
   class Connect{
     protected $connection;
     public function addConnection(){

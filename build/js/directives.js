@@ -233,6 +233,7 @@
             type: 'GET',
             data: "namefunction=getEvent&idevent="+idevent,
             success: function(result){
+              console.log(result);
               var data = JSON.parse(result);
               console.log(result);
               var eventCover = data.eventCover;

@@ -4,76 +4,14 @@
 
     <!-- Menu -->
     <div class="status-compra">
-      <div class="title-status step-1" ng-click="changeItemBuy(1)" ng-class="{'selected-status': itemselected === 1, 'unselected-status': itemselected != 1 }">CONFIRMAR ORDEN</div>
-      <div class="title-status step-2" ng-click="changeItemBuy(2)" ng-class="{'selected-status': itemselected === 2, 'unselected-status': itemselected != 2 }">INFORMACIÓN DEL CLIENTE</div>
-      <div class="title-status step-4" ng-click="changeItemBuy(3)" ng-class="{'selected-status': itemselected === 3, 'unselected-status': itemselected != 3 }">DATOS DE ENVÍO</div>
+      <div class="title-status step-2" ng-click="changeItemBuy(1)" ng-class="{'selected-status': itemselected === 1, 'unselected-status': itemselected != 1 }">INFORMACIÓN DEL CLIENTE</div>
+      <div class="title-status step-4" ng-click="changeItemBuy(2)" ng-class="{'selected-status': itemselected === 2, 'unselected-status': itemselected != 2 }">DATOS DE ENVÍO</div>
+      <div class="title-status step-1" ng-click="changeItemBuy(3)" ng-class="{'selected-status': itemselected === 3, 'unselected-status': itemselected != 3 }">CONFIRMAR ORDEN</div>
     </div>
 
-    <!-- CONFIRMAR ORDEN  -->
-    <div class="compra-wrapper show-form" ng-show="itemselected === 1">
-      <div class="confirm-order">
-        <h2 class="compra-title">CONFIRMAR ORDEN</h2>
-        <div class="confirm-order-wrapper">
-          <div class="confirm-order-top">
-            <div class="top-title-order">CANTIDAD</div>
-            <div class="top-title-order">PRODUCTO</div>
-            <div class="top-title-order">PRECIO</div>
-          </div>
-
-          <ul class="order-products-list">
-            <li class="order-product-item" ng-repeat="(key, data) in listCart">
-              <div class="quantity-order">
-                {{data.quantity}}
-              </div>
-              <div class="product-order">
-                <div class="product-order-img">
-                  <img src="./admin/src/images/{{data.productimage}}" alt="" />
-                </div>
-                <div class="product-info">
-                  <span class="product-info-title">
-                    {{data.productname | uppercase}}
-                  </span>
-                  <br><br>
-                  <span class="product-size">
-                    {{data.productquantity}} ml
-                  </span>
-                </div>
-              </div>
-              <div class="price-order">
-                {{(data.productrealprice * data.quantity) | currency}}
-              </div>
-            </li>
-          </ul>
-        </div>
-        <div class="total-price-table">
-          <div class="row-price">
-            <span class="info-row">Descuento</span>
-            <span class="info-row" style="color: red">{{getPrice() - getDiscount() | currency}}</span>
-          </div>
-          <div class="row-price">
-            <span class="info-row">Subtotal</span>
-            <span class="info-row">{{getDiscount() | currency}}</span>
-          </div>
-          <div class="row-price">
-            <span class="info-row">Envio</span>
-            <span class="info-row">{{getShippingCost() | currency}}</span>
-          </div>
-          <br><br>
-          <div class="row-price">
-            <span class="info-row">TOTAL</span>
-            <span class="info-row">{{getDiscount() + getShippingCost() | currency}}</span>
-          </div>
-        </div>
-        <div class="button-next-wrapper">
-          <span class="button-next" ng-click="changeStage(2)">
-            SIGUIENTE
-          </span>
-        </div>
-      </div>
-    </div>
-
+  
     <!-- INFORMACIÓN DEL CLIENTE -->
-    <div class="compra-wrapper client-info-wrapper show-form" ng-show="itemselected === 2">
+    <div class="compra-wrapper client-info-wrapper show-form" ng-show="itemselected === 1">
       <div class="client-info" ng-show="userDataLoaded">
         <h2 class="compra-title">INFORMACIÓN DEL CLIENTE</h2>
         <div class="user-data" ng-controller="selectedStatesCitiesController">
@@ -163,7 +101,7 @@
           </div>
         </div>
         <div class="button-next-wrapper">
-          <span class="button-next" ng-click="changeStage(3)">
+          <span class="button-next" ng-click="changeStage(2)">
             SIGUIENTE
           </span>
         </div>
@@ -174,7 +112,7 @@
     </div>
 
     <!-- DATOS DE ENVÍO -->
-    <div class="compra-wrapper envio-wrapper show-form" ng-show="itemselected === 3">
+    <div class="compra-wrapper envio-wrapper show-form" ng-show="itemselected === 2">
       <div class="forma-de-envio">
         <h2 class="compra-title">DATOS DE ENVÍO</h2>
         <div class="user-data" ng-controller="selectedStatesCitiesController">
@@ -243,12 +181,75 @@
             </div>
           </div>
         </div>
-        <div class="button-paypal-wrapper">
-          <div><img src=""></div>
-          <div><img src="./src/images/button_paypal01.png"></div>
+        <div class="button-next-wrapper">
+          <span class="button-next" ng-click="changeStage(3)">
+            SIGUIENTE
+          </span>
         </div>
         <div class="message-goto-user">
           Puedes cambiar tu dirección de envió en dado caso de que no quieras que tu compra sea entregada en tu propio domicilio. 
+        </div>
+      </div>
+    </div>
+
+    <!-- CONFIRMAR ORDEN  -->
+    <div class="compra-wrapper show-form" ng-show="itemselected === 3">
+      <div class="confirm-order">
+        <h2 class="compra-title">CONFIRMAR ORDEN</h2>
+        <div class="confirm-order-wrapper">
+          <div class="confirm-order-top">
+            <div class="top-title-order">CANTIDAD</div>
+            <div class="top-title-order">PRODUCTO</div>
+            <div class="top-title-order">PRECIO</div>
+          </div>
+
+          <ul class="order-products-list">
+            <li class="order-product-item" ng-repeat="(key, data) in listCart">
+              <div class="quantity-order">
+                {{data.quantity}}
+              </div>
+              <div class="product-order">
+                <div class="product-order-img">
+                  <img src="./admin/src/images/{{data.productimage}}" alt="" />
+                </div>
+                <div class="product-info">
+                  <span class="product-info-title">
+                    {{data.productname | uppercase}}
+                  </span>
+                  <br><br>
+                  <span class="product-size">
+                    {{data.productquantity}} ml
+                  </span>
+                </div>
+              </div>
+              <div class="price-order">
+                {{(data.productrealprice * data.quantity) | currency}}
+              </div>
+            </li>
+          </ul>
+        </div>
+        <div class="total-price-table">
+          <div class="row-price">
+            <span class="info-row">Descuento</span>
+            <span class="info-row" style="color: red">{{getPrice() - getDiscount() | currency}}</span>
+          </div>
+          <div class="row-price">
+            <span class="info-row">Subtotal</span>
+            <span class="info-row">{{getDiscount() | currency}}</span>
+          </div>
+          <div class="row-price">
+            <span class="info-row">Envio</span>
+            <span class="info-row">{{getShippingCost() | currency}}</span>
+          </div>
+          <br><br>
+          <div class="row-price">
+            <span class="info-row">TOTAL</span>
+            <span class="info-row">{{getDiscount() + getShippingCost() | currency}}</span>
+          </div>
+        </div>
+        <div class="button-paypal-wrapper">
+          <div><img src=""></div>
+          <div><img src="./src/images/button_paypal01.png"></div>
         </div>
       </div>
     </div>

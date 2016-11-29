@@ -151,7 +151,6 @@
         while($line2 = mysqli_fetch_array($result2)){
           $data = array(
             'ideventimagegallery' => $line2['ideventimagegallery'],
-            'eventimagegallerydescription' => $line2['eventimagegallerydescription'],
             'eventimagegalleryimage' => $line2['eventimagegalleryimage']
           );
           array_push($listGalleryEvent, $data);
@@ -201,7 +200,6 @@
         while($line2 = mysqli_fetch_array($result2)){
           $data = array(
             'ideventimagegallery' => $line2['ideventimagegallery'],
-            'eventimagegallerydescription' => $line2['eventimagegallerydescription'],
             'eventimagegalleryimage' => $line2['eventimagegalleryimage']
           );
           array_push($listGalleryEvent, $data);
@@ -243,7 +241,6 @@
       while($line2 = mysqli_fetch_array($result2)){
         $data = array(
           'ideventimagegallery' => $line2['ideventimagegallery'],
-          'eventimagegallerydescription' => $line2['eventimagegallerydescription'],
           'eventimagegalleryimage' => $line2['eventimagegalleryimage']
         );
         array_push($listGalleryEvent, $data);
@@ -283,7 +280,6 @@
       while($line2 = mysqli_fetch_array($result2)){
         $data = array(
           'ideventimagegallery' => $line2['ideventimagegallery'],
-          'eventimagegallerydescription' => $line2['eventimagegallerydescription'],
           'eventimagegalleryimage' => $line2['eventimagegalleryimage']
         );
         array_push($listGalleryEvent, $data);
