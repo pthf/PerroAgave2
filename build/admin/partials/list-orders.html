@@ -1,0 +1,23 @@
+<div class="container-view" ng-controller="ordersController">
+  <h1>Lista de Pedidos</h1>
+  <table class="table table-bordered  products-list">
+    <thead>
+      <tr>
+        <td>#</td>
+        <td>ID Orden</td>
+        <td>Costo envío</td>
+        <td>Opciones</td>
+      </tr>
+    </thead>
+    <tbody>
+      <tr ng-repeat="(key, data) in orderItems">
+        <td>{{data.idorder}}</td>
+        <td>{{data.ordernumber}}</td>
+        <td>{{data.ordershippingcost}}</td>
+        <td>
+          <a href="#/order/{{data.idorder}}"><span class="label label-primary detailOrder" data-id='{{data.idorder}}' style="cursor:pointer;padding: 1%;width: 30%;">Detalles</span></a>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

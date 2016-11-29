@@ -1,0 +1,63 @@
+<div class="container-view">
+	<h1>Editar Producto</h1>
+    <form class="form-horizontal" enctype="multipart/form-data" id="editProduct">
+		<div class="col-md-5">
+			<div class="form-group">
+				<label for="productId" class="col-sm-12 control-label" style="text-align: left;">ID</label>
+				<div class="col-sm-12">
+				  <input required type="text" class="form-control" id="productId" name="productId" value="{{productItem.idproduct}}" style="display:none;"></input>
+				  <input required disabled type="text" class="form-control" name="productId" value="{{productItem.idproduct}}"></input>
+				</div>
+				<label for="productName" class="col-sm-12 control-label" style="text-align: left;">Nombre del producto</label>
+				<div class="col-sm-12">
+				  <input required type="text" class="form-control" id="productName" name="productName" value="{{productItem.productname}}"></input>
+				</div>
+				<label for="productDescription" class="col-sm-12 control-label" style="text-align: left;">Descripción del producto *</label>
+				<div class="col-sm-12">
+				  <textarea type="text" class="form-control" id="productDescription" name="productDescription" rows="4">{{productItem.productdescription}}</textarea>
+				</div>
+		        <label for="productQuantity" class="col-sm-12 control-label" style="text-align: left;">Cantidad</label>
+		        <div class="col-sm-12">
+		          <input required type="text" class="form-control" id="productQuantity" name="productQuantity" value="{{productItem.productquantity}}"></input>
+		        </div>
+		        <label for="productWeight" class="col-sm-12 control-label" style="text-align: left;">Peso kg.</label>
+		        <div class="col-sm-12">
+		          <input required type="text" class="form-control" id="productWeight" name="productWeight" value="{{productItem.productweight}}"></input>
+		        </div>
+			</div>
+		</div>
+		<div class="col-md-5">
+			<div class="form-group">
+		        <label for="productImageCover" class="col-sm-12 control-label" style="text-align: left;">Imágen</label>
+		        <div class="col-sm-12">
+		          <input type="file" class="form-control" id="productImageCover" id="productImageCover" name="productImageCover[]"></input>
+		        </div>
+				<label for="productRealPrice" class="col-sm-12 control-label" style="text-align: left;">Precio Real</label>
+		        <div class="col-sm-12">
+		          <input required type="text" class="form-control" id="productRealPrice" name="productRealPrice" value="{{productItem.productrealprice}}"></input>
+		        </div>
+		        <label for="productDiscountPrice" class="col-sm-12 control-label" style="text-align: left;">Precio Descuento</label>
+		        <div class="col-sm-12">
+		          <input required type="text" class="form-control" id="productDiscountPrice" name="productDiscountPrice" value="{{productItem.productdiscountprice}}"></input>
+		        </div>
+		        <label for="productStock" class="col-sm-12 control-label" style="text-align: left;">Stock</label>
+		        <div class="col-sm-12">
+		          <input required type="text" class="form-control" id="productStock" name="productStock" value="{{productItem.productstock}}"></input>
+		        </div>
+		        <label for="productCategory" class="col-sm-12 control-label" style="text-align: left;">Categoria</label>
+		        <div class="col-sm-12" ng-controller="categoriesController">
+		        	<select required class="form-control" id="productCategory" name="productCategory">
+		        		<option disabled="" selected="" value="">Selecciona..</option>
+		        		<option ng-repeat="(key, data) in categoriesItems" value="{{data.idproductcategory}}" ng-if="productItem.idproductcategory == data.idproductcategory" selected>{{data.productcategoryname}}</option>
+		              	<option ng-repeat="(key, data) in categoriesItems" value="{{data.idproductcategory}}" ng-if="productItem.idproductcategory != data.idproductcategory">{{data.productcategoryname}}</option>
+		        	</select>
+		        </div>
+		        <div class="col-sm-12 text-center result"></div>
+		        <div class="col-sm-12" style="text-align: right;">
+		          <input type="submit" class="btn btn-default" value="Guardar"  name="" style="margin-top: 10px;padding: 7px;"></input>
+		          <input type="" class="btn btn-default clickUpdate" value=""  name="" style="display:none" ng-click="update()"></input>
+		        </div>
+			</div>
+		</div>
+    </form>
+</div>

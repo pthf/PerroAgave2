@@ -1,0 +1,36 @@
+<div class="container-view" ng-controller="categoriesController">
+  <h1>Listado de categorías</h1>
+  <table class="table table-bordered  products-list">
+    <thead>
+      <tr>
+        <td>#</td>
+        <td>Categoría</td>
+        <td>Opción</td>
+      </tr>
+    </thead>
+    <tbody>
+      <tr ng-repeat="(key, data) in categoriesItems">
+        <td>{{data.idproductcategory}}</td>
+        <td>{{data.productcategoryname}}</td>
+        <td>
+          <span class="label label-danger deleteCategory" data-id='{{data.idproductcategory}}' style="cursor:pointer;padding: 1%;width: 10%;">Borrar</span>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  	<form class="form-horizontal" enctype="multipart/form-data" id="addCategory">
+		<div class="col-md-3">
+			<div class="form-group">
+				<label for="categoryName" class="col-sm-12 control-label" style="text-align: left;">Nombre Categoría</label>
+		        <div class="col-sm-12">
+		          <input required type="text" class="form-control" id="categoryName" name="categoryName" value=""></input>
+		        </div>
+            <div class="col-sm-12 text-center result"></div>
+		        <div class="col-sm-12" style="text-align: right;">
+		          <input type="submit" class="btn btn-default" value="Agregar"  name="" style="margin-top: 10px;"></input>
+		          <input type="" class="btn btn-default clickUpdate" value=""  name="" style="display:none" ng-click="update()"></input>
+		        </div>
+			</div>
+		</div>
+    </form>
+</div>

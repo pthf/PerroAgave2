@@ -2,25 +2,24 @@
 	<div class="col-md-12">
 		<div class="panel panel-default">
 			<div class="panel-heading">
-				<h3 class="panel-title">Productos - Perro Agave</h3>
+				<h3 class="panel-title">Eventos - Perro Agave</h3>
 			</div>
-			<div class="panel panel-body" ng-controller="productsController">
+			<div class="panel panel-body" ng-controller="eventsController">
 				<ul class="nav nav-tabs">
 				  	<li style="cursor: pointer;" role="presentation" ng-class="{ active:item === 1 }">
-						<a ng-click="selectItem(1)">Productos</a>
+						<a ng-click="selectItem(1)">Eventos</a>
 					</li>
 					<li style="cursor: pointer;" role="presentation" ng-class="{ active:item === 2 }">
 						<a ng-click="selectItem(2)">Agregar</a>
 					</li>
 				</ul>
 				<div ng-show="item === 1" class="cont-nav">
-					<list-products></list-products>
+					<list-events></list-events>
 				</div>	
 				<div ng-show="item === 2" class="cont-nav">
-					<add-product></add-product>
+					<add-event></add-event>
 				</div>			
 			</div>
 		</div>
 	</div>
 </div>
-

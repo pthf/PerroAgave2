@@ -1,0 +1,32 @@
+<div class="container-view">
+  <h1>Lista de Productos</h1>
+  <table class="table table-bordered  products-list">
+    <thead>
+      <tr>
+        <td>#</td>
+        <td>Imágen</td>
+        <td>General</td>
+        <td>Descripción</td>
+        <td>Precios</td>
+        <td>Stock</td>
+        <td>Opciones</td>
+      </tr>
+    </thead>
+    <tbody>
+      <tr ng-repeat="(key, data) in productsItems">
+        <td>{{data.idproduct}}</td>
+        <td><img src="./../src/images/Products/{{data.productimage}}"> </td>
+        <td><span class="title"><strong>Name: </strong>{{data.productname | uppercase}}.</span><span class="quantity"><strong>Quantity: </strong> {{data.productquantity}} ml.</span><span class="category"><strong>Category: </strong> {{data.productcategoryname | uppercase}}.</span></td>
+        <td><p>{{data.productdescription}}. </p></td>
+        <td><span class="real">{{data.productrealprice | currency}}</span><span class="discount">{{data.productdiscountprice | currency}}</span></td>
+        <td>{{data.productstock}}</td>
+        <td>
+          <a href="#/product/{{data.idproduct}}"><span class="label label-primary editProduct" data-id='{{data.idproduct}}' style="cursor:pointer">Detalles</span></a><br>
+          <span class="label label-danger deleteProduct" data-id='{{data.idproduct}}' style="cursor:pointer">Borrar</span>
+          <input type="" class="btn btn-default clickUpdate" value=""  name="" style="display:none" ng-click="update()"></input>
+        </td>
+
+      </tr>
+    </tbody>
+  </table>
+</div>

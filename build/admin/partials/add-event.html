@@ -1,0 +1,82 @@
+<div class="container-view">
+	<h1>Agregar Evento</h1>
+    <form class="form-horizontal" enctype="multipart/form-data" id="addEvent">
+		<div class="col-md-5">
+			<div class="form-group">
+				<label for="eventName" class="col-sm-12 control-label" style="text-align: left;">Nombre del evento *</label>
+				<div class="col-sm-12">
+				  <input required type="text" class="form-control" id="eventName" name="eventName" value=""></input>
+				</div>
+				<label for="eventDescription" class="col-sm-12 control-label" style="text-align: left;">Descripción del evento *</label>
+				<div class="col-sm-12">
+				  <textarea type="text" class="form-control" id="eventDescription" name="eventDescription"></textarea>
+				</div>
+				<label for="eventDate" class="col-sm-12 control-label" style="text-align: left;">Fecha del evento *</label>
+				<div class="col-sm-12">
+                	<div class="col-md-4"><input required="" type="text" class="form-control" id="eventDay" name="eventDay" placeholder="00"></div>
+	                <div class="col-md-4"><input required="" type="text" class="form-control" id="eventMonth" name="eventMonth" placeholder="00"></div>
+	                <div class="col-md-4"><input required="" type="text" class="form-control" id="eventYear" name="eventYear" placeholder="0000"></div>
+              	</div>
+		        <label for="eventProgramDescription" class="col-sm-12 control-label" style="text-align: left;">Descripción del programa *</label>
+		        <div class="col-sm-12">
+		          <textarea type="text" class="form-control" id="eventProgramDescription" name="eventProgramDescription"></textarea>
+		        </div>
+				<label for="eventAddress" class="col-sm-12 control-label" style="text-align: left;">Dirección *</label>
+		        <div class="col-sm-12">
+		          <input required type="text" class="form-control" id="eventAddress" name="eventAddress" value=""></input>
+		        </div>
+		        <label for="eventState" class="col-sm-12 control-label" style="text-align: left;">Estado *</label>
+		        <div class="col-sm-12" ng-controller="statesController">
+		        	<select required class="form-control" id="eventState" name="eventState" ng-model="valor.model">
+		        		<option disabled="" selected="" value="">Selecciona estado..</option>
+		        		<option ng-repeat="(key, data) in stateItems" value="{{data.idEstados}}" data-estado="{{data.nombreEstado}}">{{data.nombreEstado}}</option>
+		        	</select>
+		        </div>
+		        <label for="eventCity" class="col-sm-12 control-label" style="text-align: left;">Ciudad *</label>
+		        <div class="col-sm-12" ng-controller="citiesController">
+		        	<select required class="form-control" id="eventCity" name="eventCity">
+		        		<option disabled="" selected="" value="">Selecciona ciudad..</option>
+		        		<option ng-repeat="(key, data) in cityItems" value="{{data.idCiudades}}" ng-if="data.Estados_idEstados == valor.model">{{data.nombreCiudad}}</option>
+		        	</select>
+		        </div>
+			</div>
+		</div>
+		<div class="col-md-5">
+			<div class="form-group">
+		        <label for="eventNeighborhood" class="col-sm-12 control-label" style="text-align: left;">Lugar *</label>
+		        <div class="col-sm-12">
+		          <input required type="text" class="form-control" id="eventNeighborhood" name="eventNeighborhood" value=""></input>
+		        </div>
+		        <label for="eventZipCode" class="col-sm-12 control-label" style="text-align: left;">Código postal *</label>
+		        <div class="col-sm-12">
+		          <input required type="text" class="form-control" id="eventZipCode" name="eventZipCode" value=""></input>
+		        </div>
+		        <label for="eventPhoneNumber" class="col-sm-12 control-label" style="text-align: left;">Número de teléfono *</label>
+		        <div class="col-sm-12">
+		          <input required type="text" class="form-control" id="eventPhoneNumber" name="eventPhoneNumber" value=""></input>
+		        </div>
+		        <label for="eventStatus" class="col-sm-12 control-label" style="text-align: left;">Estatus *</label>
+		        <div class="col-sm-12">
+		        	<select required class="form-control" id="eventStatus" name="eventStatus">
+		        		<option disabled="" selected="" value="">Selecciona..</option>
+		        		<option value="1">Realizado</option>
+		        		<option value="0">Disponible</option>
+		        	</select>
+		        </div>
+		        <label for="eventImageCover" class="col-sm-12 control-label" style="text-align: left;">Imágen principal</label>
+		        <div class="col-sm-12 cover">
+		          <input required type="file" class="form-control" id="eventImageCover" name="eventImageCover[]"></input>
+		        </div>
+		        <label for="eventImages" class="col-sm-12 control-label" style="text-align: left;">Imágenes</label>
+		        <div class="col-sm-12 multiple">
+		          <input required type="file" class="form-control" id="eventImages" name="eventImages[]" multiple=""></input>
+		        </div>
+		        <div class="col-sm-12 text-center result"></div>
+		        <div class="col-sm-12" style="text-align: right;">
+		          <input type="submit" class="btn btn-default" value="Guardar"  name="" style="margin-top: 10px;padding: 7px;"></input>
+		          <input type="" class="btn btn-default clickUpdate" value=""  name="" style="display:none" ng-click="update()"></input>
+		        </div>
+			</div>
+		</div>
+    </form>
+</div>

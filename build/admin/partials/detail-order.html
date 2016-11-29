@@ -1,0 +1,97 @@
+<div class="container-view">
+  <h2>Datos pedido</h2>
+  <div class="row">
+    <div class="col-xs-6 col-sm-3">
+      <dl class="dl-vertical">
+        <dt>Núm. Odern</dt>
+        <dd>{{orderInfotItem[0].ordernumber}}</dd>
+      </dl>
+    </div>
+    <div class="col-xs-6 col-sm-3">
+      <dl class="dl-vertical">
+        <dt>Costo envío</dt>
+        <dd>{{orderInfotItem[0].ordershippingcost}}</dd>
+      </dl>
+    </div>
+    <div class="col-xs-6 col-sm-3">
+      <dl class="dl-vertical">
+        <dt>Teléfono</dt>
+        <dd>{{orderInfotItem[0].ordertelefono}}</dd>
+      </dl>
+    </div>
+    <div class="col-xs-6 col-sm-3">
+      <dl class="dl-vertical">
+        <dt>Estado - Ciudad</dt>
+        <dd>{{orderInfotItem[0].nombreCiudad}}, {{orderInfotItem[0].nombreEstado}}</dd>
+      </dl>
+    </div>
+    <div class="col-xs-6 col-sm-3">
+      <dl class="dl-vertical">
+        <dt>Dirección</dt>
+        <dd>{{orderInfotItem[0].orderaddress}}</dd>
+      </dl>
+    </div>
+    <div class="col-xs-6 col-sm-3">
+      <dl class="dl-vertical">
+        <dt>Referencia</dt>
+        <dd>{{orderInfotItem[0].orderreferences}}</dd>
+      </dl>
+    </div>
+    <div class="col-xs-6 col-sm-3">
+      <dl class="dl-vertical">
+        <dt>Código Postal</dt>
+        <dd>{{orderInfotItem[0].orderzipcode}}</dd>
+      </dl>
+    </div>
+  </div>
+  <h2>Datos usuario</h2>
+  <div class="row">
+    <div class="col-xs-6 col-sm-3">
+      <dl class="dl-vertical">
+        <dt>Nombre</dt>
+        <dd>{{orderInfotItem[0].username}} {{orderInfotItem[0].userlastname}}</dd>
+      </dl>
+    </div>
+    <div class="col-xs-6 col-sm-3">
+      <dl class="dl-vertical">
+        <dt>Email</dt>
+        <dd>{{orderInfotItem[0].useremail}}</dd>
+      </dl>
+    </div>
+    <div class="col-xs-6 col-sm-3">
+      <dl class="dl-vertical">
+        <dt>Dirección</dt>
+        <dd>{{orderInfotItem[0].useraddress}}</dd>
+      </dl>
+    </div>
+    <div class="col-xs-6 col-sm-3">
+      <dl class="dl-vertical">
+        <dt>Teléfono</dt>
+        <dd>{{orderInfotItem[0].userphonenumber}}</dd>
+      </dl>
+    </div>
+  </div>
+  <h1>Lista de productos del pedido </h1>
+  <table class="table table-bordered  products-list">
+    <thead>
+      <tr>
+        <td>#</td>
+        <td>Imágen</td>
+        <td>Nombre</td>
+        <td>Cantidad</td>
+        <td>Precio</td>
+        <td>Subtotal</td>
+      </tr>
+    </thead>
+    <tbody>
+      <tr ng-repeat="(key, data) in ordertItem">
+        <td>{{data.idproduct}}</td>
+        <td><img src="./../src/images/Products/{{data.productimage}}"> </td>
+        <td>{{data.productname}}</td>
+        <td>{{data.orderquantity}}</td>
+        <td><span class="real">{{data.productrealprice | currency}}</span><span class="discount">{{data.productdiscountprice | currency}}</span></td>
+        <td>{{data.ordersubtotal}}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>

@@ -1,0 +1,19 @@
+<div class="container-view" ng-controller="newsletterController">
+  <h1>Newsletter</h1>
+  <table class="table table-bordered  products-list">
+    <thead>
+      <tr>
+        <td>#</td>
+        <td>Nombre</td>
+        <td>Correo</td>
+      </tr>
+    </thead>
+    <tbody>
+      <tr ng-repeat="(key, data) in newsletterItems">
+        <td>{{data.iduser}}</td>
+        <td>{{data.username}} {{data.userlastname}}</td>
+        <td>{{data.useremail}}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>

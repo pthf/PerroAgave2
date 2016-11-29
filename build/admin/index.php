@@ -70,6 +70,7 @@
                   case '1':
                     $('.welcome').html('Welcome '+$('#username').val());
                     $('.welcome').slideDown();
+                    window.location.href = "./panel/index.php";
                     break;
                   case '-1':
                     $('.not_pass').html('the username does not exist.');
