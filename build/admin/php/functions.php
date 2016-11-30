@@ -179,29 +179,49 @@
       $result = $this->connection->query($query);
     }
     private function addPrice() {
-      parse_str($_POST['data'], $data);
-      $query = "SELECT * FROM tabulator_prices";
+      $query = "TRUNCATE TABLE tabulator_prices";
       $result = $this->connection->query($query);
-      $bandera = array();
-      while ($row = mysqli_fetch_array($result)) {
-        if (($data['tabulatorKgmin'] >= $row['tabulatorkgmin']) && ($data['tabulatorKgmin'] <= $row['tabulatorkgmax'])) {
-          $bandera[] = 1;
-        }
-        if (($data['tabulatorKgmax'] <= $row['tabulatorkgmax']) && ($data['tabulatorKgmax'] >= $row['tabulatorkgmin'])) {
-          $bandera[] = 2;
-        } 
-        if ($data['tabulatorPrice'] == $row['tabulatorcost']) {
-          $bandera[] = 3;
-        }
-      }
-      // print_r(json_encode($bandera,true));
-      if ($bandera == null) {
-        $query = "INSERT INTO tabulator_prices VALUES(null,'".$data['tabulatorKgmin']."','".$data['tabulatorKgmax']."','".$data['tabulatorPrice']."','".$data['tabulatorState']."')";
+      require_once './Excel/reader.php';
+      $fileName = $_FILES['tabulatorValues']['tmp_name'][0];
+      $data = new Spreadsheet_Excel_Reader(); 
+      $data->setOutputEncoding('CP1251');
+      $data->read($fileName);
+      header('Content-type: application/vnd.ms-excel');
+          header("Content-Disposition: attachment; filename=excelenphp.xls");
+          header("Pragma: no-cache");
+          header("Expires: 0");   
+      for ($i=1; $i <= $data->sheets[0]['numRows']; $i++) { 
+        print_r($data->sheets[0]['cells'][$i]);
+        $state = $data->sheets[0]['cells'][$i][1];
+        $volumen = $data->sheets[0]['cells'][$i][2];
+        $cost = $data->sheets[0]['cells'][$i][3];
+        $query = "INSERT INTO tabulator_prices VALUES(null,'".$state."','".$volumen."','".$cost."')";
         $result = $this->connection->query($query);
-        $bandera[] = 0;
       }
-      $result_error = json_encode($bandera,true);
-      print_r($result_error);
+
+      // parse_str($_POST['data'], $data);
+      // $query = "SELECT * FROM tabulator_prices";
+      // $result = $this->connection->query($query);
+      // $bandera = array();
+      // while ($row = mysqli_fetch_array($result)) {
+      //   if (($data['tabulatorKgmin'] >= $row['tabulatorkgmin']) && ($data['tabulatorKgmin'] <= $row['tabulatorkgmax'])) {
+      //     $bandera[] = 1;
+      //   }
+      //   if (($data['tabulatorKgmax'] <= $row['tabulatorkgmax']) && ($data['tabulatorKgmax'] >= $row['tabulatorkgmin'])) {
+      //     $bandera[] = 2;
+      //   } 
+      //   if ($data['tabulatorPrice'] == $row['tabulatorcost']) {
+      //     $bandera[] = 3;
+      //   }
+      // }
+      // // print_r(json_encode($bandera,true));
+      // if ($bandera == null) {
+      //   $query = "INSERT INTO tabulator_prices VALUES(null,'".$data['tabulatorKgmin']."','".$data['tabulatorKgmax']."','".$data['tabulatorPrice']."','".$data['tabulatorState']."')";
+      //   $result = $this->connection->query($query);
+      //   $bandera[] = 0;
+      // }
+      // $result_error = json_encode($bandera,true);
+      // print_r($result_error);
     }
     private function deletePrice(){
       $query = "DELETE FROM tabulator_prices WHERE idtabulator = '".$_POST['idTabulatorPrice']."'";
