@@ -1,5 +1,5 @@
 <div class="container-view">
-  <h2>Datos pedido</h2>
+  <h2>Información pedido</h2>
   <div class="row">
     <div class="col-xs-6 col-sm-3">
       <dl class="dl-vertical">
@@ -41,6 +41,33 @@
       <dl class="dl-vertical">
         <dt>Código Postal</dt>
         <dd>{{orderInfotItem[0].orderzipcode}}</dd>
+      </dl>
+    </div>
+  </div>
+  <h2>Datos Envío</h2>
+  <div class="row">
+    <div class="col-xs-6 col-sm-3">
+      <dl class="dl-vertical">
+        <dt>Nombre</dt>
+        <dd>{{orderInfotItem[0].username}} {{orderInfotItem[0].userlastname}}</dd>
+      </dl>
+    </div>
+    <div class="col-xs-6 col-sm-3">
+      <dl class="dl-vertical">
+        <dt>Email</dt>
+        <dd>{{orderInfotItem[0].useremail}}</dd>
+      </dl>
+    </div>
+    <div class="col-xs-6 col-sm-3">
+      <dl class="dl-vertical">
+        <dt>Dirección</dt>
+        <dd>{{orderInfotItem[0].useraddress}}</dd>
+      </dl>
+    </div>
+    <div class="col-xs-6 col-sm-3">
+      <dl class="dl-vertical">
+        <dt>Teléfono</dt>
+        <dd>{{orderInfotItem[0].userphonenumber}}</dd>
       </dl>
     </div>
   </div>

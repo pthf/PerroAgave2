@@ -227,6 +227,24 @@
       $query = "DELETE FROM tabulator_prices WHERE idtabulator = '".$_POST['idTabulatorPrice']."'";
       $result = $this->connection->query($query);
     }
+    private function addNewCupon(){
+      parse_str($_POST['data'], $data);
+      $fechaInicio = $data['cuponStartYear'].'-'.$data['cuponStartMonth'].'-'.$data['cuponStartDay'];
+      $fechaFin = $data['cuponEndYear'].'-'.$data['cuponEndMonth'].'-'.$data['cuponEndDay'];
+      $query = "SELECT * FROM cupones WHERE cuponesname = '".$data['cuponName']."'";
+      $result = $this->connection->query($query);
+      $numRows = mysqli_num_rows($result);
+      if ($numRows == 0) {
+        $query = "INSERT INTO cupones VALUES (null,'".$data['cuponName']."','".$data['cuponDiscount']."','".$fechaInicio."','".$fechaFin."')";
+        $result = $this->connection->query($query); 
+      } else {
+        echo 1;
+      }
+    }
+    private function deleteCupon(){
+      $query = "DELETE FROM cupones WHERE idcupones = '".$_POST['idCupon']."'";
+      $result = $this->connection->query($query);
+    }
   }
   new Functions($_POST['namefunction']);
 

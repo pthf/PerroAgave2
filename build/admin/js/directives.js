@@ -493,4 +493,66 @@
       }
     }
   })
+  .directive('listCupones', function(){
+    return {
+      restrict: 'E',
+      templateUrl: './../partials/list-cupones.html',
+      controller: function($document){
+        $('#addCupon').submit(function(){
+          var ajaxData = new FormData();
+          ajaxData.append("namefunction","addNewCupon");
+          ajaxData.append("data",$(this).serialize());
+          $.ajax({
+            url: "../php/functions.php",
+            type: "POST",
+            data: ajaxData,
+            processData: false,  // tell jQuery not to process the data
+            contentType: false,   // tell jQuery not to set contentType
+            success: function(result){
+              console.log(result);
+              if (result == 1) {
+                $('#addCupon')[0].reset();
+                $('.result_error').html('<div class="alert alert-danger" role="alert" style="margin-top: 4%;margin-bottom: 1%;padding: 10px;">Ya existe el cupón.</div>');
+                $('.result_error').css({'opacity' : '1'});
+                setTimeout(function () {
+                    $('.result_error').css({'opacity' : '0'});
+                    $('.result_error').text('');
+                }, 4000);
+              } else {
+                $('.clickUpdate').trigger('click');
+                $('#addCupon')[0].reset();
+                $('.result').html('<div class="alert alert-success" role="alert" style="margin-top: 4%;margin-bottom: 1%;padding: 10px;">Cupón agregado.</div>');
+                $('.result').css({'opacity' : '1'});
+                setTimeout(function () {
+                    $('.result').css({'opacity' : '0'});
+                    $('.result').text('');
+                }, 4000);
+              };
+            },
+            error: function(error){
+              alert(error);
+            }
+          });
+        });
+        $(document).on('click', '.deleteCupon', function(){
+          var idCupon = $(this).attr('data-id');
+          var namefunction = 'deleteCupon';
+          $.ajax({
+            url: "../php/functions.php",
+            type: "POST",
+            data: {
+              namefunction: namefunction,
+              idCupon: idCupon
+            },
+            success: function(result){
+              $('.clickUpdate').trigger('click');
+            },
+            error: function(error){
+              alert(error);
+            }
+          });
+        });
+      }
+    }
+  })
 })();

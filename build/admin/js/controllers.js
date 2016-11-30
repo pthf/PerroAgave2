@@ -148,4 +148,19 @@
 	    }
 	    $scope.update();
 	}])
+	.controller('cuponesController', ['$scope', '$routeParams', 'paService', function($scope, $routeParams, paService){
+		$scope.cuponesItems = [];
+		paService.getCupones().then(function(data){
+			$scope.cuponesItems = data;
+		});
+		$scope.loadCupones = function(){
+	      paService.getCupones().then(function(data){
+	        $scope.cuponesItems = data;
+	      });
+	    } 
+	    $scope.update = function(){
+	      $scope.loadCupones();
+	    }
+	    $scope.update();
+	}])
 })();

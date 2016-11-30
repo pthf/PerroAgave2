@@ -270,5 +270,21 @@
       }
       print_r(json_encode($arrayPrices));
     }
+    private function getCupones(){
+      $query = "SELECT * FROM cupones";
+      $result = $this->connection->query($query);
+      $arrayCupones = array();
+      while ($line = mysqli_fetch_array($result)) {
+        $data = array(
+          'idcupones' => $line['idcupones'],
+          'cuponesname' => $line['cuponesname'],
+          'cuponesdes' => $line['cuponesdes'],
+          'cuponesdatestart' => $line['cuponesdatestart'],
+          'cuponesdateend' => $line['cuponesdateend']
+        );
+        array_push($arrayCupones, $data);
+      }
+      print_r(json_encode($arrayCupones));
+    }
   }
   new Functions($_GET['namefunction']);

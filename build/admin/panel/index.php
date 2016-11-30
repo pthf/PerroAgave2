@@ -10,6 +10,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
   <link href="./../src/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
 	<link rel="stylesheet" type="text/css" href="./../css/main.css">
+  <link rel="stylesheet" type="text/css" href="./../src/bootstrap/dist/css/bootstrap-datetimepicker.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
@@ -37,6 +38,8 @@
       </div>
     </div>
   </div>
+  
+  <script src="./../src/bootstrap/dist/js/bootstrap-datetimepicker.min.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular.min.js"></script>
   <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular-route.js"></script>
   <script src="./../js/app.js"></script>

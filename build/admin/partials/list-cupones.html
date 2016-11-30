@@ -1,0 +1,59 @@
+<div class="container-view" ng-controller="cuponesController">
+  <h1>Listado de cupones</h1>
+  <table class="table table-bordered  products-list">
+    <thead>
+      <tr>
+        <td>#</td>
+        <td>Cupón</td>
+        <td>Descuento</td>
+        <td>Fecha Inicio</td>
+        <td>Fecha Fin</td>
+        <td>Opciones</td>
+      </tr>
+    </thead>
+    <tbody>
+      <tr ng-repeat="(key, data) in cuponesItems">
+        <td>{{data.idcupones}}</td>
+        <td>{{data.cuponesname}}</td>
+        <td>{{data.cuponesdes}}</td>
+        <td>{{data.cuponesdatestart}}</td>
+        <td>{{data.cuponesdateend}}</td>
+        <td>
+          <span class="label label-danger deleteCupon" data-id='{{data.idcupones}}' style="cursor:pointer;width: 20%;">Borrar</span>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  	<form class="form-horizontal" enctype="multipart/form-data" id="addCupon">
+		<div class="col-md-3">
+			<div class="form-group">
+				<label for="cuponName" class="col-sm-12 control-label" style="text-align: left;">Cupón *</label>
+        <div class="col-sm-12">
+          <input required type="text" class="form-control" id="cuponName" name="cuponName" value=""></input>
+        </div>
+        <label for="cuponStartDate" class="col-sm-12 control-label" style="text-align: left;">Fecha inicio *</label>
+        <div class="col-sm-12">
+          <div class="col-md-4"><input required="" type="text" class="form-control" id="cuponStartDay" name="cuponStartDay" placeholder="00"></div>
+          <div class="col-md-4"><input required="" type="text" class="form-control" id="cuponStartMonth" name="cuponStartMonth" placeholder="00"></div>
+          <div class="col-md-4"><input required="" type="text" class="form-control" id="cuponStartYear" name="cuponStartYear" placeholder="0000"></div>
+        </div>
+        <label for="cuponEndDate" class="col-sm-12 control-label" style="text-align: left;">Fecha fin *</label>
+        <div class="col-sm-12">
+          <div class="col-md-4"><input required="" type="text" class="form-control" id="cuponEndDay" name="cuponEndDay" placeholder="00"></div>
+          <div class="col-md-4"><input required="" type="text" class="form-control" id="cuponEndMonth" name="cuponEndMonth" placeholder="00"></div>
+          <div class="col-md-4"><input required="" type="text" class="form-control" id="cuponEndYear" name="cuponEndYear" placeholder="0000"></div>
+        </div>
+        <label for="cuponDiscount" class="col-sm-12 control-label" style="text-align: left;">Descuento *</label>
+        <div class="col-sm-12">
+          <input required type="text" class="form-control" id="cuponDiscount" name="cuponDiscount" value=""></input>
+        </div>
+        <div class="col-sm-12 text-center result_error"></div>
+        <div class="col-sm-12 text-center result"></div>
+        <div class="col-sm-12" style="text-align: right;">
+          <input type="submit" class="btn btn-default" value="Guardar"  name="" style="margin-top: 10px;padding: 7px;"></input>
+          <input type="" class="btn btn-default clickUpdate" value=""  name="" style="display:none" ng-click="update()"></input>
+        </div>
+			</div>
+		</div>
+    </form>
+</div>
