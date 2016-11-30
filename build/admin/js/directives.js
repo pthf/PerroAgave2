@@ -351,7 +351,12 @@
         $('#addPrice').submit(function(){
           var ajaxData = new FormData();
           ajaxData.append("namefunction","addPrice");
-          ajaxData.append("data",$(this).serialize());
+          // ajaxData.append("data",$(this).serialize());
+          $.each($("#addPrice input[type=file]"), function(i,obj){
+            $.each(obj.files, function(j, file){
+              ajaxData.append('tabulatorValues['+j+']', file);
+            })
+          });
           $.ajax({
             url: "../php/functions.php",
             type: "POST",
@@ -359,98 +364,108 @@
             processData: false,  // tell jQuery not to process the data
             contentType: false,   // tell jQuery not to set contentType
             success: function(result){
-              var data = JSON.parse(result);
-              data.forEach(function(value) {
-                if(value == 1 && value == 2 && value == 3){
-                  $('.error-input-min').html('<div class="alert alert-danger" role="alert" style="margin-top: 4%;margin-bottom: 1%;padding: 10px;">V&aacute;lor m&iacute;nimo inv&aacute;lido.</div>');
-                  $('.error-input-min').css({'opacity' : '1'});
-                  setTimeout(function () {
-                      $('.error-input-min').css({'opacity' : '0'});
-                      $('.error-input-min').text('');
-                  }, 4000);
-                  $('.error-input-max').html('<div class="alert alert-danger" role="alert" style="margin-top: 4%;margin-bottom: 1%;padding: 10px;">V&aacute;lor m&aacute;ximo inv&aacute;lido</div>');
-                  $('.error-input-max').css({'opacity' : '1'});
-                  setTimeout(function () {
-                      $('.error-input-max').css({'opacity' : '0'});
-                      $('.error-input-max').text('');
-                  }, 4000);
-                  $('.error-input-price').html('<div class="alert alert-danger" role="alert" style="margin-top: 4%;margin-bottom: 1%;padding: 10px;">Precio inv&aacute;lido.</div>');
-                  $('.error-input-price').css({'opacity' : '1'});
-                  setTimeout(function () {
-                      $('.error-input-price').css({'opacity' : '0'});
-                      $('.error-input-price').text('');
-                  }, 4000);
-                } else if (value == 1 && value == 2) {
-                  $('.error-input-min').html('<div class="alert alert-danger" role="alert" style="margin-top: 4%;margin-bottom: 1%;padding: 10px;">V&aacute;lor m&iacute;nimo inv&aacute;lido.</div>');
-                  $('.error-input-min').css({'opacity' : '1'});
-                  setTimeout(function () {
-                      $('.error-input-min').css({'opacity' : '0'});
-                      $('.error-input-min').text('');
-                  }, 4000);
-                  $('.error-input-max').html('<div class="alert alert-danger" role="alert" style="margin-top: 4%;margin-bottom: 1%;padding: 10px;">V&aacute;lor m&aacute;ximo inv&aacute;lido</div>');
-                  $('.error-input-max').css({'opacity' : '1'});
-                  setTimeout(function () {
-                      $('.error-input-max').css({'opacity' : '0'});
-                      $('.error-input-max').text('');
-                  }, 4000);
-                } else if(value == 1 && value == 3){
-                  $('.error-input-min').html('<div class="alert alert-danger" role="alert" style="margin-top: 4%;margin-bottom: 1%;padding: 10px;">V&aacute;lor m&iacute;nimo inv&aacute;lido.</div>');
-                  $('.error-input-min').css({'opacity' : '1'});
-                  setTimeout(function () {
-                      $('.error-input-min').css({'opacity' : '0'});
-                      $('.error-input-min').text('');
-                  }, 4000);
-                  $('.error-input-price').html('<div class="alert alert-danger" role="alert" style="margin-top: 4%;margin-bottom: 1%;padding: 10px;">Precio inv&aacute;lido.</div>');
-                  $('.error-input-price').css({'opacity' : '1'});
-                  setTimeout(function () {
-                      $('.error-input-price').css({'opacity' : '0'});
-                      $('.error-input-price').text('');
-                  }, 4000);
-                } else if(value == 2 && value == 3){
-                  $('.error-input-max').html('<div class="alert alert-danger" role="alert" style="margin-top: 4%;margin-bottom: 1%;padding: 10px;">V&aacute;lor m&aacute;ximo inv&aacute;lido</div>');
-                  $('.error-input-max').css({'opacity' : '1'});
-                  setTimeout(function () {
-                      $('.error-input-max').css({'opacity' : '0'});
-                      $('.error-input-max').text('');
-                  }, 4000);
-                  $('.error-input-price').html('<div class="alert alert-danger" role="alert" style="margin-top: 4%;margin-bottom: 1%;padding: 10px;">Precio inv&aacute;lido.</div>');
-                  $('.error-input-price').css({'opacity' : '1'});
-                  setTimeout(function () {
-                      $('.error-input-price').css({'opacity' : '0'});
-                      $('.error-input-price').text('');
-                  }, 4000);
-                }else if (value == 1) {
-                  $('.error-input-min').html('<div class="alert alert-danger" role="alert" style="margin-top: 4%;margin-bottom: 1%;padding: 10px;">V&aacute;lor m&iacute;nimo inv&aacute;lido.</div>');
-                  $('.error-input-min').css({'opacity' : '1'});
-                  setTimeout(function () {
-                      $('.error-input-min').css({'opacity' : '0'});
-                      $('.error-input-min').text('');
-                  }, 4000);
-                } else if(value == 2){
-                  $('.error-input-max').html('<div class="alert alert-danger" role="alert" style="margin-top: 4%;margin-bottom: 1%;padding: 10px;">V&aacute;lor m&aacute;ximo inv&aacute;lido</div>');
-                  $('.error-input-max').css({'opacity' : '1'});
-                  setTimeout(function () {
-                      $('.error-input-max').css({'opacity' : '0'});
-                      $('.error-input-max').text('');
-                  }, 4000);
-                } else if(value == 3){
-                  $('.error-input-price').html('<div class="alert alert-danger" role="alert" style="margin-top: 4%;margin-bottom: 1%;padding: 10px;">Precio inv&aacute;lido.</div>');
-                  $('.error-input-price').css({'opacity' : '1'});
-                  setTimeout(function () {
-                      $('.error-input-price').css({'opacity' : '0'});
-                      $('.error-input-price').text('');
-                  }, 4000);
-                } else if(value == 0){
-                  $('.clickUpdate').trigger('click');
-                  $('#addPrice')[0].reset();
-                  $('.result').html('<div class="alert alert-success" role="alert" style="margin-top: 4%;margin-bottom: 1%;padding: 10px;">Precio agregado.</div>');
-                  $('.result').css({'opacity' : '1'});
-                  setTimeout(function () {
-                      $('.result').css({'opacity' : '0'});
-                      $('.result').text('');
-                  }, 4000);
-                }
-              });
+              // alert(result);
+              console.log(result);
+              $('.clickUpdate').trigger('click');
+              $('#addPrice')[0].reset();
+              $('.result').html('<div class="alert alert-success" role="alert" style="margin-top: 4%;margin-bottom: 1%;padding: 10px;">Tabla de precios actualizada.</div>');
+              $('.result').css({'opacity' : '1'});
+              setTimeout(function () {
+                  $('.result').css({'opacity' : '0'});
+                  $('.result').text('');
+              }, 4000);
+              // var data = JSON.parse(result);
+              // data.forEach(function(value) {
+              //   if(value == 1 && value == 2 && value == 3){
+              //     $('.error-input-min').html('<div class="alert alert-danger" role="alert" style="margin-top: 4%;margin-bottom: 1%;padding: 10px;">V&aacute;lor m&iacute;nimo inv&aacute;lido.</div>');
+              //     $('.error-input-min').css({'opacity' : '1'});
+              //     setTimeout(function () {
+              //         $('.error-input-min').css({'opacity' : '0'});
+              //         $('.error-input-min').text('');
+              //     }, 4000);
+              //     $('.error-input-max').html('<div class="alert alert-danger" role="alert" style="margin-top: 4%;margin-bottom: 1%;padding: 10px;">V&aacute;lor m&aacute;ximo inv&aacute;lido</div>');
+              //     $('.error-input-max').css({'opacity' : '1'});
+              //     setTimeout(function () {
+              //         $('.error-input-max').css({'opacity' : '0'});
+              //         $('.error-input-max').text('');
+              //     }, 4000);
+              //     $('.error-input-price').html('<div class="alert alert-danger" role="alert" style="margin-top: 4%;margin-bottom: 1%;padding: 10px;">Precio inv&aacute;lido.</div>');
+              //     $('.error-input-price').css({'opacity' : '1'});
+              //     setTimeout(function () {
+              //         $('.error-input-price').css({'opacity' : '0'});
+              //         $('.error-input-price').text('');
+              //     }, 4000);
+              //   } else if (value == 1 && value == 2) {
+              //     $('.error-input-min').html('<div class="alert alert-danger" role="alert" style="margin-top: 4%;margin-bottom: 1%;padding: 10px;">V&aacute;lor m&iacute;nimo inv&aacute;lido.</div>');
+              //     $('.error-input-min').css({'opacity' : '1'});
+              //     setTimeout(function () {
+              //         $('.error-input-min').css({'opacity' : '0'});
+              //         $('.error-input-min').text('');
+              //     }, 4000);
+              //     $('.error-input-max').html('<div class="alert alert-danger" role="alert" style="margin-top: 4%;margin-bottom: 1%;padding: 10px;">V&aacute;lor m&aacute;ximo inv&aacute;lido</div>');
+              //     $('.error-input-max').css({'opacity' : '1'});
+              //     setTimeout(function () {
+              //         $('.error-input-max').css({'opacity' : '0'});
+              //         $('.error-input-max').text('');
+              //     }, 4000);
+              //   } else if(value == 1 && value == 3){
+              //     $('.error-input-min').html('<div class="alert alert-danger" role="alert" style="margin-top: 4%;margin-bottom: 1%;padding: 10px;">V&aacute;lor m&iacute;nimo inv&aacute;lido.</div>');
+              //     $('.error-input-min').css({'opacity' : '1'});
+              //     setTimeout(function () {
+              //         $('.error-input-min').css({'opacity' : '0'});
+              //         $('.error-input-min').text('');
+              //     }, 4000);
+              //     $('.error-input-price').html('<div class="alert alert-danger" role="alert" style="margin-top: 4%;margin-bottom: 1%;padding: 10px;">Precio inv&aacute;lido.</div>');
+              //     $('.error-input-price').css({'opacity' : '1'});
+              //     setTimeout(function () {
+              //         $('.error-input-price').css({'opacity' : '0'});
+              //         $('.error-input-price').text('');
+              //     }, 4000);
+              //   } else if(value == 2 && value == 3){
+              //     $('.error-input-max').html('<div class="alert alert-danger" role="alert" style="margin-top: 4%;margin-bottom: 1%;padding: 10px;">V&aacute;lor m&aacute;ximo inv&aacute;lido</div>');
+              //     $('.error-input-max').css({'opacity' : '1'});
+              //     setTimeout(function () {
+              //         $('.error-input-max').css({'opacity' : '0'});
+              //         $('.error-input-max').text('');
+              //     }, 4000);
+              //     $('.error-input-price').html('<div class="alert alert-danger" role="alert" style="margin-top: 4%;margin-bottom: 1%;padding: 10px;">Precio inv&aacute;lido.</div>');
+              //     $('.error-input-price').css({'opacity' : '1'});
+              //     setTimeout(function () {
+              //         $('.error-input-price').css({'opacity' : '0'});
+              //         $('.error-input-price').text('');
+              //     }, 4000);
+              //   }else if (value == 1) {
+              //     $('.error-input-min').html('<div class="alert alert-danger" role="alert" style="margin-top: 4%;margin-bottom: 1%;padding: 10px;">V&aacute;lor m&iacute;nimo inv&aacute;lido.</div>');
+              //     $('.error-input-min').css({'opacity' : '1'});
+              //     setTimeout(function () {
+              //         $('.error-input-min').css({'opacity' : '0'});
+              //         $('.error-input-min').text('');
+              //     }, 4000);
+              //   } else if(value == 2){
+              //     $('.error-input-max').html('<div class="alert alert-danger" role="alert" style="margin-top: 4%;margin-bottom: 1%;padding: 10px;">V&aacute;lor m&aacute;ximo inv&aacute;lido</div>');
+              //     $('.error-input-max').css({'opacity' : '1'});
+              //     setTimeout(function () {
+              //         $('.error-input-max').css({'opacity' : '0'});
+              //         $('.error-input-max').text('');
+              //     }, 4000);
+              //   } else if(value == 3){
+              //     $('.error-input-price').html('<div class="alert alert-danger" role="alert" style="margin-top: 4%;margin-bottom: 1%;padding: 10px;">Precio inv&aacute;lido.</div>');
+              //     $('.error-input-price').css({'opacity' : '1'});
+              //     setTimeout(function () {
+              //         $('.error-input-price').css({'opacity' : '0'});
+              //         $('.error-input-price').text('');
+              //     }, 4000);
+              //   } else if(value == 0){
+              //     $('.clickUpdate').trigger('click');
+              //     $('#addPrice')[0].reset();
+              //     $('.result').html('<div class="alert alert-success" role="alert" style="margin-top: 4%;margin-bottom: 1%;padding: 10px;">Precio agregado.</div>');
+              //     $('.result').css({'opacity' : '1'});
+              //     setTimeout(function () {
+              //         $('.result').css({'opacity' : '0'});
+              //         $('.result').text('');
+              //     }, 4000);
+              //   }
+              // });
             },
             error: function(error){
               alert(error);
@@ -466,6 +481,68 @@
             data: {
               namefunction: namefunction,
               idTabulatorPrice: idTabulatorPrice
+            },
+            success: function(result){
+              $('.clickUpdate').trigger('click');
+            },
+            error: function(error){
+              alert(error);
+            }
+          });
+        });
+      }
+    }
+  })
+  .directive('listCupones', function(){
+    return {
+      restrict: 'E',
+      templateUrl: './../partials/list-cupones.html',
+      controller: function($document){
+        $('#addCupon').submit(function(){
+          var ajaxData = new FormData();
+          ajaxData.append("namefunction","addNewCupon");
+          ajaxData.append("data",$(this).serialize());
+          $.ajax({
+            url: "../php/functions.php",
+            type: "POST",
+            data: ajaxData,
+            processData: false,  // tell jQuery not to process the data
+            contentType: false,   // tell jQuery not to set contentType
+            success: function(result){
+              console.log(result);
+              if (result == 1) {
+                $('#addCupon')[0].reset();
+                $('.result_error').html('<div class="alert alert-danger" role="alert" style="margin-top: 4%;margin-bottom: 1%;padding: 10px;">Ya existe el cupón.</div>');
+                $('.result_error').css({'opacity' : '1'});
+                setTimeout(function () {
+                    $('.result_error').css({'opacity' : '0'});
+                    $('.result_error').text('');
+                }, 4000);
+              } else {
+                $('.clickUpdate').trigger('click');
+                $('#addCupon')[0].reset();
+                $('.result').html('<div class="alert alert-success" role="alert" style="margin-top: 4%;margin-bottom: 1%;padding: 10px;">Cupón agregado.</div>');
+                $('.result').css({'opacity' : '1'});
+                setTimeout(function () {
+                    $('.result').css({'opacity' : '0'});
+                    $('.result').text('');
+                }, 4000);
+              };
+            },
+            error: function(error){
+              alert(error);
+            }
+          });
+        });
+        $(document).on('click', '.deleteCupon', function(){
+          var idCupon = $(this).attr('data-id');
+          var namefunction = 'deleteCupon';
+          $.ajax({
+            url: "../php/functions.php",
+            type: "POST",
+            data: {
+              namefunction: namefunction,
+              idCupon: idCupon
             },
             success: function(result){
               $('.clickUpdate').trigger('click');

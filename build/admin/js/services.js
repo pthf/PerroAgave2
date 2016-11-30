@@ -97,9 +97,25 @@
 	        });
 	        return deferred.promise;
 	    }
+	    function getOrderInfoItemUser(id){
+	    	var deferred = $q.defer();
+	      	$http.get('./../php/services.php?namefunction=getOrderInfoItemUser&idOrder='+id)
+	        .success(function (data) {
+	            deferred.resolve(data);
+	        });
+	        return deferred.promise;
+	    }
 	    function getTabulatorPrices(){
 	    	var deferred = $q.defer();
 	      	$http.get('./../php/services.php?namefunction=getTabulatorPrices')
+	        .success(function (data) {
+	            deferred.resolve(data);
+	        });
+	        return deferred.promise;
+	    }
+	    function getCupones(){
+	    	var deferred = $q.defer();
+	      	$http.get('./../php/services.php?namefunction=getCupones')
 	        .success(function (data) {
 	            deferred.resolve(data);
 	        });
@@ -118,7 +134,9 @@
 	      getOrders: getOrders,
 	      getOrderItem: getOrderItem,
 	      getOrderInfoItem: getOrderInfoItem,
-	      getTabulatorPrices: getTabulatorPrices
+	      getOrderInfoItemUser: getOrderInfoItemUser,
+	      getTabulatorPrices: getTabulatorPrices,
+	      getCupones: getCupones
 	    }
 	  }]);
 })();

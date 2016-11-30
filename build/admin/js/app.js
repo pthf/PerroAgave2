@@ -34,9 +34,9 @@
       .when('/newsletter', {
         templateUrl: './../views/newsletter.html'
       })
-      // .when('/users', {
-      //   templateUrl: './../views/users.html'
-      // })
+      .when('/cupones', {
+        templateUrl: './../views/cupones.html'
+      })
       .when('/prices', {
         templateUrl: './../views/prices.html'
       })

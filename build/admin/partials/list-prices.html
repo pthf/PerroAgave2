@@ -4,47 +4,34 @@
     <thead>
       <tr>
         <td>#</td>
-        <td>Kg min</td>
-        <td>Kg max</td>
+        <td>Estado</td>
+        <td>Volumén</td>
         <td>Precio</td>
-        <td>Opciones</td>
       </tr>
     </thead>
     <tbody>
       <tr ng-repeat="(key, data) in pricesItems">
         <td>{{data.idtabulator}}</td>
-        <td>{{data.tabulatorkgmin}}</td>
-        <td>{{data.tabulatorkgmax}}</td>
+        <td>{{data.estados}}</td>
+        <td>{{data.tabulatorVol}}</td>
         <td>{{data.tabulatorcost | currency}}</td>
-        <td>
-          <span class="label label-danger deletePrice" data-id='{{data.idtabulator}}' style="cursor:pointer;padding: 1%;width: 20%;">Borrar</span>
-        </td>
       </tr>
     </tbody>
   </table>
   	<form class="form-horizontal" enctype="multipart/form-data" id="addPrice">
 		<div class="col-md-3">
 			<div class="form-group">
-				<label for="tabulatorKgmin" class="col-sm-12 control-label" style="text-align: left;">Kg min</label>
-		        <div class="col-sm-12">
-		          <input required type="text" class="form-control" id="tabulatorKgmin" name="tabulatorKgmin" value=""></input>
-		        </div>
-            <div class="col-sm-12 text-center error-input-min"></div>
-		        <label for="tabulatorKgmax" class="col-sm-12 control-label" style="text-align: left;">Kg max</label>
-		        <div class="col-sm-12">
-		          <input required type="text" class="form-control" id="tabulatorKgmax" name="tabulatorKgmax" value=""></input>
-		        </div>
-            <div class="col-sm-12 text-center error-input-max"></div>
-		        <label for="tabulatorPrice" class="col-sm-12 control-label" style="text-align: left;">Precio</label>
-		        <div class="col-sm-12">
-		          <input required type="text" class="form-control" id="tabulatorPrice" name="tabulatorPrice" value=""></input>
-		        </div>
-            <div class="col-sm-12 text-center error-input-price"></div>
-            <div class="col-sm-12 text-center result"></div>
-		        <div class="col-sm-12" style="text-align: right;">
-		          <input type="submit" class="btn btn-default" value="Agregar"  name="" style="margin-top: 10px;"></input>
-		          <input type="" class="btn btn-default clickUpdate" value=""  name="" style="display:none" ng-click="update()"></input>
-		        </div>
+        <div class="col-sm-12 text-center error-input-max"></div>
+        <label for="tabulatorValues" class="col-sm-12 control-label" style="text-align: left;">Archivo Excel</label>
+        <div class="col-sm-12">
+          <input required type="file" class="form-control" id="tabulatorValues" name="tabulatorValues[]"></input>
+        </div>
+        <div class="col-sm-12 text-center error-input-price"></div>
+        <div class="col-sm-12 text-center result"></div>
+        <div class="col-sm-12" style="text-align: right;">
+          <input type="submit" class="btn btn-default" value="Agregar"  name="" style="margin-top: 10px;"></input>
+          <input type="" class="btn btn-default clickUpdate" value=""  name="" style="display:none" ng-click="update()"></input>
+        </div>
 			</div>
 		</div>
     </form>
