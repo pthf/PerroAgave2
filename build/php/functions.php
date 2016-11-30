@@ -198,5 +198,36 @@
         }
       }
     }
+    private function addDirectiontoCart(){
+      session_start();
+
+      $name  = $_POST['name'];
+      $phone  = $_POST['phone'];
+      $state  = $_POST['state'];
+      $city  = $_POST['city'];
+      $address  = $_POST['address'];
+      $addressdescription  = $_POST['addressdescription'];
+      $postalcode  = $_POST['postalcode'];
+
+      if(strlen($name)>0 && strlen($phone)>0 && strlen($state)>0 && strlen($city)>0 && strlen($address)>0 && strlen($addressdescription)>0 && strlen($postalcode)>0){
+        $data = array(
+          'name' => $name,
+          'phone' => $phone,
+          'state' => $state,
+          'city' => $city,
+          'address' => $address,
+          'addressdescription' => $addressdescription,
+          'postalcode' => $postalcode
+        );
+        $_SESSION['ShoppingUserAddreess'] = $data;
+        print_r(json_encode($_SESSION));
+      }else{
+        print(-1);
+      }
+
+      
+
+      
+    }
   }
   new Functions($_POST['namefunction']);
