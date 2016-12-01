@@ -224,10 +224,26 @@
       }else{
         print(-1);
       }
-
-      
-
-      
+    }
+    private function insertCupon(){
+      $cupon = $_POST['cupon'];
+      $query = "SELECT * FROM cupones WHERE cuponesname = '".$cupon."'";
+      $result = $this->connection->query($query);
+      if(mysqli_num_rows($result)){
+        $line = mysqli_fetch_array($result);
+        $today = date("Y-m-d"); 
+        $startday = $line['cuponesdatestart'];
+        $endday = $line['cuponesdateend'];
+        if((strtotime($today) >= strtotime($startday)) && (strtotime($today) <= strtotime($endday))  ){
+          session_start();
+          $_SESSION['paCouponStore'] = $line['cuponesdes'];
+          echo 1;
+        }else{
+          echo "El cupón se ha vencido.";
+        }
+      }else{
+        echo "El cupón no existe.";
+      }
     }
   }
   new Functions($_POST['namefunction']);

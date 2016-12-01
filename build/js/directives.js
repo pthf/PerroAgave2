@@ -5,10 +5,45 @@
       restrict: 'E',
       templateUrl: './partials/compra.html',
       controller: function($document){
-        //
+        //CUPON
         $('.spaceinputcupon').slideUp();
         $('.mensajeaddcupon').click(function(){
           $('.spaceinputcupon').slideDown();
+        });
+        $('.spaceinputcupon div button').click(function(){
+          var value = $('.spaceinputcupon input').val();
+          if(value.length > 0){
+            $.ajax({
+              url : './php/functions.php',
+              type : 'POST',
+              data : {
+                'namefunction' : 'insertCupon',
+                'cupon' : value
+              },
+              success : function(result){
+                if(result == '1'){
+                  console.log('we will make trigger to apply the coupon');
+                }else{
+                  $('.spaceinputcupon input').val('');
+                  $('.spaceinputcupon span').text(result);
+                  setTimeout(function(){
+                    $('.spaceinputcupon span').text('');
+                    $('.spaceinputcupon').slideUp();
+                  },1000);
+                }
+              },
+              error : function(error){
+                alert(error);
+              },
+              timeout: 10000
+            });
+          }else{
+            $('.spaceinputcupon span').text('Campo vácio');
+            setTimeout(function(){
+              $('.spaceinputcupon span').text('');
+              $('.spaceinputcupon').slideUp();
+            },1000);
+          }
         });
         //VALIDACIONES//
         $(document).on('change', '.envio-wrapper .right-side-data input[name=name]', function(){

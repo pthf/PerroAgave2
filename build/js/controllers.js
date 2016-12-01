@@ -79,7 +79,6 @@
         var amount = parseInt($rootScope.listCart[i]['quantity']);
         sumPrice = sumPrice + (productrealprice*amount);
       }
-      console.log(sumPrice);
       return sumPrice;
     }
     $scope.getShippingCost = function(){

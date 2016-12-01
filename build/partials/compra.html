@@ -29,6 +29,11 @@
     font-family: 'Gotham-Book';
     outline: none;
   }
+  .spaceinputcupon div span{
+    color: red;
+    font-size: .9em;
+    font-family: 'Gotham-Bold';
+  }
   .spaceinputcupon div button{
     margin-top: 5px;
     width: auto;
@@ -37,7 +42,7 @@
     background-color: rgb(229, 229, 229);
     color: #000;
     outline: none;
-    font-size: .8em;
+    font-size: .9em;
   }
   .spaceinputcupon div button:hover{
     cursor: pointer;
@@ -285,7 +290,10 @@
                 </div>
               </div>
               <div class="price-order">
-                {{(data.productrealprice * data.quantity) | currency}}
+                {{(data.productrealprice * data.quantity) | currency}} <br>
+                <span style="color: red" ng-hide="(data.productrealprice - data.productdiscountprice ) == 0">
+                  {{(data.productdiscountprice * data.quantity) | currency}}
+                </span>
               </div>
             </li>
           </ul>
@@ -300,11 +308,11 @@
 
           <div class="row-price spaceinputcupon">
             <div>
+              <span></span>
               <input type="text" name="cupon" placeholder="Código">
               <button>Aplicar</button>
             </div>
           </div>
-
 
           <div class="row-price">
             <span class="info-row">Descuento</span>
