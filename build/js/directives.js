@@ -5,25 +5,49 @@
       restrict: 'E',
       templateUrl: './partials/compra.html',
       controller: function($document){
-        //VALIDACIONES//
-        $(document).on('change', '.right-side-data input[name=phone], .right-side-data input[name=address]', function(){
-          if($(this).val().length > 6){
-            $(this).css({"border":"2px solid #3ADF00"});
-            $(this).attr("data-status", "acepted");
-            $(this).siblings('.msgError').text('');
+        //CUPON
+        $('.spaceinputcupon').slideUp();
+        $('.mensajeaddcupon').click(function(){
+          $('.spaceinputcupon').slideDown();
+        });
+        $('.spaceinputcupon div button').click(function(){
+          var value = $('.spaceinputcupon input').val();
+          if(value.length > 0){
+            $.ajax({
+              url : './php/functions.php',
+              type : 'POST',
+              data : {
+                'namefunction' : 'insertCupon',
+                'cupon' : value
+              },
+              success : function(result){
+                if(result == '1'){
+                  console.log('we will make trigger to apply the coupon');
+                }else{
+                  $('.spaceinputcupon input').val('');
+                  $('.spaceinputcupon span').text(result);
+                  setTimeout(function(){
+                    $('.spaceinputcupon span').text('');
+                    $('.spaceinputcupon').slideUp();
+                  },1000);
+                }
+              },
+              error : function(error){
+                alert(error);
+              },
+              timeout: 10000
+            });
           }else{
-            $(this).attr("data-status", "denied");
-            $(this).css({"border":"2px solid #DF0101"});
-            $(this).siblings('.msgError').text('Campo muy corto');
+            $('.spaceinputcupon span').text('Campo vácio');
+            setTimeout(function(){
+              $('.spaceinputcupon span').text('');
+              $('.spaceinputcupon').slideUp();
+            },1000);
           }
         });
-        $(document).on('change', '.right-side-data select[name=city], .right-side-data select[name=state]', function(){
-          $(this).css({"border":"2px solid #3ADF00"});
-          $(this).attr("data-status", "acepted");
-          $(this).siblings('.msgError').text('');
-        });
-        $(document).on('change', '.right-side-data input[name=postalcode]', function(){
-          var expresion = new RegExp("^[A-Za-z0-9]{4,7}$");
+        //VALIDACIONES//
+        $(document).on('change', '.envio-wrapper .right-side-data input[name=name]', function(){
+          var expresion = new RegExp("^[a-zA-Zñáéíóú]* ?[a-zA-Zñáéíóú]* ?[a-zA-Zñáéíóú]* ?[a-zA-Zñáéíóú]*$");
           if(expresion.test($(this).val())){
             $(this).css({"border":"2px solid #3ADF00"});
             $(this).attr("data-status", "acepted");
@@ -32,6 +56,86 @@
             $(this).attr("data-status", "denied");
             $(this).css({"border":"2px solid #DF0101"});
             $(this).siblings('.msgError').text('Campo inválido');
+            $('.returnlevel').trigger('click');
+          }
+        });
+        $(document).on('change', '.envio-wrapper .right-side-data input[name=phone], .envio-wrapper .right-side-data input[name=address], .envio-wrapper .right-side-data input[name=addressdescription]', function(){
+          if($(this).val().length > 6){
+            $(this).css({"border":"2px solid #3ADF00"});
+            $(this).attr("data-status", "acepted");
+            $(this).siblings('.msgError').text('');
+          }else{
+            $(this).attr("data-status", "denied");
+            $(this).css({"border":"2px solid #DF0101"});
+            $(this).siblings('.msgError').text('Campo muy corto');
+            $('.returnlevel').trigger('click');
+          }
+        });
+        $(document).on('change', '.envio-wrapper .right-side-data select[name=city], .envio-wrapper .right-side-data select[name=state]', function(){
+          $(this).css({"border":"2px solid #3ADF00"});
+          $(this).attr("data-status", "acepted");
+          $(this).siblings('.msgError').text('');
+        });
+        $(document).on('change', '.envio-wrapper .right-side-data input[name=postalcode]', function(){
+          var expresion = new RegExp("^[a-zA-Zñáéíóú0-9]{4,7}$");
+          if(expresion.test($(this).val())){
+            $(this).css({"border":"2px solid #3ADF00"});
+            $(this).attr("data-status", "acepted");
+            $(this).siblings('.msgError').text('');
+          }else{
+            $(this).attr("data-status", "denied");
+            $(this).css({"border":"2px solid #DF0101"});
+            $(this).siblings('.msgError').text('Campo inválido');
+            $('.returnlevel').trigger('click');
+          }
+        });
+        //VERIFY
+        $('.envio-wrapper .validSendData').click(function(){  
+          var nameStatus = $('.envio-wrapper .right-side-data input[name=name]').attr('data-status');
+          var phoneStatus = $('.envio-wrapper .right-side-data input[name=phone]').attr('data-status');
+          var stateStatus = $('.envio-wrapper .right-side-data select[name=state]').attr('data-status');
+          var cityStatus = $('.envio-wrapper .right-side-data select[name=city]').attr('data-status');
+          var addressStatus = $('.envio-wrapper .right-side-data input[name=address]').attr('data-status');
+          var addressDescriptionStatus = $('.envio-wrapper .right-side-data input[name=addressdescription]').attr('data-status');
+          var postalCodeStatus = $('.envio-wrapper .right-side-data input[name=postalcode]').attr('data-status');
+          if(nameStatus == 'acepted' && phoneStatus == 'acepted' && stateStatus == 'acepted' && cityStatus == 'acepted' && addressStatus == 'acepted' && addressDescriptionStatus == 'acepted' && postalCodeStatus == 'acepted'){
+            $.ajax({
+              url: './php/functions.php',
+              type: 'POST',
+              data: {
+                namefunction : 'addDirectiontoCart',
+                name: $('.envio-wrapper .right-side-data input[name=name]').val(),
+                phone: $('.envio-wrapper .right-side-data input[name=phone]').val(),
+                state: $('.envio-wrapper .right-side-data select[name=state]').val(),
+                city: $('.envio-wrapper .right-side-data select[name=city]').val(),
+                address: $('.envio-wrapper .right-side-data input[name=address]').val(),
+                addressdescription: $('.envio-wrapper .right-side-data input[name=addressdescription]').val(),
+                postalcode: $('.envio-wrapper .right-side-data input[name=postalcode]').val()
+              },
+              success: function(result){
+                if(result == '-1'){
+                  $('.returnlevel').trigger('click');
+                  $('.errorForm').css({'display':'block'});
+                  setTimeout(function(){
+                    $('.errorForm').css({'display':'none'});
+                  },2000);
+                }else{
+                  $('.ocultednextstep').trigger('click');
+                  $('.right-side-data input, .right-side-data select').css({"border":"2px solid #e5e5e5"});
+                }
+              },
+              error: function(error){
+                alert(error);
+              },
+              timeout: 10000
+            });
+            //
+          }else{
+            $('.returnlevel').trigger('click');
+            $('.errorForm').css({'display':'block'});
+            setTimeout(function(){
+              $('.errorForm').css({'display':'none'});
+            },2000);
           }
         });
       }
@@ -233,9 +337,7 @@
             type: 'GET',
             data: "namefunction=getEvent&idevent="+idevent,
             success: function(result){
-              console.log(result);
-              var data = JSON.parse(result);
-              console.log(result);
+              var data = JSON.parse(result);;
               var eventCover = data.eventCover;
               var eventname = data.eventname.toUpperCase();
               var eventdescription = data.eventdescription;
@@ -371,7 +473,6 @@
             var url = window.location.pathname;
             var host = window.location.host;
             url = host+url+"#/event/"+$(this).attr('data-url');
-            console.log(url);
             var left  = ($(window).width()/2)-(550/2),
                 top   = ($(window).height()/2)-(550/2),
                 popup = window.open ('https://www.facebook.com/sharer/sharer.php?u='+url, "popup", "width=550, height=550, top="+top+", left="+left);
@@ -482,7 +583,6 @@
           //adicionalmente, ocultar botellas si hacen resize
           $(window).resize(function(){
             if ($(window).width() <= 970){
-              console.log('ayy');
               $('.swiper-container.swiper-container-horizontal').css('display','none');
             }
           });
@@ -751,7 +851,7 @@
         });
         //VALIDACIONES//
         $(document).on('change', '.right-side-data input[name=name], .right-side-data input[name=lastname]', function(){
-          var expresion = new RegExp("^[a-zA-Z]* ?[a-zA-Z]* ?[a-zA-Z]* ?[a-zA-Z]*$");
+          var expresion = new RegExp("^[a-zA-Zñáéíóú]* ?[a-zA-Zñáéíóú]* ?[a-zA-Zñáéíóú]* ?[a-zA-Zñáéíóú]*$");
           if(expresion.test($(this).val())){
             $(this).css({"border":"2px solid #3ADF00"});
             $(this).attr("data-status", "acepted");
@@ -765,7 +865,7 @@
         $(document).on('change', '.right-side-data input[name=email]', function(){
           var useremailown = $(this).attr('data-email');
           var element = $(this);
-          var expresion = new RegExp("^[_a-zA-Z0-9-]+(.[_a-zA-Z0-9-]+)*@[a-zA-Z0-9-]+(.[a-zA-Z0-9-]+)*(.[a-zA-Z]{2,4})$");
+          var expresion = new RegExp("^[_a-zA-Zñáéíóú0-9-]+(.[_a-zA-Zñáéíóú0-9-]+)*@[a-zA-Zñáéíóú0-9-]+(.[a-zA-Zñáéíóú0-9-]+)*(.[a-zA-Zñáéíóú]{2,4})$");
           if($(this).val() == useremailown){
             element.css({"border":"2px solid #3ADF00"});
             element.attr("data-status", "acepted");
@@ -815,7 +915,7 @@
           $(this).siblings('.msgError').text('');
         });
         $(document).on('change', '.right-side-data input[name=postalcode]', function(){
-          var expresion = new RegExp("^[A-Za-z0-9]{4,7}$");
+          var expresion = new RegExp("^[a-zA-Zñáéíóú0-9]{4,7}$");
           if(expresion.test($(this).val())){
             $(this).css({"border":"2px solid #3ADF00"});
             $(this).attr("data-status", "acepted");
@@ -847,7 +947,7 @@
           var email = $('#login-form label input[name=email]').val();
           var password = $('#login-form input[name=password]').val();
           if(email.length > 0){
-            var expresion = new RegExp("^[_a-zA-Z0-9-]+(.[_a-zA-Z0-9-]+)*@[a-zA-Z0-9-]+(.[a-zA-Z0-9-]+)*(.[a-zA-Z]{2,4})$");
+            var expresion = new RegExp("^[_a-zA-Zñáéíóú0-9-]+(.[_a-zA-Zñáéíóú0-9-]+)*@[a-zA-Zñáéíóú0-9-]+(.[a-zA-Zñáéíóú0-9-]+)*(.[a-zA-Zñáéíóú]{2,4})$");
             if(expresion.test(email)){
               if(password.length > 0){
                 $.ajax({
@@ -910,7 +1010,7 @@
       templateUrl: './partials/form-register.html',
       controller: function($document){
         $('#register-form label input[name=nombre], #register-form label input[name=lastname]').change(function(){
-          var expresion = new RegExp("^[a-zA-Z]* ?[a-zA-Z]* ?[a-zA-Z]* ?[a-zA-Z]*$");
+          var expresion = new RegExp("^[a-zA-Zñáéíóú]* ?[a-zA-Zñáéíóú]* ?[a-zA-Zñáéíóú]* ?[a-zA-Zñáéíóú]*$");
           if(expresion.test($(this).val())){
             $(this).css({"border":"2px solid #3ADF00"});
             $(this).attr("data-status", "acepted");
@@ -927,7 +1027,7 @@
         });
         $('#register-form label input[name=email]').change(function(){
           var element = $(this);
-          var expresion = new RegExp("^[_a-zA-Z0-9-]+(.[_a-zA-Z0-9-]+)*@[a-zA-Z0-9-]+(.[a-zA-Z0-9-]+)*(.[a-zA-Z]{2,4})$");
+          var expresion = new RegExp("^[_a-zA-Zñáéíóú0-9-]+(.[_a-zA-Zñáéíóú0-9-]+)*@[a-zA-Zñáéíóú0-9-]+(.[a-zA-Zñáéíóú0-9-]+)*(.[a-zA-Zñáéíóú]{2,4})$");
           if(expresion.test($(this).val())){
             $.ajax({
               url: './php/services.php',
@@ -1014,7 +1114,7 @@
         $('#reset-form .login-buttom').click(function(){
           var email = $('#reset-form input[name=email]').val();
           if(email.length > 0){
-            var expresion = new RegExp("^[_a-zA-Z0-9-]+(.[_a-zA-Z0-9-]+)*@[a-zA-Z0-9-]+(.[a-zA-Z0-9-]+)*(.[a-zA-Z]{2,4})$");
+            var expresion = new RegExp("^[_a-zA-Zñáéíóú0-9-]+(.[_a-zA-Zñáéíóú0-9-]+)*@[a-zA-Zñáéíóú0-9-]+(.[a-zA-Zñáéíóú0-9-]+)*(.[a-zA-Zñáéíóú]{2,4})$");
             if(expresion.test(email)){
               $.ajax({
                 url: './php/functions.php',

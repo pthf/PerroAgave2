@@ -82,7 +82,7 @@
       return sumPrice;
     }
     $scope.getShippingCost = function(){
-      return 220;
+      return 0;
     }
     $scope.logoutCart = function(){
       $scope.loadCart();
@@ -90,38 +90,57 @@
     $scope.loadCart();
     //Proceso Comprar
     $scope.itemselected = 1;
-    $scope.checkout = true;
-    $scope.client = false;
+    $scope.client = true;
     $scope.address = false;
+    $scope.checkout = false;    
     $scope.changeItemBuy = function(item){
       switch(item){
         case 1:
-          if($scope.checkout) 
-            $scope.itemselected = item;
-        break;
-        case 2:
           if($scope.client) 
             $scope.itemselected = item;
         break;
-        case 3: 
+        case 2:
           if($scope.address) 
             $scope.itemselected = item;
         break;
+        case 3: 
+          if($scope.checkout) 
+            $scope.itemselected = item;
+        break;
       }
-    }
+    } 
     $scope.changeStage = function(item){
       switch(item){
         case 1:
-          $scope.checkout = true;
-          $scope.itemselected = item
-        break;
-        case 2: 
           $scope.client = true;
           $scope.itemselected = item
         break;
-        case 3: 
+        case 2: 
           $scope.address = true;
           $scope.itemselected = item
+        break;
+        case 3: 
+          $scope.checkout = true;
+          $scope.itemselected = item
+        break;
+      }
+    }
+    $scope.returnlevel = function(item){
+      switch(item){
+        case 1:
+          $scope.client = true;
+          $scope.address = false;
+          $scope.checkout = false;
+        break;
+        case 2:
+          $scope.client = true;
+          $scope.address = true;
+          $scope.checkout = false;
+        break;
+        case 3: 
+          $scope.client = true;
+          $scope.address = true;
+          $scope.checkout = true;
         break;
       }
     }
@@ -137,6 +156,20 @@
         $scope.userCity = data.usercity;
         $scope.userState = data.userstate;
         $scope.userDataLoaded = true;
+      });
+    });
+    //Informacion Domicilio
+    $scope.addressLoaded = false;
+    $scope.addressCity;
+    $scope.addressState;
+    $scope.addressData = [];
+    perroAgaveservice.getUserConnection().then(function(data){
+      $rootScope.userLogin = data;
+      perroAgaveservice.getAddressData($rootScope.userLogin).then(function(data){
+        $scope.addressData = data;
+        $scope.addressCity = data.city;
+        $scope.addressState = data.state;
+        $scope.addressLoaded = true;
       });
     });
   }])

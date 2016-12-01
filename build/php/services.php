@@ -58,6 +58,37 @@
       );
       print_r(json_encode($data));
     }
+    private function getAddressData(){
+      session_start();
+      if(isset($_SESSION['ShoppingUserAddreess'])){
+        $data = array(
+          'cartshop' => 1,
+          'name' => $_SESSION['ShoppingUserAddreess']['name'],
+          'phone' => $_SESSION['ShoppingUserAddreess']['phone'],
+          'state' => $_SESSION['ShoppingUserAddreess']['state'],
+          'city' => $_SESSION['ShoppingUserAddreess']['city'],
+          'address' => $_SESSION['ShoppingUserAddreess']['address'],
+          'addressdescription' => $_SESSION['ShoppingUserAddreess']['addressdescription'],
+          'postalcode' => $_SESSION['ShoppingUserAddreess']['postalcode']
+        );
+        print_r(json_encode($data));
+      }else{
+        $iduser = $_GET['idUser'];
+        $query = "SELECT * FROM user WHERE iduser = ".$iduser;
+        $result = $this->connection->query($query);
+        $line = mysqli_fetch_array($result);
+        $data = array(
+          'cartshop' => 0,
+          'name' => $line['username'],
+          'phone' => $line['userphonenumber'],
+          'state' => $line['userstate'],
+          'city' => $line['usercity'],
+          'address' => $line['useraddress'],
+          'postalcode' => $line['userzipcode']
+        );
+        print_r(json_encode($data));
+      }
+    }
     private function getEmailUser(){
       $useremail = $_GET['useremail'];
       $query = "SELECT iduser FROM user WHERE useremail = '".$useremail."'";

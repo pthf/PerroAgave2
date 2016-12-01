@@ -38,6 +38,14 @@
         });
         return deferred.promise;
     }
+    function getAddressData(idUser){
+      var deferred = $q.defer();
+      $http.get('./php/services.php?namefunction=getAddressData&idUser='+idUser)
+        .success(function(data){
+          deferred.resolve(data);
+        });
+        return deferred.promise;
+    }
     function getProducts(){
       var deferred = $q.defer();
       $http.get('./php/services.php?namefunction=getProducts')
@@ -138,7 +146,8 @@
       getShoppingCartElements : getShoppingCartElements,
       addProduct : addProduct,
       increaseProduct : increaseProduct,
-      decreaseProduct : decreaseProduct
+      decreaseProduct : decreaseProduct,
+      getAddressData : getAddressData
     }
   }]);
 })();

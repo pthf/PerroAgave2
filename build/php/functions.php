@@ -198,5 +198,52 @@
         }
       }
     }
+    private function addDirectiontoCart(){
+      session_start();
+
+      $name  = $_POST['name'];
+      $phone  = $_POST['phone'];
+      $state  = $_POST['state'];
+      $city  = $_POST['city'];
+      $address  = $_POST['address'];
+      $addressdescription  = $_POST['addressdescription'];
+      $postalcode  = $_POST['postalcode'];
+
+      if(strlen($name)>0 && strlen($phone)>0 && strlen($state)>0 && strlen($city)>0 && strlen($address)>0 && strlen($addressdescription)>0 && strlen($postalcode)>0){
+        $data = array(
+          'name' => $name,
+          'phone' => $phone,
+          'state' => $state,
+          'city' => $city,
+          'address' => $address,
+          'addressdescription' => $addressdescription,
+          'postalcode' => $postalcode
+        );
+        $_SESSION['ShoppingUserAddreess'] = $data;
+        print_r(json_encode($_SESSION));
+      }else{
+        print(-1);
+      }
+    }
+    private function insertCupon(){
+      $cupon = $_POST['cupon'];
+      $query = "SELECT * FROM cupones WHERE cuponesname = '".$cupon."'";
+      $result = $this->connection->query($query);
+      if(mysqli_num_rows($result)){
+        $line = mysqli_fetch_array($result);
+        $today = date("Y-m-d"); 
+        $startday = $line['cuponesdatestart'];
+        $endday = $line['cuponesdateend'];
+        if((strtotime($today) >= strtotime($startday)) && (strtotime($today) <= strtotime($endday))  ){
+          session_start();
+          $_SESSION['paCouponStore'] = $line['cuponesdes'];
+          echo 1;
+        }else{
+          echo "El cupón se ha vencido.";
+        }
+      }else{
+        echo "El cupón no existe.";
+      }
+    }
   }
   new Functions($_POST['namefunction']);
