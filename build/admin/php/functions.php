@@ -245,6 +245,11 @@
       $query = "DELETE FROM cupones WHERE idcupones = '".$_POST['idCupon']."'";
       $result = $this->connection->query($query);
     }
+    private function changeStatusOrder(){
+      parse_str($_POST['data'], $data);
+      $query = "UPDATE padb.order SET orderstatus = '".$data['orderStatus']."' WHERE idorder = '".$data['orderId']."'";
+      $result = $this->connection->query($query); 
+    }
   }
   new Functions($_POST['namefunction']);
 

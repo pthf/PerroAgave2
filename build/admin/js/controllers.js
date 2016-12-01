@@ -132,6 +132,19 @@
 		paService.getOrderInfoItem($scope.idOrder).then(function(data){
 			$scope.orderInfotItem = data;
 		});
+		$scope.orderInfotItemUser = [];
+		paService.getOrderInfoItemUser($scope.idOrder).then(function(data){
+			$scope.orderInfotItemUser = data;
+		});
+		$scope.loadOrder = function(){
+	      paService.getOrderInfoItem($scope.idOrder).then(function(data){
+	        $scope.orderInfotItem = data;
+	      });
+	    } 
+	    $scope.update = function(){
+	      $scope.loadOrder();
+	    }
+	    $scope.update();
 	}])
 	.controller('tabulatorpricesController', ['$scope', '$routeParams', 'paService', function($scope, $routeParams, paService){
 		$scope.pricesItems = [];
