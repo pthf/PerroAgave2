@@ -1,6 +1,14 @@
 (function(){
   angular.module('perroAgave.services', [])
   .factory('perroAgaveservice', ['$http', '$q', function($http, $q){
+    function getInformationPurchase(idUser){
+      var deferred = $q.defer();
+      $http.get('./php/services.php?namefunction=getInformationPurchase&idUser='+idUser)
+        .success(function(data){
+          deferred.resolve(data);
+        });
+        return deferred.promise;
+    }
     function getStateCity(){
       var deferred = $q.defer();
       $http.get('./php/services.php?namefunction=getStateCity')
@@ -133,7 +141,39 @@
       });
       return deferred.promise;
     }
+    function getCoupon(){
+      var deferred = $q.defer();
+      $http.get('./php/services.php?namefunction=getCoupon')
+        .success(function(data){
+          deferred.resolve(data);
+        });
+        return deferred.promise;
+    }
+    function getShippingCost(){
+      var deferred = $q.defer();
+      $http.get('./php/services.php?namefunction=getShippingCost')
+        .success(function(data){
+          deferred.resolve(data);
+        });
+        return deferred.promise;
+    }
+    function verifyFacturationForm(ordernumber, idUser){
+      var deferred = $q.defer();
+      $http({
+        url : './php/functions.php',
+        method : 'POST',
+        data : $.param({namefunction : "verifyFacturationForm", ordernumber : ordernumber, idUser : idUser }),
+        headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+      })
+      .success(function(data){
+        deferred.resolve(data);
+      });
+      return deferred.promise;
+    }
     return {
+      getInformationPurchase : getInformationPurchase,
+      getCoupon : getCoupon,
+      getShippingCost : getShippingCost,
       logoutUser : logoutUser,
       getUserConnection : getUserConnection,
       getProducts : getProducts,
@@ -147,7 +187,8 @@
       addProduct : addProduct,
       increaseProduct : increaseProduct,
       decreaseProduct : decreaseProduct,
-      getAddressData : getAddressData
+      getAddressData : getAddressData,
+      verifyFacturationForm : verifyFacturationForm
     }
   }]);
 })();

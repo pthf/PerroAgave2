@@ -1,0 +1,177 @@
+<style type="text/css">
+	.groupFacturar{
+		margin-top: 120px;
+		margin-bottom: 80px;
+	}
+
+	.errorFacturacion{
+		max-width: 660px;
+		width: 80%;
+		text-align: center;
+		margin: 0 auto;
+	}
+
+	.errorFacturacion .messageSorryFact{
+		display: block;
+		font-family: 'Gotham-Bold';
+		font-size: 2em;
+		color: #000;
+	}
+
+	.errorFacturacion .messageFact{
+		width: 60%;
+		height: auto;
+		margin: 0 auto;
+		display: block;
+	}
+
+	.groupFacturar form input {
+		border: 2px solid #e5e5e5;
+	}
+
+</style>
+<div class="listPurchase" ng-controller="verifyFacturationFormController">
+	<div class="groupFacturar">
+		<form ng-show="statusOrder == 1">
+			<h2 class="compra-title">DATOS DE FACTURACIÓN</h2>
+
+			<div class="user-data">
+
+		        <div class="user-data-row">
+		        	<div class="left-side-data">
+			            <span>ORDEN DE PEDIDO</span>
+			        </div>
+			        <div class="right-side-data">
+			            <input type="text" name="numpedido" value="" class="profile-input" required>
+			            <span class="msgError"></span>
+		            </div>
+	          	</div>
+
+	          	<div class="user-data-row">
+	          		<div class="left-side-data">
+			            <span>NOMBRE</span>
+			        </div>
+			        <div class="right-side-data">
+			            <input type="text" name="name" value="" class="profile-input" required>
+			            <span class="msgError"></span>
+		            </div>	            
+		        </div>
+
+		        <div class="user-data-row">
+		        	<div class="left-side-data">
+			            <span>RFC</span>
+			        </div>
+			        <div class="right-side-data">
+			            <input type="text" name="rfc" value="" class="profile-input" required>
+			            <span class="msgError"></span>
+		            </div>
+		        </div>
+
+				<div class="user-data-row">
+		            <div class="left-side-data">
+			            <span>RAZÓN SOCIAL</span>
+			        </div>
+			        <div class="right-side-data">
+			            <input type="text" name="razonsocial" value="" class="profile-input" required>
+			            <span class="msgError"></span>
+		            </div>
+		        </div>
+
+		        <div class="user-data-row">
+		            <div class="left-side-data">
+			            <span>DOMICILIO FISCAL</span>
+			        </div>
+			        <div class="right-side-data">
+			            <input type="text" name="dfiscal" value="" class="profile-input" required>
+			            <span class="msgError"></span>
+		            </div>
+		        </div>
+
+		        <div class="user-data-row">
+		            <div class="left-side-data">
+			            <span>NÚMERO EXTERIOR</span>
+			        </div>
+			        <div class="right-side-data">
+			            <input type="text" name="numext" value="" class="profile-input" required>
+			            <span class="msgError"></span>
+		            </div>
+		        </div>
+
+		        <div class="user-data-row">
+		            <div class="left-side-data">
+			            <span>NÚMERO INTERIOR</span>
+			        </div>
+			        <div class="right-side-data">
+			            <input type="text" name="numint" value="" class="profile-input" required>
+			            <span class="msgError"></span>
+		            </div>
+		        </div>
+
+		        <div class="user-data-row">
+		            <div class="left-side-data">
+			            <span>ESTADO</span>
+			        </div>
+			        <div class="right-side-data">
+			            <input type="text" name="estado" value="" class="profile-input" required>
+			            <span class="msgError"></span>
+		            </div>
+		        </div>
+
+		        <div class="user-data-row">
+		            <div class="left-side-data">
+			            <span>CIUDAD/MUNICIPIO</span>
+			        </div>
+			        <div class="right-side-data">
+			            <input type="text" name="ciudad" value="" class="profile-input" required>
+			            <span class="msgError"></span>
+		            </div>
+		        </div>
+
+		        <div class="user-data-row">
+		            <div class="left-side-data">
+			            <span>COLONIA</span>
+			        </div>
+			        <div class="right-side-data">
+			            <input type="text" name="colonia" value="" class="profile-input" required>
+			            <span class="msgError"></span>
+		            </div>
+		        </div>
+
+		        <div class="user-data-row">
+		            <div class="left-side-data">
+			            <span>CÓDIGO POSTAL</span>
+			        </div>
+			        <div class="right-side-data">
+			            <input type="text" name="cp" value="" class="profile-input" required>
+			            <span class="msgError"></span>
+		            </div>
+		        </div>
+
+		        <div class="user-data-row">
+		            <div class="left-side-data">
+			            <span>E-MAIL</span>
+			        </div>
+			        <div class="right-side-data">
+			            <input type="email" name="email" value="" class="profile-input" required>
+			            <span class="msgError"></span>
+		            </div>
+		        </div>
+
+		        <input type="submit" class="buttonformfacturacion" style="display: none"></input>
+
+	        </div>
+	        <div class="button-next-wrapper">
+	          <span class="ocultednextstep" ng-click="changeStage(3)"></span>
+	          <span class="button-next validSendData sendformdata">
+	            ENVIAR
+	          </span> 
+	        </div>
+		</form>
+		<div class="errorFacturacion" ng-show="statusOrder == 0">
+			<span class="messageSorryFact">Lo sentimos, no tiene permitido solicitar facturación de esta compra.</span><br><span class="messageFact">Si considera que esto es un error favor de comunicarse al: 33 4344 3345 Ext. 234 con los datos de compra a la mano para agilizar el procedimiento.</span>
+		</div>
+		<div class="errorFacturacion" ng-show="statusOrder == -1">
+			<span class="messageSorryFact">Lo sentimos, su compra ya no se puede facturar.</span><br><span class="messageFact">Se ha vencido el plazo máximo para facturar esta compra. Si considera que esto es un error favor de comunicarse al: 33 4344 3345 Ext. 234 con los datos de compra a la mano para agilizar el procedimiento.</span>
+		</div>
+	</div>
+</div>

@@ -17,9 +17,11 @@
 		$mensaje .= "Mensaje " . $men . " \r\n";
 		$mensaje .= "Enviado el " . date('d/m/Y', time());
 
-		$para   = 'memo.0321@gmail.com';
+		$para   = 'perronuno@perroagave.com';
+		$para2   = 'perroarreola@perroagave.com';
+		$para3  = 'perrojacques@perroagave.com';
 		$asunto = 'Contacto';
 
-		mail("$para,$para",$asunto,utf8_decode($mensaje),$header);
+		mail("$para,$para2, $para3", $asunto,utf8_decode($mensaje), $header);
 
 ?>

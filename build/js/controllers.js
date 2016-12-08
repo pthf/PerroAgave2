@@ -1,11 +1,38 @@
 (function(){
   angular.module('perroAgave.controllers', [])
+  .controller('getInformationPurchaseController', ['$scope', '$rootScope', 'perroAgaveservice', function($scope, $rootScope, perroAgaveservice){
+    $scope.dataPurchases;
+    if($rootScope.userLogin != 0){
+      perroAgaveservice.getInformationPurchase($rootScope.userLogin).then(function(data){
+        $scope.dataPurchases = data;
+      });
+    }else{
+      window.location = "#/";
+    }
+    $scope.getTotal = function(total, discount, discoupon, shipping){
+      return total - discount - discoupon + parseInt(shipping);
+    }
+  }])
+  .controller('verifyFacturationFormController', ['$scope', '$rootScope', 'perroAgaveservice', '$routeParams', function($scope, $rootScope, perroAgaveservice, $routeParams){
+    var ordernumber = $routeParams.ordernumber;
+    $scope.statusOrder;
+    perroAgaveservice.verifyFacturationForm(ordernumber, $rootScope.userLogin).then(function(data){
+      $scope.statusOrder = parseInt(data);
+    });
+  }])
   .controller('shoppingCartController', ['$scope', '$rootScope', 'perroAgaveservice', function($scope, $rootScope, perroAgaveservice){
     $scope.shopLoaded = false;
+    $rootScope.shippingCost = 0.0;
     $scope.loadCart = function(){
       perroAgaveservice.getShoppingCartElements().then(function(data){
+        $scope.getShippingCost();
         $rootScope.listCart = data;
         $scope.shopLoaded = true;
+      });
+    }
+    $scope.getShippingCost = function(){
+      perroAgaveservice.getShippingCost().then(function(data){
+        $rootScope.shippingCost = parseInt(data);
       });
     }
     $scope.addProduct = function(idproduct){
@@ -80,9 +107,6 @@
         sumPrice = sumPrice + (productrealprice*amount);
       }
       return sumPrice;
-    }
-    $scope.getShippingCost = function(){
-      return 0;
     }
     $scope.logoutCart = function(){
       $scope.loadCart();
@@ -172,6 +196,22 @@
         $scope.addressLoaded = true;
       });
     });
+    //Cupon aplicado
+    $scope.couponApplied = false;
+    $scope.nameCoupon;
+    $scope.porcentDiscount = 0; 
+    $scope.getCoupon = function(){
+      perroAgaveservice.getCoupon().then(function(data){
+        if(data != '-1'){
+          $scope.couponApplied = true;
+          $scope.porcentDiscount = parseInt(data.cuponesdes);
+          $scope.nameCoupon = data.cuponesname;
+        }else{
+          $scope.couponApplied = false;
+        }
+      });
+    }
+    $scope.getCoupon();
   }])
   .controller('verifyUrlController', ['$scope', '$routeParams', '$location', function($scope, $routeParams, $location){
     $scope.menuhome = 0;

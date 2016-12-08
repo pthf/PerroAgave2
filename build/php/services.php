@@ -60,16 +60,16 @@
     }
     private function getAddressData(){
       session_start();
-      if(isset($_SESSION['ShoppingUserAddreess'])){
+      if(isset($_SESSION['ShoppingUserAddress'])){
         $data = array(
           'cartshop' => 1,
-          'name' => $_SESSION['ShoppingUserAddreess']['name'],
-          'phone' => $_SESSION['ShoppingUserAddreess']['phone'],
-          'state' => $_SESSION['ShoppingUserAddreess']['state'],
-          'city' => $_SESSION['ShoppingUserAddreess']['city'],
-          'address' => $_SESSION['ShoppingUserAddreess']['address'],
-          'addressdescription' => $_SESSION['ShoppingUserAddreess']['addressdescription'],
-          'postalcode' => $_SESSION['ShoppingUserAddreess']['postalcode']
+          'name' => $_SESSION['ShoppingUserAddress']['name'],
+          'phone' => $_SESSION['ShoppingUserAddress']['phone'],
+          'state' => $_SESSION['ShoppingUserAddress']['state'],
+          'city' => $_SESSION['ShoppingUserAddress']['city'],
+          'address' => $_SESSION['ShoppingUserAddress']['address'],
+          'addressdescription' => $_SESSION['ShoppingUserAddress']['addressdescription'],
+          'postalcode' => $_SESSION['ShoppingUserAddress']['postalcode']
         );
         print_r(json_encode($data));
       }else{
@@ -353,6 +353,102 @@
         }
       }
       print_r(json_encode($shoppingCartList));
+    }
+    private function getCoupon(){
+      session_start();
+      if(isset($_SESSION['paCouponStore'])){
+        print_r(json_encode($_SESSION['paCouponStore']));
+      }else{
+        echo -1;
+      }
+    }
+    private function getShippingCost(){
+      session_start();
+      $dataShopping = $_SESSION['shoppingPA'];
+      $dataAddress = $_SESSION['ShoppingUserAddress'];
+      $state = $dataAddress['state'];
+      $totalShippingCost = 0.0;
+
+      foreach ($dataShopping as $key => $value) {
+        $idproduct = $value['idproduct'];
+        $quantity = $value['quantity'];
+        $query = "SELECT productweight FROM product WHERE idproduct = $idproduct ";
+        $result = $this->connection->query($query);
+        $line = mysqli_fetch_array($result);
+        $productweight = $line['productweight'];
+        $query = "SELECT tabulatorcost FROM tabulator_prices WHERE tabulatorstate = $state AND $productweight >= tabulatorVol ORDER BY tabulatorVol DESC LIMIT 1";
+        $result = $this->connection->query($query);
+        while($line = mysqli_fetch_array($result)){
+          $tabulatorcost = $line['tabulatorcost'];
+          $cost = $line['tabulatorcost'];
+          $subtotal = $quantity * $cost;
+          $totalShippingCost = $totalShippingCost + $subtotal;
+        }
+      }
+      echo $totalShippingCost;
+    }
+    private function getInformationPurchase(){
+      $idUser = $_GET['idUser'];
+      $query = "SELECT * FROM padb.order
+                INNER JOIN user ON padb.order.iduser = user.iduser 
+                INNER JOIN estados ON padb.order.ordercity = estados.idEstados
+                INNER JOIN ciudades ON padb.order.ordercity = ciudades.idCiudades
+                WHERE padb.order.iduser = $idUser AND padb.order.orderstatuspay = 1";
+      $result = $this->connection->query($query);
+      $dataPurchase = array();
+      while($line = mysqli_fetch_array($result)){
+        $idorder = $line['idorder'];
+        $query = "SELECT * FROM order_has_product
+                  INNER JOIN product ON product.idproduct = order_has_product.idproduct
+                  WHERE order_has_product.idorder = $idorder";
+        $result2 = $this->connection->query($query);
+        $products = array();
+        $sumtotal = 0.0;
+        $sumdiscount = 0.0;
+        while($line2 = mysqli_fetch_array($result2)){
+          $product = array(
+            'idproduct' => $line2['idproduct'],
+            'orderquantity' => $line2['orderquantity'],
+            'ordersubtotal' => $line2['ordersubtotal'],
+            'ordersubtotaldiscount' => $line2['ordersubtotaldiscount'],
+            'productimage' => $line2['productimage'],
+            'productquantity' => $line2['productquantity'],
+            'productname' => $line2['productname']
+          );
+          array_push($products, $product);
+          $sumtotal = $line2['ordersubtotal'] + $sumtotal;
+          $sumdiscount = $line2['ordersubtotaldiscount'] + $sumdiscount;
+        }
+
+        $dataAddress = array(
+          'ordernumber' => $line['ordernumber'],
+          'ordershippingcost' => $line['ordershippingcost'],
+          'orderdiscountcupon' => $line['orderdiscountcupon'],
+          'ordername' => $line['ordername'],
+          'ordertelefono' => $line['ordertelefono'],
+          'ordercity' => $line['nombreCiudad'],
+          'orderstate' => $line['nombreEstado'],
+          'orderaddress' => $line['orderaddress'],
+          'orderreferences' => $line['orderreferences'],
+          'orderzipcode' => $line['orderzipcode'],
+          'orderstatusfacture' => $line['orderstatusfacture'],
+          'orderdate' => $line['orderdate'],
+          'username' => $line['username'],
+          'userlastname' => $line['userlastname'],
+          'useremail' => $line['useremail'],
+          'useraddress' => $line['useraddress'],
+          'usercity' => $line['usercity'],
+          'userstate' => $line['userstate'],
+          'userzipcode' => $line['userzipcode'],
+          'userphonenumber' => $line['userphonenumber'],
+          'sumtotal' => $sumtotal,
+          'sumdiscount' => $sumdiscount,
+          'products' => $products
+        );
+        array_push($dataPurchase, $dataAddress);
+      }
+
+      print_r(json_encode($dataPurchase));
     }
   }
   new Services($_GET['namefunction']);
