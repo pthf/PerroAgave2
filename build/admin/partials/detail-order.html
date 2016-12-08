@@ -3,14 +3,48 @@
   <div class="row">
     <div class="col-xs-6 col-sm-3">
       <dl class="dl-vertical">
-        <dt>Núm. Odern</dt>
+        <dt>Núm. Orden</dt>
         <dd>{{orderInfotItem[0].ordernumber}}</dd>
       </dl>
     </div>
     <div class="col-xs-6 col-sm-3">
       <dl class="dl-vertical">
         <dt>Costo envío</dt>
-        <dd>{{orderInfotItem[0].ordershippingcost}}</dd>
+        <dd>{{orderInfotItem[0].ordershippingcost | currency}}</dd>
+      </dl>
+    </div>
+    <div class="col-xs-6 col-sm-3">
+      <dl class="dl-vertical">
+        <dt>Estatus</dt>
+        <dd ng-show="orderInfotItem[0].orderstatus == 0"> ENTREGADO </dd>
+        <dd ng-show="orderInfotItem[0].orderstatus == 1"> FACTURADO </dd>
+      </dl>
+    </div>
+  </div>
+  <div class="row">
+    <form class="form-horizontal" enctype="multipart/form-data" id="changeStatusOrder">
+      <label for="orderStatus" class="col-sm-12 control-label" style="text-align: left;">Estatus *</label>
+      <input hidden type="text" name="orderId" value="{{orderInfotItem[0].idorder}}">
+      <div class="col-sm-4">
+        <select required class="form-control" id="orderStatus" name="orderStatus">
+          <option disabled="" selected="" value="">Selecciona..</option>
+          <option value="1">FACTURADO</option>
+          <option value="0">ENTREGADO</option>
+        </select>
+      </div>
+      <div class="col-sm-8">
+        <input type="submit" class="btn btn-default" value="Guardar" name="" style="padding: 3px;"></input>
+        <input type="" class="btn btn-default clickUpdate" value=""  name="" style="display:none" ng-click="update()"></input>
+      </div>
+      <div class="col-sm-4 text-center result"></div>
+    </form>
+  </div>
+  <h2>Datos Envío</h2>
+  <div class="row">
+    <div class="col-xs-6 col-sm-3">
+      <dl class="dl-vertical">
+        <dt>Nombre</dt>
+        <dd>{{orderInfotItem[0].ordername}}</dd>
       </dl>
     </div>
     <div class="col-xs-6 col-sm-3">
@@ -44,57 +78,42 @@
       </dl>
     </div>
   </div>
-  <h2>Datos Envío</h2>
-  <div class="row">
-    <div class="col-xs-6 col-sm-3">
-      <dl class="dl-vertical">
-        <dt>Nombre</dt>
-        <dd>{{orderInfotItem[0].username}} {{orderInfotItem[0].userlastname}}</dd>
-      </dl>
-    </div>
-    <div class="col-xs-6 col-sm-3">
-      <dl class="dl-vertical">
-        <dt>Email</dt>
-        <dd>{{orderInfotItem[0].useremail}}</dd>
-      </dl>
-    </div>
-    <div class="col-xs-6 col-sm-3">
-      <dl class="dl-vertical">
-        <dt>Dirección</dt>
-        <dd>{{orderInfotItem[0].useraddress}}</dd>
-      </dl>
-    </div>
-    <div class="col-xs-6 col-sm-3">
-      <dl class="dl-vertical">
-        <dt>Teléfono</dt>
-        <dd>{{orderInfotItem[0].userphonenumber}}</dd>
-      </dl>
-    </div>
-  </div>
   <h2>Datos usuario</h2>
   <div class="row">
     <div class="col-xs-6 col-sm-3">
       <dl class="dl-vertical">
         <dt>Nombre</dt>
-        <dd>{{orderInfotItem[0].username}} {{orderInfotItem[0].userlastname}}</dd>
+        <dd>{{orderInfotItemUser[0].username}} {{orderInfotItemUser[0].userlastname}}</dd>
       </dl>
     </div>
     <div class="col-xs-6 col-sm-3">
       <dl class="dl-vertical">
         <dt>Email</dt>
-        <dd>{{orderInfotItem[0].useremail}}</dd>
+        <dd>{{orderInfotItemUser[0].useremail}}</dd>
       </dl>
     </div>
     <div class="col-xs-6 col-sm-3">
       <dl class="dl-vertical">
         <dt>Dirección</dt>
-        <dd>{{orderInfotItem[0].useraddress}}</dd>
+        <dd>{{orderInfotItemUser[0].useraddress}}</dd>
       </dl>
     </div>
     <div class="col-xs-6 col-sm-3">
       <dl class="dl-vertical">
         <dt>Teléfono</dt>
-        <dd>{{orderInfotItem[0].userphonenumber}}</dd>
+        <dd>{{orderInfotItemUser[0].userphonenumber}}</dd>
+      </dl>
+    </div>
+    <div class="col-xs-6 col-sm-3">
+      <dl class="dl-vertical">
+        <dt>Código Postal</dt>
+        <dd>{{orderInfotItemUser[0].userzipcode}}</dd>
+      </dl>
+    </div>
+    <div class="col-xs-6 col-sm-3">
+      <dl class="dl-vertical">
+        <dt>Estado - Ciudad</dt>
+        <dd>{{orderInfotItemUser[0].nombreCiudad}}, {{orderInfotItemUser[0].nombreEstado}}</dd>
       </dl>
     </div>
   </div>

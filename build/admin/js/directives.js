@@ -167,7 +167,34 @@
   .directive('detailOrder', function(){
     return {
       restrict: 'E',
-      templateUrl: './../partials/detail-order.html'
+      templateUrl: './../partials/detail-order.html',
+      controller: function($document){
+        $('#changeStatusOrder').submit(function(){
+          var ajaxData = new FormData();
+          ajaxData.append("namefunction","changeStatusOrder");
+          ajaxData.append("data",$(this).serialize());
+          $.ajax({
+            url: "../php/functions.php",
+            type: "POST",
+            data: ajaxData,
+            processData: false,  // tell jQuery not to process the data
+            contentType: false,   // tell jQuery not to set contentType
+            success: function(result){
+              $('.clickUpdate').trigger('click');
+              $('#changeStatusOrder')[0].reset();
+              $('.result').html('<div class="alert alert-success" role="alert" style="margin-top: 2%;margin-bottom: 1%;padding: 10px;">Estatus actualizado.</div>');
+              $('.result').css({'opacity' : '1'});
+              setTimeout(function () {
+                  $('.result').css({'opacity' : '0'});
+                  $('.result').text('');
+              }, 4000);
+            },
+            error: function(error){
+              alert(error);
+            }
+          });
+        }); 
+      }
     }
   })
   .directive('addEvent', function(){
