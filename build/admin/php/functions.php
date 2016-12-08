@@ -247,7 +247,7 @@
     }
     private function changeStatusOrder(){
       parse_str($_POST['data'], $data);
-      $query = "UPDATE padb.order SET orderstatus = '".$data['orderStatus']."' WHERE idorder = '".$data['orderId']."'";
+      $query = "UPDATE padb.order SET orderstatusfacture = '".$data['orderStatus']."' WHERE idorder = '".$data['orderId']."'";
       $result = $this->connection->query($query); 
     }
   }

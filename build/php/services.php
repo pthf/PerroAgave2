@@ -138,6 +138,35 @@
       $result = $this->connection->query($query);
       $groupEvents = array(); $events = array(); $item = 0;
       while($line = mysqli_fetch_array($result)){
+        $arrayDate = explode('-', $line['eventdate']);
+        $year = $arrayDate[0];
+        $month = $arrayDate[1];
+        $day = $arrayDate[2];
+        if ($month == 12) {
+          $month = "Diciembre";
+        } else if ($month == 11){
+          $month = "Noviembre";
+        } else if ($month == 10){
+          $month = "Octubre";
+        } else if ($month == 9){
+          $month = "Septiembre";
+        } else if ($month == 8){
+          $month = "Agosto";
+        } else if ($month == 7){
+          $month = "Julio";
+        } else if ($month == 6){
+          $month = "Junio";
+        } else if ($month == 5){
+          $month = "Mayo";
+        } else if ($month == 4){
+          $month = "Abril";
+        } else if ($month == 3){
+          $month = "Marzo";
+        } else if ($month == 2){
+          $month = "Febrero";
+        } else if ($month == 1){
+          $month = "Enero";
+        }
         $item++;
         $data = array(
           'idevent' => $line['idevent'],
@@ -145,6 +174,9 @@
           'eventname' => $line['eventname'],
           'eventdescription' => $line['eventdescription'],
           'eventdate' => $line['eventdate'],
+          'eventdateyear' => $year,
+          'eventdatemonth' => $month,
+          'eventdateday' => $day,
           'eventscheduledescription' => $line['eventscheduledescription'],
           'eventaddress' => $line['eventaddress'],
           'eventcity' => $line['eventcity'],
@@ -186,6 +218,35 @@
           );
           array_push($listGalleryEvent, $data);
         }
+        $arrayDate = explode('-', $line['eventdate']);
+        $year = $arrayDate[0];
+        $month = $arrayDate[1];
+        $day = $arrayDate[2];
+        if ($month == 12) {
+          $month = "Diciembre";
+        } else if ($month == 11){
+          $month = "Noviembre";
+        } else if ($month == 10){
+          $month = "Octubre";
+        } else if ($month == 9){
+          $month = "Septiembre";
+        } else if ($month == 8){
+          $month = "Agosto";
+        } else if ($month == 7){
+          $month = "Julio";
+        } else if ($month == 6){
+          $month = "Junio";
+        } else if ($month == 5){
+          $month = "Mayo";
+        } else if ($month == 4){
+          $month = "Abril";
+        } else if ($month == 3){
+          $month = "Marzo";
+        } else if ($month == 2){
+          $month = "Febrero";
+        } else if ($month == 1){
+          $month = "Enero";
+        }
         $item++;
         $data = array(
           'idevent' => $line['idevent'],
@@ -193,6 +254,9 @@
           'eventname' => $line['eventname'],
           'eventdescription' => $line['eventdescription'],
           'eventdate' => $line['eventdate'],
+          'eventdateyear' => $year,
+          'eventdatemonth' => $month,
+          'eventdateday' => $day,
           'eventscheduledescription' => $line['eventscheduledescription'],
           'eventaddress' => $line['eventaddress'],
           'eventcity' => $line['eventcity'],
@@ -235,12 +299,44 @@
           );
           array_push($listGalleryEvent, $data);
         }
+        $arrayDate = explode('-', $line['eventdate']);
+        $year = $arrayDate[0];
+        $month = $arrayDate[1];
+        $day = $arrayDate[2];
+        if ($month == 12) {
+          $month = "Diciembre";
+        } else if ($month == 11){
+          $month = "Noviembre";
+        } else if ($month == 10){
+          $month = "Octubre";
+        } else if ($month == 9){
+          $month = "Septiembre";
+        } else if ($month == 8){
+          $month = "Agosto";
+        } else if ($month == 7){
+          $month = "Julio";
+        } else if ($month == 6){
+          $month = "Junio";
+        } else if ($month == 5){
+          $month = "Mayo";
+        } else if ($month == 4){
+          $month = "Abril";
+        } else if ($month == 3){
+          $month = "Marzo";
+        } else if ($month == 2){
+          $month = "Febrero";
+        } else if ($month == 1){
+          $month = "Enero";
+        } 
         $data = array(
           'idevent' => $line['idevent'],
           'eventCover' => $line['eventCover'],
           'eventname' => $line['eventname'],
           'eventdescription' => $line['eventdescription'],
           'eventdate' => $line['eventdate'],
+          'eventdateyear' => $year,
+          'eventdatemonth' => $month,
+          'eventdateday' => $day,
           'eventscheduledescription' => $line['eventscheduledescription'],
           'eventaddress' => $line['eventaddress'],
           'eventcity' => $line['eventcity'],

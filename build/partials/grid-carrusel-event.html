@@ -3,7 +3,7 @@
     <div class="info-event" ng-if="eventSelected === data.idevent" ng-repeat="(key, data) in eventsListSimple">
       <div class="gallery">
         <div class="preview">
-          <div class="title-event-preview"><span>{{data.eventname | uppercase}}</span></div>
+          <div class="title-event-preview"><span>{{data.eventname | uppercase}} - {{data.eventdateday}} de {{data.eventdatemonth}} {{data.eventdateyear}}</span></div>
           <img src="./admin/src/images/galleryEvents/{{data.listGalleryEvent[0].eventimagegalleryimage}}">
           <div class="description-event-preview"><span>
             {{data.eventdescription}}
@@ -32,7 +32,7 @@
         <div class="group-items" ng-repeat="(key, data) in eventsList">
           <ul>
             <li ng-click="showEventSelected(data.idevent)" ng-repeat="(key,data) in data" load-grid-carrusel>
-              <span></span>
+              <span class="text-center">{{data.eventname}} <br> {{data.eventdateday}} de {{data.eventdatemonth}} {{data.eventdateyear}}</span>
               <img src="./admin/src/images/CoverEvents/{{data.eventCover}}">
             </li>
           </ul>

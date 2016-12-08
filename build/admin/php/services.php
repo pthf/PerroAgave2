@@ -226,7 +226,7 @@
       print_r(json_encode($arrayImages));
     }
     private function getOrderInfoItem(){
-      $query = "SELECT o.idorder,o.ordername,o.ordernumber,o.ordershippingcost,o.ordertelefono,o.orderaddress,o.orderreferences,o.orderzipcode,o.orderstatus,e.nombreEstado,c.nombreCiudad FROM padb.order o 
+      $query = "SELECT o.idorder,o.ordername,o.ordernumber,o.ordershippingcost,o.ordertelefono,o.orderaddress,o.orderreferences,o.orderzipcode,o.orderstatusfacture,e.nombreEstado,c.nombreCiudad FROM padb.order o 
                   INNER JOIN estados e ON e.idEstados = o.orderstate
                   INNER JOIN ciudades c ON c.idCiudades = o.ordercity
                   WHERE o.idorder = '".$_GET['idOrder']."'";
@@ -244,7 +244,7 @@
           'orderzipcode' => $line['orderzipcode'],
           'nombreEstado' => $line['nombreEstado'],
           'nombreCiudad' => $line['nombreCiudad'],
-          'orderstatus' => $line['orderstatus']
+          'orderstatus' => $line['orderstatusfacture']
         );
         array_push($arrayOrder, $data);
       }
@@ -275,7 +275,7 @@
       print_r(json_encode($arrayInfoUser));
     }
     private function getTabulatorPrices(){
-      $query = "SELECT * FROM tabulator_prices tp INNER JOIN estados_tabulador e ON e.idestadosTab = tp.tabulatorstate";
+      $query = "SELECT * FROM tabulator_prices tp INNER JOIN estados e ON e.idEstados = tp.tabulatorstate";
       $result = $this->connection->query($query);
       $arrayPrices = array();
       while ($line = mysqli_fetch_array($result)) {
@@ -283,8 +283,8 @@
           'idtabulator' => $line['idtabulator'],
           'tabulatorVol' => $line['tabulatorVol'],
           'tabulatorcost' => $line['tabulatorcost'],
-          'tabulatorstate' => $line['tabulatorstate'],
-          'estados' => $line['estados']
+          'tabulatorstate' => $line['idEstados'],
+          'estados' => $line['nombreEstado']
         );
         array_push($arrayPrices, $data);
       }

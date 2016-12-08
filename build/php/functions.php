@@ -245,5 +245,7 @@
         echo "El cupón no existe.";
       }
     }
+    private function paypal(){
+    }
   }
   new Functions($_POST['namefunction']);

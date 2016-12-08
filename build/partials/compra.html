@@ -337,17 +337,95 @@
         <div class="button-paypal-wrapper">
           <div><img src=""></div>
           <div><img src="./src/images/button_paypal01.png"></div>
+          <div id="paypal-button"></div>
         </div>
+        <script>
+
+          // window.paypalCheckoutReady = function () {
+          //   paypal.Button.render({
+            
+          //     env: 'sandbox', // Specify 'sandbox' for the test environment 'Pruebas: sandbox - Producción: production'
+
+          //     client: {
+          //         sandbox:    'AZ_yEN28k2NFLtfpvX0VcU7mxTVKioAxC3Lxt6jzkNQH8hHIeR4JzXfgRTx7i6KyPDO7crvcqUbBgNtU',
+          //         // production: 'Aetz7WWmpLGbLvm4-bU2lubUiVf9UNjYycmN0zDSsD93_bUc3bN0G98-myetYkwtmxASOS4CYaHB7FQM'
+          //     },
+
+          //     locale: 'es_ES',
+          //     style: {
+          //       size: 'small',
+          //       color: 'orange',
+          //       shape: 'pill'
+          //     },
+
+          //     payment: function() {
+          //       console.log('Comenzar pago');
+          //       // Configuración del pago cuando el comprador de click
+          //       var env    = this.props.env;
+          //       var client = this.props.client;
+            
+          //       return paypal.rest.payment.create(env, client, {
+          //           transactions: [
+          //               {
+          //                   amount: { total: '1.00', currency: 'USD' }
+          //               }
+          //           ]
+          //       });
+          //     },
+
+          //     commit: true, // Opcional: muestre un botón 'Pagar ahora' en el flujo de salida
+
+          //     onAuthorize: function(data, actions) {
+          //       console.log('Pago autorizado');
+          //       console.log(data);
+          //       console.log(actions);
+          //       // Ejecuta el pago aqui cuando apruebe la transacción
+          //       return actions.payment.get(data).then(function() {
+          //         var datas = JSON.parse(data);
+          //         alert(datas);
+          //       });
+
+          //       // return actions.redirect();
+          //       // return actions.payment.execute().then(function() {
+          //         // Mostrar una página de éxito al comprador
+          //       // });
+                  
+          //       //Llame a su servidor para ejecutar el pago
+          //       // Call your server to execute the payment
+            
+          //       // if (error === 'INSTRUMENT_DECLINED') {
+          //       //     actions.restart();
+          //       // }
+    
+          //     },
+
+          //     onCancel: function(data, actions) {
+          //       console.log('Pago cancelado');
+          //       console.log(data);
+          //       console.log(actions);
+          //       // Muestra una página de cancelación o regresa al carrito
+
+          //       // return actions.redirect();
+          //     },
+
+          //     onError: function(err) {
+          //       console.log(err);
+          //       // Mostrar una página de error aquí, cuando se produce un error
+          //     }
+                    
+          //   }, '#paypal-button');
+          // };
+        </script>
+
+        <script src="https://www.paypalobjects.com/api/checkout.js" data-version-4></script>
+
+        <script>
+          
+        </script>
 
       </div>
     </div>
   
-  </div>
-
-  <div class="containerCart" ng-show="getCount()==0">
-    <div class="itemMessage">
-      <span>Aún no tienes productos agregados al carrito.</span>
-    </div>
   </div>
 
 </div>

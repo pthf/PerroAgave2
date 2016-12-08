@@ -32,7 +32,7 @@
         <div class="group-items" ng-repeat="(key, data) in eventsList">
           <ul>
             <li data-id="{{data.idevent}}" ng-repeat="(key, data) in data" load-grid-carrusel>
-              <span></span>
+              <span class="text-center">{{data.eventname}} <br> {{data.eventdateday}} de {{data.eventdatemonth}} {{data.eventdateyear}}</span>
               <img src="./admin/src/images/CoverEvents/{{data.eventCover}}">
             </li>
           </ul>
