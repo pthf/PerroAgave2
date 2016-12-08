@@ -42,7 +42,7 @@
 			            <span>ORDEN DE PEDIDO</span>
 			        </div>
 			        <div class="right-side-data">
-			            <input type="text" name="numpedido" value="" class="profile-input" required>
+			            <input type="text" name="numpedido" value="{{ordernumber}}" class="profile-input" required readonly>
 			            <span class="msgError"></span>
 		            </div>
 	          	</div>
@@ -52,7 +52,7 @@
 			            <span>NOMBRE</span>
 			        </div>
 			        <div class="right-side-data">
-			            <input type="text" name="name" value="" class="profile-input" required>
+			            <input type="text" name="namefact" value="" class="profile-input" required>
 			            <span class="msgError"></span>
 		            </div>	            
 		        </div>
@@ -152,7 +152,7 @@
 			            <span>E-MAIL</span>
 			        </div>
 			        <div class="right-side-data">
-			            <input type="email" name="email" value="" class="profile-input" required>
+			            <input type="email" name="emailfact" value="" class="profile-input" required>
 			            <span class="msgError"></span>
 		            </div>
 		        </div>
@@ -165,6 +165,7 @@
 	          <span class="button-next validSendData sendformdata">
 	            ENVIAR
 	          </span> 
+	          <span ng-click="changeItem(4)" class="loadmessage"></span>
 	        </div>
 		</form>
 		<div class="errorFacturacion" ng-show="statusOrder == 0">

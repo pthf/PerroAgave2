@@ -14,9 +14,9 @@
     }
   }])
   .controller('verifyFacturationFormController', ['$scope', '$rootScope', 'perroAgaveservice', '$routeParams', function($scope, $rootScope, perroAgaveservice, $routeParams){
-    var ordernumber = $routeParams.ordernumber;
+    $scope.ordernumber = $routeParams.ordernumber;
     $scope.statusOrder;
-    perroAgaveservice.verifyFacturationForm(ordernumber, $rootScope.userLogin).then(function(data){
+    perroAgaveservice.verifyFacturationForm($scope.ordernumber, $rootScope.userLogin).then(function(data){
       $scope.statusOrder = parseInt(data);
     });
   }])

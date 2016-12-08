@@ -1343,6 +1343,7 @@
             },
             success: function(result){
               console.log(result);
+              $('.loadmessage').trigger('click');
             },
             error: function(error){
               console.log(error);
