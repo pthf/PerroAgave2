@@ -13,11 +13,14 @@
 			})
 			.when('/login', {
 				templateUrl: './views/login.html',
-        controller: 'checkLoginUserController'
+        		controller: 'checkLoginUserController'
 			})
 			.when('/profile', {
 				templateUrl: './views/profile-view.html',
 				controller: 'checkLoginUserController'
+			})
+			.when('/compras', {
+				templateUrl: './views/compras.html'
 			})
 			.when('/compra', {
 				templateUrl: './views/carrito-view.html'
@@ -25,6 +28,9 @@
 			.when('/event/:name', {
 				templateUrl : './views/event.html',
 				controller: 'dataEventController'
+			})
+			.when('/facturacion/:ordernumber', {
+				templateUrl : './views/facturacion.html',
 			})
 			.otherwise({
 				redirectTo: '/'

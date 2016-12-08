@@ -22,7 +22,9 @@
               },
               success : function(result){
                 if(result == '1'){
-                  console.log('we will make trigger to apply the coupon');
+                  $('.spaceinputcupon input').val('');
+                  $('.spaceinputcupon').slideUp();
+                  $('.getCouponClick').trigger('click');
                 }else{
                   $('.spaceinputcupon input').val('');
                   $('.spaceinputcupon span').text(result);
@@ -1300,6 +1302,52 @@
         $(document).on('click', '.list-gallery-images ul li', function(){
           var getImage = $('img', this).attr('src');
           $('.preview img').attr('src',getImage);
+        });
+      }
+    }
+  })
+  .directive('listPurchase', function(){
+    return {
+      restrict : 'E',
+      templateUrl: './partials/list-purchase.html',
+      controller: function($document){
+        setTimeout(function(){
+          $('.infooculted').slideUp(0);
+          $('.openmoreorless').click(function(){
+            $('.openmoreorless').text('Ver más');
+            $(this).text('');
+            $('.infooculted').slideUp();
+            $(this).parent().siblings('td').children('.infooculted').slideDown();
+          });
+        },250);
+      }
+    }
+  })
+  .directive('formFacturacion', function(){
+    return {
+      restrict : 'E',
+      templateUrl: './partials/form-facturacion.html',
+      controller: function($document){
+        $('.sendformdata').click(function(){
+          $('.buttonformfacturacion').trigger('click');
+        });
+
+        $('.groupFacturar form').submit(function(e){
+          e.preventDefault();
+          $.ajax({
+            url : './php/functions.php',
+            type: 'POST',
+            data : {
+              namefunction : 'addBillRequest',
+              data : $(this).serialize()
+            },
+            success: function(result){
+              console.log(result);
+            },
+            error: function(error){
+              console.log(error);
+            }
+          });
         });
       }
     }

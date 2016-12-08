@@ -1,0 +1,175 @@
+<style type="text/css">
+	.listPurchase{
+		max-width: 1024px;
+		width: 70%;
+		margin: 0 auto;
+		margin-top: 100px;
+		margin-bottom: 60px;
+	}
+
+	table.showpurchases{
+		width: 100%;
+		font-size: 1em;
+		font-family: 'Gotham-Book';
+	}
+
+	.titletable{
+		margin-top: 10px;
+		margin-bottom: 10px;
+		font-size: 1.1em;
+	}
+
+	.infooculted{
+		margin-top: 20px;
+		margin-bottom: 20px;
+	}
+
+	table.showpurchases thead{
+		background: #efefef;
+		font-size: 1.1em;
+	}
+
+
+	table.showpurchases tr td{
+		border: 1px solid #dddddd;
+		padding: 10px 10px;
+		vertical-align: top;
+	}
+
+	.openmoreorless:hover{
+		cursor: pointer;
+		opacity: .5;
+	}
+
+	.titleproducts{
+		width: 100%;
+		height: auto;
+	}
+
+	.titleproducts span, .informationProduct div{
+		display: inline-block;
+		text-align: left;
+		font-weight: bold;
+		vertical-align: top;
+	}
+
+	.informationProduct{
+		width: 100%;
+	}
+
+	.informationProduct .prices span{
+		display: block;
+	}
+
+	.informationProduct .prices span:nth-child(1){
+		text-decoration: line-through;
+	}
+
+	.informationProduct .prices span:nth-child(2){
+		color : red;
+	}
+
+
+	.informationProduct div:nth-child(1), .informationProduct div:nth-child(3){
+		width: 15%;
+	}
+
+	.informationProduct .information img{
+		width: 5%;
+		min-width: 30px;
+		height: auto;
+		margin-left: 5px;
+		margin-right: 5px;
+	}
+	.informationProduct div:nth-child(2){
+		width: 65%;
+	}
+
+	.titleproducts span:nth-child(1), .titleproducts span:nth-child(3){
+		width: 15%;
+	}
+
+	.titleproducts span:nth-child(2){
+		width: 65%;
+	}
+
+	@media(max-width: 1024px){
+		.listPurchase{
+			width: 90%;
+		}
+	}
+</style>
+
+<div class="listPurchase" ng-controller="getInformationPurchaseController">
+	<table class="showpurchases">
+		<thead>
+			<tr>
+				<td colspan="2" ng-show="dataPurchases.length"><strong>Detalles de la orden.</strong></td>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td colspan="2" ng-hide="dataPurchases.length">No hay pedidos.</td>
+			</tr>
+			<tr>
+				<tbody ng-repeat="(key, data) in dataPurchases">
+					<tr>
+						<td>
+							<strong>Número de Orden: </strong><span>{{data.ordernumber}}</span><br>
+							<strong>Subtotal: </strong><span>{{data.sumtotal | currency}}</span><br>
+							<strong>Descuento: </strong><span>{{data.sumtotal - data.sumdiscount | currency}}</span><br>
+							<strong>Descuento cupon: </strong><span>{{data.orderdiscountcupon | currency}}</span><br>
+							<strong>Costo de envio: </strong><span>{{data.ordershippingcost | currency}}</span><br>
+							<strong>Total: </strong><span>{{getTotal(data.sumtotal, data.sumtotal - data.sumdiscount, data.orderdiscountcupon, data.ordershippingcost) | currency}}</span><br>
+							<div class="infooculted">
+								<hr>
+								<div>
+									<div class="titletable"><strong>Información de Envío.</strong></div>
+								</div>
+								<div>
+									<strong>Nombre: </strong><span>{{data.ordername}}</span><br>
+									<strong>Teléfono: </strong><span>{{data.ordertelefono}}</span><br>
+									<strong>Estado: </strong><span>{{data.orderstate}}</span><br>
+									<strong>Ciudad: </strong><span>{{data.ordercity}}</span><br>
+									<strong>Dirección: </strong><span>{{data.orderaddress}}</span><br>
+									<strong>Referencias: </strong><span>{{data.orderreferences}}</span><br>
+									<strong>Código Postal: </strong><span>{{data.orderzipcode}}</span><br>
+								</div>
+								<hr>
+								<div>
+									<div class="titletable"><strong>Productos.</strong></div>
+								</div>
+								<div class="groupProducts" style="margin-top: 10px; margin-bottom: 10px;">
+									<div class="titleproducts">
+										<span>Cantidad</span>
+										<span>Producto</span>
+										<span>Precio</span>
+									</div>
+									<div class="informationProduct" ng-repeat="(key, product) in data.products" style="margin-top: 10px; margin-bottom: 10px; ">
+										<div class="count">{{product.orderquantity}}</div>
+										<div class="information">
+											<span class="image">
+												<img src="./admin/src/images/Products/{{product.productimage}}">
+											</span>
+											<span><strong>{{product.productname | uppercase}} </strong>{{product.productquantity}} ml</span>
+										</div>
+										<div class="prices">
+											<span>{{product.ordersubtotal | currency}}</span>
+											<span>{{product.ordersubtotaldiscount | currency}}</span>
+										</div>
+									</div>
+								</div>
+							</div>
+						</td>
+						<td>
+							<a href="#/facturacion/{{data.ordernumber}}"><strong>Facturar</strong></a><br>
+							<strong class="openmoreorless">Ver más.</strong><br>
+						</td>
+					</tr>
+				</tbody>
+			</tr>
+		</tbody>
+	</table>
+</div>
+
+

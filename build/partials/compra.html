@@ -24,8 +24,8 @@
     margin-bottom: 5px;
   }
   .spaceinputcupon div input{
-    border: 2px solid rgb(229, 229, 229);
-    padding: 5px;
+    border: 1px solid rgb(229, 229, 229);
+    padding: 8px;
     font-family: 'Gotham-Book';
     outline: none;
   }
@@ -33,20 +33,27 @@
     color: red;
     font-size: .9em;
     font-family: 'Gotham-Bold';
+    display: block;
+    margin: 5px 0px;
+    padding-left: 5px;
   }
   .spaceinputcupon div button{
     margin-top: 5px;
     width: auto;
-    padding-top: 10px 15px;
-    border: 2px solid rgb(229, 229, 229);
+    padding-top: 15px 20px;
+    border: 1px solid rgb(229, 229, 229);
     background-color: rgb(229, 229, 229);
     color: #000;
     outline: none;
     font-size: .9em;
+    font-family: 'Gotham-Bold';
   }
   .spaceinputcupon div button:hover{
     cursor: pointer;
     opacity: .5;
+  }
+  .line-not-price{
+    text-decoration: line-through;
   }
 </style>
 <div class="row partial-container shop-stage-buy">
@@ -290,7 +297,10 @@
                 </div>
               </div>
               <div class="price-order">
-                {{(data.productrealprice * data.quantity) | currency}} <br>
+                <span ng-class="{'line-not-price': (data.productrealprice - data.productdiscountprice ) != 0}"> {{(data.productrealprice * data.quantity) | currency}} </span>
+                
+                <br>
+                
                 <span style="color: red" ng-hide="(data.productrealprice - data.productdiscountprice ) == 0">
                   {{(data.productdiscountprice * data.quantity) | currency}}
                 </span>
@@ -302,6 +312,33 @@
         <div class="total-price-table">
 
           <div class="row-price">
+            <span class="info-row">Subtotal</span>
+            <span class="info-row">{{getPrice() | currency}}</span>
+          </div>
+
+
+          <div class="row-price" ng-show="(getPrice() - getDiscount()) != 0">
+            <span class="info-row">Descuento</span>
+            <span class="info-row" style="color: red">{{getPrice() - getDiscount() | currency}}</span>
+          </div>
+
+          <div class="row-price" ng-show="couponApplied">
+            <span class="info-row">Descuento cupon </span>
+            <span class="info-row" style="color: red">{{((porcentDiscount/100)*getPrice()) | currency}}</span>
+          </div>          
+          
+          <div class="row-price">
+            <span class="info-row">Envio</span>
+            <span class="info-row">{{shippingCost | currency}}</span>
+          </div><br><br>
+
+
+          <div class="row-price">
+            <span class="info-row">TOTAL</span>
+            <span class="info-row">{{ getDiscount() - ((porcentDiscount/100)*getPrice()) + shippingCost | currency}}</span>
+          </div><br>
+
+          <div class="row-price" ng-show="!couponApplied">
             <a href=""><span class="mensajeaddcupon">¿Tienes un cupón?</span></a>
             <span class="info-row" style="color: red"></span>
           </div>
@@ -313,26 +350,8 @@
               <button>Aplicar</button>
             </div>
           </div>
-
-          <div class="row-price">
-            <span class="info-row">Descuento</span>
-            <span class="info-row" style="color: red">{{getPrice() - getDiscount() | currency}}</span>
-          </div>
-          <div class="row-price">
-            <span class="info-row">Subtotal</span>
-            <span class="info-row">{{getDiscount() | currency}}</span>
-          </div>
-          <div class="row-price">
-            <span class="info-row">Envio</span>
-            <span class="info-row">{{getShippingCost() | currency}}</span>
-          </div>
-          <br><br>
-          <div class="row-price">
-            <span class="info-row">TOTAL</span>
-            <span class="info-row">{{getDiscount() + getShippingCost() | currency}}</span>
-          </div>
-
         </div>
+        <span ng-click="getCoupon()" class="getCouponClick"></span>
 
         <div class="button-paypal-wrapper">
           <div><img src=""></div>

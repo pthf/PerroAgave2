@@ -219,7 +219,7 @@
           'addressdescription' => $addressdescription,
           'postalcode' => $postalcode
         );
-        $_SESSION['ShoppingUserAddreess'] = $data;
+        $_SESSION['ShoppingUserAddress'] = $data;
         print_r(json_encode($_SESSION));
       }else{
         print(-1);
@@ -236,7 +236,11 @@
         $endday = $line['cuponesdateend'];
         if((strtotime($today) >= strtotime($startday)) && (strtotime($today) <= strtotime($endday))  ){
           session_start();
-          $_SESSION['paCouponStore'] = $line['cuponesdes'];
+          $data = array(
+            'cuponesname' => $line['cuponesname'],
+            'cuponesdes' => $line['cuponesdes']
+          );
+          $_SESSION['paCouponStore'] = $data;
           echo 1;
         }else{
           echo "El cupón se ha vencido.";
@@ -245,7 +249,36 @@
         echo "El cupón no existe.";
       }
     }
-    private function paypal(){
+    private function verifyFacturationForm(){
+      $ordernumber = $_POST['ordernumber'];
+      $idUser = $_POST['idUser'];
+
+      $query = "SELECT * FROM padb.order WHERE ordernumber = '$ordernumber'";
+      $result = $this->connection->query($query);
+      if(mysqli_num_rows($result)>0){
+        $line = mysqli_fetch_array($result);
+        if($idUser == $line['iduser']){
+          $date = $line['orderdate'];
+          $arraydate = explode("-", $date);
+          $month = $arraydate[1];
+          if($month == date('m')){
+            echo 1;
+          }else{
+            echo -1;
+          }
+        }else{
+          echo 0;
+        }
+      }else{
+        echo 0;
+      }
+    }
+    private function addBillRequest(){
+      $data = $_POST['data'];
+      parse_str($data, $dataForm);
+      print_r($dataForm);
+
     }
   }
+
   new Functions($_POST['namefunction']);

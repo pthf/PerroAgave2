@@ -1,3 +1,14 @@
+<style type="text/css">
+  
+  .profile-modal-wrapper{
+    border: 2px solid #FFF;
+  }
+
+  .profile-modal{
+    transition: 1s;
+  }
+
+</style>
 <div class="row partial-container" ng-if="dataLoaded">
   <div class="profile-wrapper">
     <div class="profile-modal">
@@ -29,6 +40,16 @@
     <div class="profile-name-wrapper close-setion" ng-controller="sessionUserController">
       <div class="logout" ng-click="logoutCart()">
         <span class="logout-button" ng-click="logoutUser()">CERRAR SESIÓN</span>
+      </div>
+
+      <div class="logout" ng-click="logoutCart()">
+        <span class="logout-button edit-passwd hide-button">CAMBIAR MI CONTRASEÑA</span>
+      </div>
+
+      
+
+      <div class="logout">
+        <a href="#/compras"><span class="logout-button" style="font-weight: bold">VER MIS COMPRAS</span></a>
       </div>
     </div>
     <div class="profile-name-wrapper">
@@ -125,7 +146,7 @@
     <div class="edit-button-wrapper">
       <span class="edit-button edit-button-toggle edit-data show-button"> </span>
       <span class="edit-button save-data hide-button" data-id-user="{{userData.iduser}}">GUARDAR</span>
-      <span class="edit-button edit-passwd hide-button">EDITAR MI CONTRASEÑA</span>
+      <!-- <span class="edit-button edit-passwd hide-button">EDITAR MI CONTRASEÑA</span> -->
     </div>
     <span class="msgeErrorForm"></span>
   </div>
