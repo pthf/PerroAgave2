@@ -2,10 +2,33 @@
   angular.module('perroAgave.controllers', [])
   .controller('getInformationPurchaseController', ['$scope', '$rootScope', 'perroAgaveservice', function($scope, $rootScope, perroAgaveservice){
     $scope.dataPurchases;
+    $scope.itemSelected = 1;
+    $scope.maxItem = 5;
     if($rootScope.userLogin != 0){
-      perroAgaveservice.getInformationPurchase($rootScope.userLogin).then(function(data){
-        $scope.dataPurchases = data;
+      perroAgaveservice.getCountItem($rootScope.userLogin).then(function(data){
+        var num = Math.round((data/$scope.maxItem)+.5);
+        $scope.listItemCant = new Array(num);
       });
+      $scope.loadInfo = function(){
+        perroAgaveservice.getInformationPurchase($rootScope.userLogin, $scope.itemSelected, $scope.maxItem).then(function(data){
+          $scope.dataPurchases = data;
+        });
+      }
+      $scope.loadInfo();
+      $scope.changeItemSelected = function(item){
+        $scope.itemSelected = item;
+        $scope.loadInfo();
+      }
+      $scope.ocultedElement = function(ordernumber){
+        perroAgaveservice.ocultedElement(ordernumber).then(function(data){
+          perroAgaveservice.getCountItem($rootScope.userLogin).then(function(data){
+            var num = Math.round((data/$scope.maxItem)+.5);
+            $scope.listItemCant = new Array(num);
+          });
+          $scope.itemSelected = 1;
+          $scope.loadInfo();
+        });
+      }
     }else{
       window.location = "#/";
     }

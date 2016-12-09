@@ -93,6 +93,34 @@
 		width: 65%;
 	}
 
+	.itemPagination{
+		text-align: center;
+		display: block;
+		background: red;
+		margin-top: 10px;
+		margin-bottom: 10px;
+		padding-top: 10px;
+		padding-bottom: 10px;
+		background: #dddddd;
+	}
+
+	.itemPagination li{
+		display: inline-block;
+		margin-left: 5px;
+		margin-right: 5px;
+		background: #efefef;
+		cursor: pointer;
+		font-family: 'Gotham-Bold';
+		width: 25px;
+		height: 25px;
+		align-items: center;
+		align-content: center;
+		justify-content: center;
+	}
+	.deleteelement:hover{
+		cursor: pointer;
+		opacity: .5;
+	}
 	@media(max-width: 1024px){
 		.listPurchase{
 			width: 90%;
@@ -100,7 +128,14 @@
 	}
 </style>
 
-<div class="listPurchase" ng-controller="getInformationPurchaseController">
+<div class="listPurchase" ng-controller="getInformationPurchaseController" >
+	<div class="itemPagination">
+		<ul>
+			<li ng-repeat="item in listItemCant track by $index" ng-click="changeItemSelected($index+1)">
+				{{$index+1}}
+			</li>
+		</ul>
+	</div>
 	<table class="showpurchases">
 		<thead>
 			<tr>
@@ -112,9 +147,11 @@
 				<td colspan="2" ng-hide="dataPurchases.length">No hay pedidos.</td>
 			</tr>
 			<tr>
-				<tbody ng-repeat="(key, data) in dataPurchases">
+				<tbody ng-repeat="(key, data) in dataPurchases" load-list-purchase>
 					<tr>
 						<td>
+							<strong>ID: </strong><span>{{data.idorder}}</span><br>
+							<strong>Fecha: </strong><span>{{data.orderdate}}</span><br>
 							<strong>Número de Orden: </strong><span>{{data.ordernumber}}</span><br>
 							<strong>Subtotal: </strong><span>{{data.sumtotal | currency}}</span><br>
 							<strong>Descuento: </strong><span>{{data.sumtotal - data.sumdiscount | currency}}</span><br>
@@ -163,6 +200,7 @@
 						</td>
 						<td>
 							<a href="#/facturacion/{{data.ordernumber}}"><strong>Facturar</strong></a><br>
+							<strong class="deleteelement" ng-show="data.orderstatususerview == 1" ng-click="ocultedElement(data.ordernumber)">Eliminar</strong><br>
 							<strong class="openmoreorless">Ver más.</strong><br>
 						</td>
 					</tr>

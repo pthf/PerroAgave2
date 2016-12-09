@@ -291,6 +291,11 @@
       $query = "INSERT INTO facturas (numpedidofacturas, namefacturas, rfcfacturas, razonsocialfacturas, dfiscalfacturas, numextfacturas, numintfacturas, estadofacturas, ciudadfacturas, coloniafacturas, cpfacturas, emailfacturas) VALUES ('$numpedido', '$name', '$rfc', '$razonsocial', '$dfiscal', '$numext', '$numint', '$estado', '$ciudad', '$colonia', '$cp', '$email')";
       $result = $this->connection->query($query);
     }
+    private function ocultedElement(){
+      $ordernumber = $_POST['ordernumber'];
+      $query = "UPDATE padb.order SET orderstatususerview = 0 WHERE ordernumber = '$ordernumber'";
+      $result = $this->connection->query($query);
+    }
   }
 
   new Functions($_POST['namefunction']);

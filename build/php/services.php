@@ -485,11 +485,16 @@
     }
     private function getInformationPurchase(){
       $idUser = $_GET['idUser'];
+      $maxItem = $_GET['maxItem'];
+      $itemSelected = $_GET['itemSelected'];
+      $getpostItem = ($maxItem * $itemSelected) - $maxItem;
+
       $query = "SELECT * FROM padb.order
                 INNER JOIN user ON padb.order.iduser = user.iduser 
                 INNER JOIN estados ON padb.order.ordercity = estados.idEstados
                 INNER JOIN ciudades ON padb.order.ordercity = ciudades.idCiudades
-                WHERE padb.order.iduser = $idUser AND padb.order.orderstatuspay = 1";
+                WHERE padb.order.iduser = $idUser AND padb.order.orderstatuspay = 1 AND padb.order.orderstatususerview = 1
+                ORDER BY padb.order.orderdate DESC LIMIT $getpostItem,$maxItem";
       $result = $this->connection->query($query);
       $dataPurchase = array();
       while($line = mysqli_fetch_array($result)){
@@ -517,6 +522,7 @@
         }
 
         $dataAddress = array(
+          'idorder' => $line['idorder'],
           'ordernumber' => $line['ordernumber'],
           'ordershippingcost' => $line['ordershippingcost'],
           'orderdiscountcupon' => $line['orderdiscountcupon'],
@@ -528,6 +534,7 @@
           'orderreferences' => $line['orderreferences'],
           'orderzipcode' => $line['orderzipcode'],
           'orderstatusfacture' => $line['orderstatusfacture'],
+          'orderstatususerview' => $line['orderstatususerview'],
           'orderdate' => $line['orderdate'],
           'username' => $line['username'],
           'userlastname' => $line['userlastname'],
@@ -545,6 +552,14 @@
       }
 
       print_r(json_encode($dataPurchase));
+    }
+    private function getCountItem(){
+      $idUser = $_GET['idUser'];
+      $query = "SELECT COUNT(*) as cantidad FROM padb.order WHERE padb.order.iduser = $idUser AND padb.order.orderstatususerview = 1";
+      $result = $this->connection->query($query);
+      $line = mysqli_fetch_array($result);
+      $count = $line['cantidad'];
+      echo $count;
     }
   }
   new Services($_GET['namefunction']);

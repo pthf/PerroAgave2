@@ -1,9 +1,9 @@
 (function(){
   angular.module('perroAgave.services', [])
   .factory('perroAgaveservice', ['$http', '$q', function($http, $q){
-    function getInformationPurchase(idUser){
+    function getInformationPurchase(idUser, itemSelected, maxItem){
       var deferred = $q.defer();
-      $http.get('./php/services.php?namefunction=getInformationPurchase&idUser='+idUser)
+      $http.get('./php/services.php?namefunction=getInformationPurchase&idUser='+idUser+'&itemSelected='+itemSelected+'&maxItem='+maxItem)
         .success(function(data){
           deferred.resolve(data);
         });
@@ -157,12 +157,33 @@
         });
         return deferred.promise;
     }
+    function getCountItem(idUser){
+      var deferred = $q.defer();
+      $http.get('./php/services.php?namefunction=getCountItem&idUser='+idUser)
+        .success(function(data){
+          deferred.resolve(data);
+        });
+        return deferred.promise;
+    }
     function verifyFacturationForm(ordernumber, idUser){
       var deferred = $q.defer();
       $http({
         url : './php/functions.php',
         method : 'POST',
         data : $.param({namefunction : "verifyFacturationForm", ordernumber : ordernumber, idUser : idUser }),
+        headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+      })
+      .success(function(data){
+        deferred.resolve(data);
+      });
+      return deferred.promise;
+    }
+    function ocultedElement(ordernumber){
+      var deferred = $q.defer();
+      $http({
+        url : './php/functions.php',
+        method : 'POST',
+        data : $.param({namefunction : "ocultedElement", ordernumber : ordernumber }),
         headers: {'Content-Type': 'application/x-www-form-urlencoded'}
       })
       .success(function(data){
@@ -188,7 +209,9 @@
       increaseProduct : increaseProduct,
       decreaseProduct : decreaseProduct,
       getAddressData : getAddressData,
-      verifyFacturationForm : verifyFacturationForm
+      verifyFacturationForm : verifyFacturationForm,
+      getCountItem : getCountItem,
+      ocultedElement : ocultedElement
     }
   }]);
 })();
