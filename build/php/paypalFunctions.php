@@ -65,14 +65,8 @@ function getApprovalURL($access_token, $postData){
 	* Returns:              the payment object
 	*/
 function lookUpPaymentDetails($paymentID, $access_token){
-	// echo "<pre>";
-	// echo "Datos de la funcion lookUpPaymentDetails";
-	// print_r($paymentID);
-	// print_r($access_token);
-
 	$curlServiceUrl = (SANDBOX_FLAG ? SANDBOX_ENDPOINT : LIVE_ENDPOINT);
 	$curlServiceUrl = $curlServiceUrl. "/v1/payments/payment/". $paymentID;
-	echo $curlServiceUrl;
 	$curlHeader = array("Content-Type:application/json", "Authorization:Bearer ".$access_token, "PayPal-Partner-Attribution-Id:".SBN_CODE);
 
 	$curlResponse = curlCall($curlServiceUrl, $curlHeader, NULL);
@@ -91,23 +85,36 @@ function lookUpPaymentDetails($paymentID, $access_token){
 	*		array["http_code"]   : the http status code   
 	*		array["jason"]       : the response string
 	*/
-function doPayment($paymentID, $payerID, $transactionAmountArray, $access_token){
+function doPayment($paymentID, $payerID, $access_token){
+	error_reporting(E_ALL);
 	$curlServiceUrl = (SANDBOX_FLAG ? SANDBOX_ENDPOINT : LIVE_ENDPOINT);
     $curlServiceUrl = $curlServiceUrl. "/v1/payments/payment/". $paymentID ."/execute";
-    echo $curlServiceUrl;
     $curlHeader = array("Content-Type:application/json", "Authorization:Bearer ".$access_token, "PayPal-Partner-Attribution-Id:".SBN_CODE);
 
 	$postData = array(
                     "payer_id" => $payerID
                     );
 
-    if(!is_null($transactionAmountArray)){
-    	$postData ["transactions"][0] = $transactionAmountArray;
-    }
+    // if(!is_null($transactionAmountArray)){
+    // 	$postData ["transactions"][0] = $transactionAmountArray;
+    // }
 
     $curlPostData = json_encode($postData);
     $curlResponse = curlCall($curlServiceUrl, $curlHeader, $curlPostData);
     return $curlResponse;
+}
+
+function detailPayment($paymentID, $payerID, $access_token){
+	$curlServiceUrl = (SANDBOX_FLAG ? SANDBOX_ENDPOINT : LIVE_ENDPOINT);
+	$curlServiceUrl = $curlServiceUrl. "/v1/payments/payment/". $paymentID ."/execute";
+	$curlHeader = array("Content-Type:application/json", "Authorization:Bearer ".$access_token, "PayPal-Partner-Attribution-Id:".SBN_CODE);
+	$postData = array(
+    	"payer_id" => $payerID
+    );
+	$curlPostData = json_encode($postData);
+	$curlResponse = curlCall($curlServiceUrl, $curlHeader, $curlPostData);
+	return $curlResponse['json'];
+
 }
 
 ?>

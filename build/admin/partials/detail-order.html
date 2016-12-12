@@ -15,9 +15,16 @@
     </div>
     <div class="col-xs-6 col-sm-3">
       <dl class="dl-vertical">
-        <dt>Estatus</dt>
-        <dd ng-show="orderInfotItem[0].orderstatus == 0"> ENTREGADO </dd>
-        <dd ng-show="orderInfotItem[0].orderstatus == 1"> FACTURADO </dd>
+        <dt>Facturado</dt>
+        <dd ng-show="orderInfotItem[0].orderstatus != 2"> NO </dd>
+        <dd ng-show="orderInfotItem[0].orderstatus == 2"> SI </dd>
+      </dl>
+    </div>
+    <div class="col-xs-6 col-sm-3">
+      <dl class="dl-vertical">
+        <dt>Entregado</dt>
+        <dd ng-show="orderInfotItem[0].orderstatus == 1"> SI </dd>
+        <dd ng-show="orderInfotItem[0].orderstatus != 1"> NO </dd>
       </dl>
     </div>
   </div>
@@ -28,8 +35,8 @@
       <div class="col-sm-4">
         <select required class="form-control" id="orderStatus" name="orderStatus">
           <option disabled="" selected="" value="">Selecciona..</option>
-          <option value="1">FACTURADO</option>
-          <option value="0">ENTREGADO</option>
+          <option value="2">FACTURADO</option>
+          <option value="1">ENTREGADO</option>
         </select>
       </div>
       <div class="col-sm-8">

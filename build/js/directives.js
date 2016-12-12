@@ -140,6 +140,9 @@
             },2000);
           }
         });
+        // $(document).on('click', '.test_petition', function(){
+        //   alert('Entramos');
+        // });
         window.paypalCheckoutReady = function () {
           paypal.Button.render({
           
@@ -172,18 +175,18 @@
                               items: [ 
                                 {
                                   quantity: '1',
-                                  name: 'item 1',
+                                  name: 'Producto 1',
                                   price: '1',
                                   currency: 'MXN',
-                                  description: 'item 1 description',
+                                  description: 'Descripción de producto 1',
                                   tax: '1'
                                 },
                                 {
                                   quantity: '1',
-                                  name: 'item 2',
+                                  name: 'Producto 2',
                                   price: '1',
                                   currency: 'MXN',
-                                  description: 'item 2 description',
+                                  description: 'Descripción de producto 2',
                                   tax: '1'
                                 }
                               ]
@@ -198,8 +201,10 @@
                       },
                       intent: 'sale',
                       redirect_urls: {
-                        return_url: 'http://localhost/www/PerroAgave2/build/php/aprovado.php',
+                        return_url: 'http://localhost/www/PerroAgave2/build/php/aprobado.php',
                         cancel_url: 'http://localhost/www/PerroAgave2/build/php/cancelado.php'
+                        // return_url: 'http://paratodohayfans.com/web/pa/php/aprobado.php',
+                        // cancel_url: 'http://paratodohayfans.com/web/pa/php/cancelado.php'
                       }
                   });
               },
@@ -219,10 +224,36 @@
                   return actions.redirect();
               },
 
+              onError: function(err) {
+                  // Show an error page here, when an error occurs
+                  console.log('Error');
+                  console.log(err);
+                  location.reload();
+              }
+
           }, '#paypal-button');
+          $("#dataProcessPayment").submit();
         };
-        $(document).on('click', '#paypal-button', function(){
-          
+        $('#dataProcessPayment').submit(function(e){
+          console.log('Entramos');
+          var ajaxData = new FormData();
+          ajaxData.append("action", $(this).serialize());
+          ajaxData.append("namefunction", "dataPayment");
+          $.ajax({
+            type: 'POST',
+            url: './php/functions.php',
+            data: ajaxData,
+            processData: false,
+            contentType: false,
+            success : function(result){
+              console.log(result);
+            },
+            error: function(){
+              alert('error');
+            },
+            timeout: 10000
+          });
+          e.preventDefault();
         });
       }
     }

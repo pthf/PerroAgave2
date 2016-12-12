@@ -279,6 +279,11 @@
       print_r($dataForm);
 
     }
+    private function dataPayment(){
+      $data = $_POST['action'];
+      parse_str($data, $dataForm);
+      print_r($dataForm);
+    }
   }
 
   new Functions($_POST['namefunction']);
