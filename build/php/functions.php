@@ -276,8 +276,25 @@
     private function addBillRequest(){
       $data = $_POST['data'];
       parse_str($data, $dataForm);
-      print_r($dataForm);
-
+      $numpedido = $dataForm['numpedido'];
+      $name = $dataForm['namefact'];
+      $rfc = $dataForm['rfc'];
+      $razonsocial = $dataForm['razonsocial'];
+      $dfiscal = $dataForm['dfiscal'];
+      $numext = $dataForm['numext'];
+      $numint = $dataForm['numint'];
+      $estado = $dataForm['estado'];
+      $ciudad = $dataForm['ciudad'];
+      $colonia = $dataForm['colonia'];
+      $cp = $dataForm['cp'];
+      $email = $dataForm['emailfact'];
+      $query = "INSERT INTO facturas (numpedidofacturas, namefacturas, rfcfacturas, razonsocialfacturas, dfiscalfacturas, numextfacturas, numintfacturas, estadofacturas, ciudadfacturas, coloniafacturas, cpfacturas, emailfacturas) VALUES ('$numpedido', '$name', '$rfc', '$razonsocial', '$dfiscal', '$numext', '$numint', '$estado', '$ciudad', '$colonia', '$cp', '$email')";
+      $result = $this->connection->query($query);
+    }
+    private function ocultedElement(){
+      $ordernumber = $_POST['ordernumber'];
+      $query = "UPDATE padb.order SET orderstatususerview = 0 WHERE ordernumber = '$ordernumber'";
+      $result = $this->connection->query($query);
     }
     private function dataPayment(){
       $data = $_POST['action'];

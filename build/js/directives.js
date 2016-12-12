@@ -1343,15 +1343,22 @@
       templateUrl: './partials/list-purchase.html',
       controller: function($document){
         setTimeout(function(){
-          $('.infooculted').slideUp(0);
-          $('.openmoreorless').click(function(){
+          $(document).on('click', '.openmoreorless', function(){
+          //$('.openmoreorless').click(function(){
             $('.openmoreorless').text('Ver más');
             $(this).text('');
             $('.infooculted').slideUp();
             $(this).parent().siblings('td').children('.infooculted').slideDown();
           });
-        },250);
+        },1000);
+        
       }
+    }
+  })
+  .directive('loadListPurchase', function(){
+    return function(){
+      $('.infooculted').slideUp(0);
+      
     }
   })
   .directive('formFacturacion', function(){
@@ -1374,6 +1381,7 @@
             },
             success: function(result){
               console.log(result);
+              $('.loadmessage').trigger('click');
             },
             error: function(error){
               console.log(error);

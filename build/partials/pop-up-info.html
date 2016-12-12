@@ -1,3 +1,9 @@
+<style type="text/css">
+  a div{
+    color: #000;
+  }
+</style>
+
 <div class="row partial-container" id="popup-info">
 <div class="container-pop-up">
   <div class="info-pop-up" ng-show="item===1">
@@ -49,5 +55,21 @@
     <p>Lo sentimos necesitas tener una sesión activa para poder comprar.</p>
     <div class="buttom-login" ng-click="gotoLogin()">INICIAR SESIÓN</div>
   </div>
+
+  <div class="login-info" ng-show="item===4">
+    <p>Los datos de facturación han sido enviados.</p>
+    <a href="#/" ng-click="closePopUp()"><div class="buttom-login">IR A HOME</div></a>
+  </div>
+
+  <div class="login-info" ng-show="item===5">
+    <p>Gracias por tu compra.</p>
+    <a href="#/" ng-click="closePopUp()"><div class="buttom-login">IR A HOME</div></a>
+  </div>
+
+  <div class="login-info" ng-show="item===6">
+    <p>Lamentamos que hayas dedido rechazar la compra.</p>
+    <a href="#/" ng-click="closePopUp()"><div class="buttom-login">IR A HOME</div></a>
+  </div>
+
 </div>
 </div>
