@@ -59,7 +59,6 @@
 <div class="row partial-container shop-stage-buy">
   
   <div class="shopping-cart" ng-controller="shoppingCartController" ng-show="getCount()!=0">
-
     <!-- Menu -->
     <div class="status-compra">
       <div class="title-status step-2" ng-click="changeItemBuy(1)" ng-class="{'selected-status': itemselected === 1, 'unselected-status': itemselected != 1 }">INFORMACIÓN DEL CLIENTE</div>
@@ -258,6 +257,7 @@
           <span class="button-next validSendData">
             SIGUIENTE
           </span>
+          <input type="" class="btn btn-default clickUpdate" value=""  name="" style="display:none" ng-click="update()"></input>
         </div>
         <span class="errorForm">Favor de verificar todos los campos.</span>
         <div class="message-goto-user">
@@ -329,13 +329,15 @@
           
           <div class="row-price">
             <span class="info-row">Envio</span>
-            <span class="info-row">{{shippingCost | currency}}</span>
+            <span class="info-row">{{costoEnvio | currency}}</span>
           </div><br><br>
 
 
+        <!-- Costo de envio: {{shippingCost}} -->
+        <!-- Costo de envio: {{costoEnvio}} -->
           <div class="row-price">
             <span class="info-row">TOTAL</span>
-            <span class="info-row">{{ getDiscount() - ((porcentDiscount/100)*getPrice()) + shippingCost | currency}}</span>
+            <span class="info-row">{{ getDiscount() - ((porcentDiscount/100)*getPrice()) + costoEnvio | currency}}</span>
           </div><br>
 
           <div class="row-price" ng-show="!couponApplied">
@@ -351,27 +353,31 @@
             </div>
           </div>
         </div>
-        <!-- <span ng-click="getCoupon()" class="getCouponClick"></span> -->
 
         <div class="button-paypal-wrapper">
           <div>
-            <img class="activeFormPaypal" src="">
+            <img class="activeFormPaypal" data-shipping-cost="{{costoEnvio}}" src="">
           </div>
           <div><img src="./src/images/button_paypal01.png"></div>
-          <div id="paypal-button"></div>
-          <form hidden id="dataProcessPayment" method="POST">
-            <input name="name" value="{{userData.username}}">
-            <input name="lastname" value="{{userData.userlastname}}">
-            <input name="email" value="{{userData.useremail}}">
-            <input name="phone" value="{{userData.userphonenumber}}">
-            <input name="addressdescription" value="{{addressData.addressdescription}}">
-            <input name="postalcode" value="{{addressData.postalcode}}">
-            <input name="address" value="{{userData.useraddress}}">
-            <input type="submit" name="submit">
+          <form action="./php/startPayment.php" method="POST">
+            <table hidden>
+              <tr><td>Costo envío </td><td><input class="form-control" type="text" name="costoEnvio" value="{{costoEnvio}}" readonly></input></td></tr>
+              <tr><td>Total </td><td><input class="form-control" type="text" name="total" value="{{ getDiscount() - ((porcentDiscount/100)*getPrice()) + costoEnvio}}" readonly></input></td></tr>
+            </table>
+            <div id="myContainer"></div>
+            <br>
           </form>
         </div>
-
-        <script src="https://www.paypalobjects.com/api/checkout.js" data-version-4></script>
+        <!-- PayPal In-Context Checkout script -->
+        <script type="text/javascript">
+          // window.paypalCheckoutReady = function () {
+          //   paypal.checkout.setup('RHZN38B7X9FL8', {
+          //     container: 'myContainer', //{String|HTMLElement|Array} where you want the PayPal button to reside
+          //     environment: 'sandbox' //or 'production' depending on your environment
+          //   });
+          // };
+        </script>
+        <script src="//www.paypalobjects.com/api/checkout.js" async></script>
 
       </div>
     </div>

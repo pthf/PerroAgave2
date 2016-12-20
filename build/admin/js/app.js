@@ -40,6 +40,9 @@
       .when('/prices', {
         templateUrl: './../views/prices.html'
       })
+      .when('/facturados', {
+        templateUrl: './../views/facturados.html'
+      })
       .otherwise({
         redirectTo: '/'
       });

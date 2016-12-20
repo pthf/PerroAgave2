@@ -461,10 +461,10 @@
     private function getShippingCost(){
       session_start();
       $dataShopping = $_SESSION['shoppingPA'];
-      $dataAddress = $_SESSION['ShoppingUserAddress'];
-      $state = $dataAddress['state'];
+      // $dataAddress = $_SESSION['ShoppingUserAddress'];
+      $state = $_SESSION['ShoppingUserAddress']['state'];
       $totalShippingCost = 0.0;
-
+      
       foreach ($dataShopping as $key => $value) {
         $idproduct = $value['idproduct'];
         $quantity = $value['quantity'];
@@ -472,16 +472,24 @@
         $result = $this->connection->query($query);
         $line = mysqli_fetch_array($result);
         $productweight = $line['productweight'];
-        $query = "SELECT tabulatorcost FROM tabulator_prices WHERE tabulatorstate = $state AND $productweight >= tabulatorVol ORDER BY tabulatorVol DESC LIMIT 1";
+        // $query = "SELECT tabulatorcost FROM tabulator_prices WHERE tabulatorstate = $state AND $productweight >= tabulatorVol ORDER BY tabulatorVol DESC LIMIT 1";
+        $query = "SELECT tabulatorcost FROM tabulator_prices WHERE tabulatorstate = $state AND tabulatorVol <= $productweight+.1 ORDER BY tabulatorVol DESC LIMIT 1";
         $result = $this->connection->query($query);
-        while($line = mysqli_fetch_array($result)){
-          $tabulatorcost = $line['tabulatorcost'];
-          $cost = $line['tabulatorcost'];
-          $subtotal = $quantity * $cost;
-          $totalShippingCost = $totalShippingCost + $subtotal;
-        }
+        $line = mysqli_fetch_array($result);
+        $cost = $line['tabulatorcost'];
+        $subtotal = $quantity * $cost;
+        $totalShippingCost = $totalShippingCost + $subtotal;
+
+        // while($line = mysqli_fetch_array($result)){
+          // $tabulatorcost = $line['tabulatorcost'];
+          // print_r($tabulatorcost);
+          // $cost = $line['tabulatorcost'];
+          // $subtotal = $quantity * $cost;
+          // $totalShippingCost = $totalShippingCost + $subtotal;
+        // }
       }
-      echo $totalShippingCost;
+      // echo $totalShippingCost;
+      echo 1;
     }
     private function getInformationPurchase(){
       $idUser = $_GET['idUser'];

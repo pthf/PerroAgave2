@@ -122,6 +122,7 @@
                     $('.errorForm').css({'display':'none'});
                   },2000);
                 }else{
+                  $('.clickUpdate').trigger('click');
                   $('.ocultednextstep').trigger('click');
                   $('.right-side-data input, .right-side-data select').css({"border":"2px solid #e5e5e5"});
                 }
@@ -140,121 +141,12 @@
             },2000);
           }
         });
-        // $(document).on('click', '.test_petition', function(){
-        //   alert('Entramos');
-        // });
         window.paypalCheckoutReady = function () {
-          paypal.Button.render({
-          
-              env: 'sandbox', // Optional: specify 'sandbox' environment
-          
-              client: {
-                  sandbox:    'AZ_yEN28k2NFLtfpvX0VcU7mxTVKioAxC3Lxt6jzkNQH8hHIeR4JzXfgRTx7i6KyPDO7crvcqUbBgNtU',
-                  production: 'xxxxxxxxx'
-              },
-
-              payment: function() {
-              
-                  var env    = this.props.env;
-                  var client = this.props.client;
-              
-                  return paypal.rest.payment.create(env, client, {
-                      transactions: [
-                          {
-                            amount: { 
-                              total: '4.00', 
-                              currency: 'MXN',
-                              details: {
-                                subtotal: '2.00',
-                                shipping: '1.00',
-                                tax: '2.00',
-                                shipping_discount: '-1.00'
-                              }
-                            },
-                            item_list: {
-                              items: [ 
-                                {
-                                  quantity: '1',
-                                  name: 'Producto 1',
-                                  price: '1',
-                                  currency: 'MXN',
-                                  description: 'Descripción de producto 1',
-                                  tax: '1'
-                                },
-                                {
-                                  quantity: '1',
-                                  name: 'Producto 2',
-                                  price: '1',
-                                  currency: 'MXN',
-                                  description: 'Descripción de producto 2',
-                                  tax: '1'
-                                }
-                              ]
-                            },
-                            description: 'Descripción de la transacción de pago.',
-                            invoice_number:  'Factura comercial',
-                            custom: 'Datos personalizados del cliente.'
-                          }
-                      ],
-                      payer: {
-                        payment_method:'paypal'
-                      },
-                      intent: 'sale',
-                      redirect_urls: {
-                        return_url: 'http://localhost/www/PerroAgave2/build/php/aprobado.php',
-                        cancel_url: 'http://localhost/www/PerroAgave2/build/php/cancelado.php'
-                        // return_url: 'http://paratodohayfans.com/web/pa/php/aprobado.php',
-                        // cancel_url: 'http://paratodohayfans.com/web/pa/php/cancelado.php'
-                      }
-                  });
-              },
-
-              commit: true, // Optional: show a 'Pay Now' button in the checkout flow
-
-              onAuthorize: function(data, actions) {
-                return actions.payment.get().then(function(payment) { 
-                  // console.log(payment); 
-                  return actions.redirect();
-                  // alert(payment);
-                });
-              },
-
-              onCancel: function(data, actions) {
-                  // Show a cancel page or return to cart
-                  return actions.redirect();
-              },
-
-              onError: function(err) {
-                  // Show an error page here, when an error occurs
-                  console.log('Error');
-                  console.log(err);
-                  location.reload();
-              }
-
-          }, '#paypal-button');
-          $("#dataProcessPayment").submit();
-        };
-        $('#dataProcessPayment').submit(function(e){
-          console.log('Entramos');
-          var ajaxData = new FormData();
-          ajaxData.append("action", $(this).serialize());
-          ajaxData.append("namefunction", "dataPayment");
-          $.ajax({
-            type: 'POST',
-            url: './php/functions.php',
-            data: ajaxData,
-            processData: false,
-            contentType: false,
-            success : function(result){
-              console.log(result);
-            },
-            error: function(){
-              alert('error');
-            },
-            timeout: 10000
+          paypal.checkout.setup('RHZN38B7X9FL8', {
+            container: 'myContainer', //{String|HTMLElement|Array} where you want the PayPal button to reside
+            environment: 'sandbox' //or 'production' depending on your environment
           });
-          e.preventDefault();
-        });
+        };
       }
     }
   })
@@ -454,7 +346,7 @@
             type: 'GET',
             data: "namefunction=getEvent&idevent="+idevent,
             success: function(result){
-              var data = JSON.parse(result);;
+              var data = JSON.parse(result);
               var eventCover = data.eventCover;
               var eventname = data.eventname.toUpperCase();
               var eventdescription = data.eventdescription;
@@ -1343,22 +1235,15 @@
       templateUrl: './partials/list-purchase.html',
       controller: function($document){
         setTimeout(function(){
-          $(document).on('click', '.openmoreorless', function(){
-          //$('.openmoreorless').click(function(){
+          $('.infooculted').slideUp(0);
+          $('.openmoreorless').click(function(){
             $('.openmoreorless').text('Ver más');
             $(this).text('');
             $('.infooculted').slideUp();
             $(this).parent().siblings('td').children('.infooculted').slideDown();
           });
-        },1000);
-        
+        },250);
       }
-    }
-  })
-  .directive('loadListPurchase', function(){
-    return function(){
-      $('.infooculted').slideUp(0);
-      
     }
   })
   .directive('formFacturacion', function(){
@@ -1381,7 +1266,6 @@
             },
             success: function(result){
               console.log(result);
-              $('.loadmessage').trigger('click');
             },
             error: function(error){
               console.log(error);
@@ -1389,6 +1273,18 @@
           });
         });
       }
+    }
+  })
+  .directive('agradecimiento', function(){
+    return {
+      restrict: 'E',
+      templateUrl: './partials/agradecimiento.html'
+    }
+  })
+  .directive('cancelacion', function(){
+    return {
+      restrict: 'E',
+      templateUrl: './partials/cancelacion.html'
     }
   })
 })();

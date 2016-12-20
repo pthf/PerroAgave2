@@ -16,19 +16,19 @@
     <div class="col-xs-6 col-sm-3">
       <dl class="dl-vertical">
         <dt>Facturado</dt>
-        <dd ng-show="orderInfotItem[0].orderstatus != 2"> NO </dd>
-        <dd ng-show="orderInfotItem[0].orderstatus == 2"> SI </dd>
+        <dd ng-show="orderInfotItem[0].orderstatus == 0"> NO </dd>
+        <dd ng-show="orderInfotItem[0].orderstatus == 1"> SI </dd>
       </dl>
     </div>
     <div class="col-xs-6 col-sm-3">
       <dl class="dl-vertical">
         <dt>Entregado</dt>
-        <dd ng-show="orderInfotItem[0].orderstatus == 1"> SI </dd>
-        <dd ng-show="orderInfotItem[0].orderstatus != 1"> NO </dd>
+        <dd ng-show="orderInfotItem[0].orderstatusentrega == 1"> SI </dd>
+        <dd ng-show="orderInfotItem[0].orderstatusentrega == 0"> NO </dd>
       </dl>
     </div>
   </div>
-  <div class="row">
+  <!-- <div class="row">
     <form class="form-horizontal" enctype="multipart/form-data" id="changeStatusOrder">
       <label for="orderStatus" class="col-sm-12 control-label" style="text-align: left;">Estatus *</label>
       <input hidden type="text" name="orderId" value="{{orderInfotItem[0].idorder}}">
@@ -45,7 +45,7 @@
       </div>
       <div class="col-sm-4 text-center result"></div>
     </form>
-  </div>
+  </div> -->
   <h2>Datos Envío</h2>
   <div class="row">
     <div class="col-xs-6 col-sm-3">
@@ -147,4 +147,11 @@
       </tr>
     </tbody>
   </table>
+  <div class="col-sm-12 text-right">
+    <span ng-show="orderInfotItem[0].orderstatusentrega == 1" class="btn btn-success btn-lg entregar">Entregado</span>
+  </div>
+  <div class="col-sm-12 text-right">
+    <button ng-show="orderInfotItem[0].orderstatusentrega == 0" type="button" class="btn btn-primary btn-lg entregar" data-id="{{orderInfotItem[0].idorder}}">Entregar</button>
+    <input type="" class="btn btn-default clickUpdate" value=""  name="" style="display:none" ng-click="update()"></input>
+  </div>
 </div>

@@ -46,6 +46,22 @@
   .controller('shoppingCartController', ['$scope', '$rootScope', 'perroAgaveservice', function($scope, $rootScope, perroAgaveservice){
     $scope.shopLoaded = false;
     $rootScope.shippingCost = 0.0;
+    
+    $rootScope.costoEnvio = 0.0;
+    perroAgaveservice.getShippingCost().then(function(data){
+      $rootScope.costoEnvio = parseInt(data);
+    });
+
+    $scope.loadShippingCost = function(){
+      perroAgaveservice.getShippingCost().then(function(data){
+        $rootScope.costoEnvio = parseInt(data);
+      });
+    } 
+    $scope.update = function(){
+      $scope.loadShippingCost();
+    }
+    $scope.update();
+
     $scope.loadCart = function(){
       perroAgaveservice.getShoppingCartElements().then(function(data){
         $scope.getShippingCost();

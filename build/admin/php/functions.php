@@ -250,6 +250,14 @@
       $query = "UPDATE padb.order SET orderstatusfacture = '".$data['orderStatus']."' WHERE idorder = '".$data['orderId']."'";
       $result = $this->connection->query($query); 
     }
+    private function invoiceOrder(){
+      $query = "UPDATE padb.order SET orderstatusfacture = 1 WHERE idorder = '".$_POST['idOrder']."'";
+      $result = $this->connection->query($query); 
+    }
+    private function invoiceOrder_(){
+      $query = "UPDATE padb.order SET orderstatusentrega = 1 WHERE idorder = '".$_POST['idOrder']."'";
+      $result = $this->connection->query($query); 
+    }
   }
   new Functions($_POST['namefunction']);
 

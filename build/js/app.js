@@ -32,6 +32,12 @@
 			.when('/facturacion/:ordernumber', {
 				templateUrl : './views/facturacion.html',
 			})
+			.when('/gracias', {
+				templateUrl : './views/gracias.html',
+			})
+			.when('/cancelado', {
+				templateUrl : './views/cancelado.html',
+			})
 			.otherwise({
 				redirectTo: '/'
 			});

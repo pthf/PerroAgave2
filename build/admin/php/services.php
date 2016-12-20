@@ -187,7 +187,7 @@
       print_r(json_encode($arrayNewsletter));
     }
     private function getOrders(){
-      $query = "SELECT * FROM padb.order ord INNER JOIN estados es ON es.idEstados = ord.ordercity INNER JOIN ciudades ci ON ci.idCiudades = ord.orderstate";
+      $query = "SELECT * FROM padb.order ord";
       $result = $this->connection->query($query);
       $arrayOrders = array();
       while ($line = mysqli_fetch_array($result)) {
@@ -196,12 +196,11 @@
           'ordernumber' => $line['ordernumber'],
           'ordershippingcost' => $line['ordershippingcost'],
           'ordertelefono' => $line['ordertelefono'],
-          'ordercity' => $line['nombreCiudad'],
-          'orderstate' => $line['nombreEstado'],
           'orderaddress' => $line['orderaddress'],
           'orderreferences' => $line['orderreferences'],
           'orderzipcode' => $line['orderzipcode'],
-          'orderstatuspay' => $line['orderstatuspay']
+          'orderstatuspay' => $line['orderstatuspay'],
+          'orderstatusfacture' => $line['orderstatusfacture']
         );
         array_push($arrayOrders, $data);
       }
@@ -226,7 +225,7 @@
       print_r(json_encode($arrayImages));
     }
     private function getOrderInfoItem(){
-      $query = "SELECT o.idorder,o.ordername,o.ordernumber,o.ordershippingcost,o.ordertelefono,o.orderaddress,o.orderreferences,o.orderzipcode,o.orderstatusfacture,e.nombreEstado,c.nombreCiudad FROM padb.order o 
+      $query = "SELECT o.idorder,o.ordername,o.ordernumber,o.ordershippingcost,o.ordertelefono,o.orderaddress,o.orderreferences,o.orderzipcode,o.orderstatusfacture,o.orderstatusentrega,e.nombreEstado,c.nombreCiudad FROM padb.order o 
                   INNER JOIN estados e ON e.idEstados = o.orderstate
                   INNER JOIN ciudades c ON c.idCiudades = o.ordercity
                   WHERE o.idorder = '".$_GET['idOrder']."'";
@@ -244,7 +243,8 @@
           'orderzipcode' => $line['orderzipcode'],
           'nombreEstado' => $line['nombreEstado'],
           'nombreCiudad' => $line['nombreCiudad'],
-          'orderstatus' => $line['orderstatusfacture']
+          'orderstatus' => $line['orderstatusfacture'],
+          'orderstatusentrega' => $line['orderstatusentrega']
         );
         array_push($arrayOrder, $data);
       }

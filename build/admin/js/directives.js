@@ -194,6 +194,25 @@
             }
           });
         }); 
+        $(document).on('click', '.entregar', function(){
+          var idOrder = $(this).attr('data-id');
+          var namefunction = 'invoiceOrder_';
+          $.ajax({
+            url: "../php/functions.php",
+            type: "POST",
+            data: {
+              namefunction: namefunction,
+              idOrder: idOrder
+            },
+            success: function(result){
+              console.log(result);
+              $('.clickUpdate').trigger('click');
+            },
+            error: function(error){
+              alert(error);
+            }
+          });
+        });
       }
     }
   })
@@ -572,6 +591,33 @@
               idCupon: idCupon
             },
             success: function(result){
+              $('.clickUpdate').trigger('click');
+            },
+            error: function(error){
+              alert(error);
+            }
+          });
+        });
+      }
+    }
+  })
+.directive('listOrderInvoiced', function(){
+    return {
+      restrict: 'E',
+      templateUrl: './../partials/list-order-invoiced.html',
+      controller: function($document){
+        $(document).on('click', '.facturar', function(){
+          var idOrder = $(this).attr('data-id');
+          var namefunction = 'invoiceOrder';
+          $.ajax({
+            url: "../php/functions.php",
+            type: "POST",
+            data: {
+              namefunction: namefunction,
+              idOrder: idOrder
+            },
+            success: function(result){
+              console.log(result);
               $('.clickUpdate').trigger('click');
             },
             error: function(error){

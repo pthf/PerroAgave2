@@ -40,18 +40,20 @@ function getAccessToken(){
 	* Returns:              approval URL
 	*/
 function getApprovalURL($access_token, $postData){
+	error_reporting(E_ALL);
 	$curlServiceUrl = (SANDBOX_FLAG ? SANDBOX_ENDPOINT : LIVE_ENDPOINT);
 	$curlServiceUrl = $curlServiceUrl. "/v1/payments/payment";
 	$curlHeader = array("Content-Type:application/json", "Authorization:Bearer ".$access_token, "PayPal-Partner-Attribution-Id:".SBN_CODE);
-
+	
 	$curlResponse = curlCall($curlServiceUrl, $curlHeader, $postData);
+	// return $curlResponse;
 	$jsonResponse = $curlResponse['json'];
 
 	foreach ($jsonResponse['links'] as $link) {
 	//foreach ($curlResponse['links'] as $link) {
 		if($link['rel'] == 'approval_url'){
 			$approval_url = $link['href'];
-			echo($approval_url);
+			// echo($approval_url);
 			return $approval_url;
 		}
 	 }

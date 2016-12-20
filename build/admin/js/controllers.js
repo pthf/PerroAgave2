@@ -140,6 +140,9 @@
 	      paService.getOrderInfoItem($scope.idOrder).then(function(data){
 	        $scope.orderInfotItem = data;
 	      });
+	      paService.getOrders().then(function(data){
+			$scope.orderItems = data;
+		});
 	    } 
 	    $scope.update = function(){
 	      $scope.loadOrder();

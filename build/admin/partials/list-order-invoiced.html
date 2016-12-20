@@ -1,0 +1,24 @@
+<div class="container-view" ng-controller="ordersController">
+  <!-- {{orderItems}} -->
+  <h1>Lista de Pedidos</h1>
+  <table class="table table-bordered  products-list">
+    <thead>
+      <tr>
+        <td>#</td>
+        <td>ID Orden</td>
+        <td>Opciones</td>
+      </tr>
+    </thead>
+    <tbody>
+      <tr ng-repeat="(key, data) in orderItems">
+        <td>{{data.idorder}}</td>
+        <td>{{data.ordernumber}}</td>
+        <td>
+          <span ng-show="data.orderstatusfacture == 0" class="label label-primary facturar" data-id='{{data.idorder}}' data-status='2'style="cursor:pointer;padding: 1%;width: 30%;">Facturar</span>
+          <span ng-show="data.orderstatusfacture == 1" class="label label-success" style="cursor:pointer;padding: 1%;width: 30%;">Facturado</span>
+          <input type="" class="btn btn-default clickUpdate" style="display:none" ng-click="update()"></input>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

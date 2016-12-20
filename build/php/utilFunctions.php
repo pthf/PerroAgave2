@@ -99,14 +99,14 @@ function curlCall_($curlServiceUrl, $curlHeader, $curlPostData) {
  * Prevents Cross-Site Scripting Forgery
  * @return boolean
  */
-// function verify_nonce() {
-// 	if( isset($_GET['csrf']) && $_GET['csrf'] == $_SESSION['csrf'] ) {
-// 		return true;
-// 	}
-// 	if( isset($_POST['csrf']) && $_POST['csrf'] == $_SESSION['csrf'] ) {
-// 		return true;
-// 	}
-// 	return false;
-// }
+function verify_nonce() {
+	if( isset($_GET['csrf']) && $_GET['csrf'] == $_SESSION['csrf'] ) {
+		return true;
+	}
+	if( isset($_POST['csrf']) && $_POST['csrf'] == $_SESSION['csrf'] ) {
+		return true;
+	}
+	return false;
+}
 
 ?>
