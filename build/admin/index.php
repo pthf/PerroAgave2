@@ -65,7 +65,7 @@
                 password: $('#password').val()
               },
               success: function(result){
-                alert(result);
+                // alert(result);
                 switch (result) {
                   case '1':
                     $('.welcome').html('Welcome '+$('#username').val());

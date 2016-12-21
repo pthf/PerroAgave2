@@ -14,7 +14,7 @@
 			$ordenPedido = $_SESSION['ordernumber'];
 
 			// EMAIL ADMINISTRADOR
-			$paraAdmin = 'jvazcruz28@gmail.com';
+			$paraAdmin = 'federico@paratodohayfans.com';
 			// título
 			$tituloAdmin = 'Compra cancelada PerroAgave';
 			// mensaje
@@ -24,8 +24,8 @@
 				  <title>Datos de compra</title>
 				</head>
 				<body>';
-			$query = "SELECT * FROM padb.user us
-			        INNER JOIN padb.order ord ON ord.iduser = us.iduser
+			$query = "SELECT * FROM perroagave.user us
+			        INNER JOIN perroagave.order ord ON ord.iduser = us.iduser
 			        INNER JOIN estados e ON e.idEstados = us.userstate
 			        INNER JOIN ciudades c ON c.idCiudades = us.usercity WHERE us.iduser = '".$_SESSION['idPaUser']."' AND ord.ordernumber = '".$ordenPedido."'";
 			$result = $this->connection->query($query);
@@ -88,7 +88,7 @@
 				$ordersubtotaldiscount = $_SESSION['shoppingPA'][$a]['productdiscountprice'] * $quantity;
 				$mensajeAdmin .= "
 					    <tr>
-					      <td><img src='http://localhost/www/PerroAgave2/build/admin/src/images/Products/".$productimage."' width='80px' height='auto'></td>
+					      <td><img src='http://paratodohayfans.com/web/pa/admin/src/images/Products/".$productimage."' width='80px' height='auto'></td>
 					      <td>".$productname."</td>
 					      <td>".$quantity."</td>
 					      <td>".$productrealprice."</td>

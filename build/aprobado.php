@@ -60,11 +60,11 @@
 
       $ordenPedido = $_SESSION['ordernumber'];
 
-      $query = "UPDATE padb.order SET orderstatuspay = 1 WHERE ordernumber = '".$ordenPedido."'";
+      $query = "UPDATE perroagave.order SET orderstatuspay = 1 WHERE ordernumber = '".$ordenPedido."'";
       $result = $this->connection->query($query);
 
       // EMAIL ADMINISTRADOR
-      $paraAdmin = 'jvazcruz28@gmail.com';
+      $paraAdmin = 'federico@paratodohayfans.com';
       // título
       $tituloAdmin = 'Compra PerroAgave';
       // mensaje
@@ -74,8 +74,8 @@
           <title>Datos de compra</title>
         </head>
         <body>';
-      $query = "SELECT * FROM padb.user us
-                INNER JOIN padb.order ord ON ord.iduser = us.iduser
+      $query = "SELECT * FROM perroagave.user us
+                INNER JOIN perroagave.order ord ON ord.iduser = us.iduser
                 INNER JOIN estados e ON e.idEstados = us.userstate
                 INNER JOIN ciudades c ON c.idCiudades = us.usercity WHERE us.iduser = '".$_SESSION['idPaUser']."' AND ord.ordernumber = '".$ordenPedido."'";
       $result = $this->connection->query($query);
@@ -139,7 +139,7 @@
         $ordersubtotaldiscount = $_SESSION['shoppingPA'][$a]['productdiscountprice'] * $quantity;
         $mensajeAdmin .= "
             <tr>
-              <td><img src='http://localhost/www/PerroAgave2/build/pa/admin/src/images/Products/".$productimage."' width='80px' height='auto'></td>
+              <td><img src='http://paratodohayfans.com/web/pa/admin/src/images/Products/".$productimage."' width='80px' height='auto'></td>
               <td>".$productname."</td>
               <td>".$quantity."</td>
               <td>".$productrealprice."</td>
@@ -174,7 +174,7 @@
       // mail($paraAdmin, $tituloAdmin, 'Correo de prueba', $cabecerasAdmin);
 
       // EMAIL ALMACÉN
-      $paraAlmacen = 'jvazcruz28@gmail.com';
+      $paraAlmacen = 'federico@paratodohayfans.com';
       $tituloAlmacen = 'Compra PerroAgave';
       $mensajeAlmacen = '
       <html>
@@ -182,8 +182,8 @@
           <title>Datos de compra</title>
         </head>
         <body>';
-      $query = "SELECT * FROM padb.user us
-                INNER JOIN padb.order ord ON ord.iduser = us.iduser
+      $query = "SELECT * FROM perroagave.user us
+                INNER JOIN perroagave.order ord ON ord.iduser = us.iduser
                 INNER JOIN estados e ON e.idEstados = us.userstate
                 INNER JOIN ciudades c ON c.idCiudades = us.usercity WHERE us.iduser = '".$_SESSION['idPaUser']."' AND ord.ordernumber = '".$ordenPedido."'";
       $result = $this->connection->query($query);
@@ -242,7 +242,7 @@
         $ordersubtotaldiscount = $_SESSION['shoppingPA'][$b]['productdiscountprice'] * $quantity;
         $mensajeAlmacen .= "
             <tr>
-              <td><img src='http://localhost/www/PerroAgave2/build/admin/src/images/Products/".$productimage."' width='80px' height='auto'></td>
+              <td><img src='http://paratodohayfans.com/web/pa/admin/src/images/Products/".$productimage."' width='80px' height='auto'></td>
               <td>".$productname."</td>
               <td>".$quantity."</td>
             </tr>
@@ -261,7 +261,7 @@
       mail($paraAlmacen, $tituloAlmacen, $mensajeAlmacen, $cabecerasAlmacen);
 
       // EMAIL CLIENTE 
-      $paraCliente = 'jvazcruz28@gmail.com';
+      $paraCliente = 'federico@paratodohayfans.com';
       $tituloCliente = 'Compra PerroAgave';
       $mensajeCliente = '
       <html>
@@ -269,8 +269,8 @@
           <title>Datos de compra</title>
         </head>
         <body>';
-      $query = "SELECT * FROM padb.user us
-                INNER JOIN padb.order ord ON ord.iduser = us.iduser
+      $query = "SELECT * FROM perroagave.user us
+                INNER JOIN perroagave.order ord ON ord.iduser = us.iduser
                 INNER JOIN estados e ON e.idEstados = us.userstate
                 INNER JOIN ciudades c ON c.idCiudades = us.usercity WHERE us.iduser = '".$_SESSION['idPaUser']."' AND ord.ordernumber = '".$ordenPedido."'";
       $result = $this->connection->query($query);
@@ -331,7 +331,7 @@
         $ordersubtotaldiscount = $_SESSION['shoppingPA'][$c]['productdiscountprice'] * $quantity;
         $mensajeCliente .= "
             <tr>
-              <td><img src='http://localhost/www/PerroAgave2/build/admin/src/images/Products/".$productimage."' width='80px' height='auto'></td>
+              <td><img src='http://paratodohayfans.com/web/pa/admin/src/images/Products/".$productimage."' width='80px' height='auto'></td>
               <td>".$productname."</td>
               <td>".$quantity."</td>
               <td>".$productrealprice."</td>
