@@ -1266,6 +1266,11 @@
             },
             success: function(result){
               console.log(result);
+              $('.msgwelcome-span-login').text('Datos enviados correctamente.');
+              setTimeout(function(){
+                $('.msgwelcome-span-login').text('');
+                window.location = "#/compras";
+              },2500);
             },
             error: function(error){
               console.log(error);

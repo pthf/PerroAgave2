@@ -90,11 +90,13 @@
                         $orderstatuspay = 0;
                         $orderstatusfacture = 0;
                         $orderstatusentrega = 0;
+                        $orderstatususerview = 1;
                         $date = date('Y-m-d');
                         $iduser = $_SESSION['idPaUser'];
 
                         $query = "INSERT INTO padb.order VALUES(null,'S/N','".$ordershippingcost."','".$discountCupon."','".$ordername."','".$ordertelefono."','".$ordercity."',
-                                '".$orderstate."','".$orderaddress."','".$orderreferences."','".$orderzipcode."','".$orderstatuspay."','".$orderstatusfacture."','".$orderstatusentrega."','".$date."','".$iduser."')";
+                                '".$orderstate."','".$orderaddress."','".$orderreferences."','".$orderzipcode."','".$orderstatuspay."','".$orderstatusfacture."','".$orderstatusentrega."',
+                                '".$orderstatususerview."','".$date."','".$iduser."')";
                         $result = $this->connection->query($query);
 
                         $query = "SELECT MAX(idorder) AS id FROM padb.order";

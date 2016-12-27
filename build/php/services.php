@@ -499,7 +499,7 @@
 
       $query = "SELECT * FROM padb.order
                 INNER JOIN user ON padb.order.iduser = user.iduser 
-                INNER JOIN estados ON padb.order.ordercity = estados.idEstados
+                INNER JOIN estados ON padb.order.orderstate = estados.idEstados
                 INNER JOIN ciudades ON padb.order.ordercity = ciudades.idCiudades
                 WHERE padb.order.iduser = $idUser AND padb.order.orderstatuspay = 1 AND padb.order.orderstatususerview = 1
                 ORDER BY padb.order.orderdate DESC LIMIT $getpostItem,$maxItem";
