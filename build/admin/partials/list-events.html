@@ -7,11 +7,11 @@
         <td>Imagen</td>
         <td>Nombre</td>
         <td>Descripción</td>
-        <td>Fecha</td>
+        <!-- <td>Fecha</td>
         <td>Programa</td>
         <td>Dirección</td>
         <td>Estado - Ciudad</td>
-        <td>Lugar evento</td>
+        <td>Lugar evento</td> -->
         <td>Opciones</td>
       </tr>
     </thead>
@@ -21,14 +21,18 @@
         <td><img src="./../src/images/CoverEvents/{{data.eventCover}}"> </td>
         <td>{{data.eventname}}</td>
         <td>{{data.eventdescription}}</td>
-        <td>{{data.eventdate}}</td>
+        <!-- <td>{{data.eventdate}}</td>
         <td>{{data.eventscheduledescription}}</td>
         <td>{{data.eventaddress}}</td>
         <td>{{data.eventcity}}, {{data.eventstate}}</td>
-        <td><span class="title"><strong>Lugar: </strong>{{data.eventneighborhood}}.</span><span class="quantity"><strong>CP: </strong> {{data.eventzipcode}}</span><span class="category"><strong>Teléfono: </strong> {{data.eventphonenumer}}.</span></td>
+        <td>
+          <span class="title"><strong>Lugar: </strong>{{data.eventneighborhood}}.</span>
+          <span class="quantity"><strong>CP: </strong> {{data.eventzipcode}}</span>
+          <span class="category"><strong>Teléfono: </strong> {{data.eventphonenumer}}.</span>
+        </td> -->
         <td>
           <a href="#/event/{{data.idevent}}"><span class="label label-primary editProduct" data-id='{{data.idevent}}' style="cursor:pointer">Detalles</span></a><br>
-          <span class="label label-danger deleteEvent" data-id='{{data.idevent}}' style="cursor:pointer">Borrar</span>
+          <!-- <span class="label label-danger deleteEvent" data-id='{{data.idevent}}' style="cursor:pointer">Borrar</span> -->
         </td>
       </tr>
     </tbody>

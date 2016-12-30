@@ -1,4 +1,4 @@
-<div class="row partial-container" id="eventos-site">
+<div class="row partial-container" id="eventos-site" ng-controller="EventsController">
   <div class="container-carrusel-grid">
     <div class="info-event">
       <div class="image-event">
@@ -29,9 +29,25 @@
       <div class="displace left-displace"><img src="./src/images/sicon-01.png"></div>
       <div class="container-carrusel" data-pos="1">
         <div class="openInfoElement"></div>
-        <div class="group-items" ng-repeat="(key, data) in eventsList">
+        <div class="group-items" ng-repeat="(key, data) in eventsListSimple">
           <ul>
             <li data-id="{{data.idevent}}" ng-repeat="(key, data) in data" load-grid-carrusel>
+              <h5 class="text-center">EXPO</h5>
+              <span class="text-center">{{data.eventname}} <br> {{data.eventdateday}} de {{data.eventdatemonth}} {{data.eventdateyear}}</span>
+              <img src="./admin/src/images/CoverEvents/{{data.eventCover}}">
+            </li>
+            <li data-id="{{data.idevent}}" ng-repeat="(key, data) in data" load-grid-carrusel>
+              <h5 class="text-center">DEGUSTACIÓN CLANDESTINA</h5>
+              <span class="text-center">{{data.eventname}} <br> {{data.eventdateday}} de {{data.eventdatemonth}} {{data.eventdateyear}}</span>
+              <img src="./admin/src/images/CoverEvents/{{data.eventCover}}">
+            </li>
+            <li data-id="{{data.idevent}}" ng-repeat="(key, data) in data" load-grid-carrusel>
+              <h5 class="text-center">ACTIVACIÓN CENTRO CONSUMO</h5>
+              <span class="text-center">{{data.eventname}} <br> {{data.eventdateday}} de {{data.eventdatemonth}} {{data.eventdateyear}}</span>
+              <img src="./admin/src/images/CoverEvents/{{data.eventCover}}">
+            </li>
+            <li data-id="{{data.idevent}}" ng-repeat="(key, data) in data" load-grid-carrusel>
+              <h5 class="text-center">MEZCALERIA ITIRENANTE</h5>
               <span class="text-center">{{data.eventname}} <br> {{data.eventdateday}} de {{data.eventdatemonth}} {{data.eventdateyear}}</span>
               <img src="./admin/src/images/CoverEvents/{{data.eventCover}}">
             </li>

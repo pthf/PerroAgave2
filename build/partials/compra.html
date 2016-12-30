@@ -75,7 +75,7 @@
           <!-- Nombre -->
           <div class="user-data-row">
             <div class="left-side-data">
-              <span>NOMBRE</span>
+              <span>NOMBRE *</span>
             </div>
             <div class="right-side-data">
               <input type="text" name="name" value="{{userData.username}}" class="profile-input" readonly="true" data-status="acepted" disabled>
@@ -85,7 +85,7 @@
           <!-- Apellido -->
           <div class="user-data-row">
             <div class="left-side-data">
-              <span>APELLIDOS</span>
+              <span>APELLIDOS *</span>
             </div>
             <div class="right-side-data">
               <input type="text" name="lastname" value="{{userData.userlastname}}" class="profile-input" readonly="true" data-status="acepted" disabled>
@@ -95,7 +95,7 @@
           <!-- E-MAIL -->
           <div class="user-data-row">
             <div class="left-side-data">
-              <span>E-MAIL</span>
+              <span>E-MAIL *</span>
             </div>
             <div class="right-side-data">
               <input type="text" name="email" value="{{userData.useremail}}" data-email="{{userData.useremail}}" class="profile-input" readonly="true" data-status="acepted" disabled>
@@ -149,11 +149,16 @@
           <!-- C.P. -->
           <div class="user-data-row">
             <div class="left-side-data">
-              <span>CÓDIGO POSTAl</span>
+              <span>CÓDIGO POSTAL</span>
             </div>
             <div class="right-side-data">
               <input type="tel" name="postalcode" value="{{userData.userzipcode}}" class="profile-input" readonly="true" data-status="acepted" disabled>
               <span class="msgError"></span>
+            </div>
+          </div>
+          <div class="user-data-row">
+            <div class="col-lg-12 text-center">
+              * Campos obligatorios.
             </div>
           </div>
         </div>
@@ -179,7 +184,7 @@
           <!-- Nombre -->
           <div class="user-data-row">
             <div class="left-side-data">
-              <span>NOMBRE</span>
+              <span>NOMBRE *</span>
             </div>
             <div class="right-side-data">
               <input type="text" name="name" value="{{addressData.name}}" class="profile-input" data-status="acepted">
@@ -189,7 +194,7 @@
           <!-- Teléfono  -->
           <div class="user-data-row">
             <div class="left-side-data">
-              <span>TELÉFONO</span>
+              <span>TELÉFONO *</span>
             </div>
             <div class="right-side-data">
               <input type="tel" name="phone" value="{{addressData.phone}}" class="profile-input"  data-status="acepted" >
@@ -199,7 +204,7 @@
           <!-- ESTADO -->
           <div class="user-data-row">
             <div class="left-side-data">
-              <span>ESTADO</span>
+              <span>ESTADO *</span>
             </div>
             <div class="right-side-data">
               <select class="profile-input" ng-model="addressState" ng-change="changeState(addressState)" data-status="acepted" name="state">
@@ -211,7 +216,7 @@
           <!-- CIUDAD -->
           <div class="user-data-row">
             <div class="left-side-data">
-              <span>CIUDAD</span>
+              <span>CIUDAD *</span>
             </div>
             <div class="right-side-data">
               <select class="profile-input" ng-model="addressCity" ng-change="changeCity(addressCity)" data-status="acepted" name="city">
@@ -223,7 +228,7 @@
           <!-- CALLE -->
           <div class="user-data-row">
             <div class="left-side-data">
-              <span>DIRECCIÓN</span>
+              <span>DIRECCIÓN *</span>
             </div>
             <div class="right-side-data">
               <input type="text" name="address" value="{{addressData.address}}" class="profile-input" data-status="acepted">
@@ -233,7 +238,7 @@
           <!-- REFERENCIA -->
           <div class="user-data-row">
             <div class="left-side-data">
-              <span>REFERENCIAS</span>
+              <span>REFERENCIAS *</span>
             </div>
             <div class="right-side-data">
               <input type="text" name="addressdescription" value="{{addressData.addressdescription}}" ng-if="addressData.cartshop === 1" class="profile-input" data-status="acepted">
@@ -244,11 +249,16 @@
           <!-- C.P. -->
           <div class="user-data-row">
             <div class="left-side-data">
-              <span>CÓDIGO POSTAl</span>
+              <span>CÓDIGO POSTAL *</span>
             </div>
             <div class="right-side-data">
               <input type="tel" name="postalcode" value="{{addressData.postalcode}}" class="profile-input" data-status="acepted">
               <span class="msgError"></span>
+            </div>
+          </div>
+          <div class="user-data-row">
+            <div class="col-lg-12 text-center">
+              * Campos obligatorios.
             </div>
           </div>
         </div>

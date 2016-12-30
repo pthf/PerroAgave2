@@ -78,9 +78,11 @@
         $fileType = $_FILES["eventImageCover"]["type"][$key];
         $fileTemp = $_FILES["eventImageCover"]["tmp_name"][$key];
         move_uploaded_file($fileTemp, "../src/images/CoverEvents/".$fileName);
+        // $query = "INSERT INTO event VALUES (null,'".$fileName."','".$data['eventName']."','".$eventurl."','".$data['eventDescription']."',
+        //                                       '".$eventdate."','".$data['eventProgramDescription']."','".$data['eventAddress']."','".$data['eventCity']."',
+        //                                       '".$data['eventState']."','".$data['eventNeighborhood']."','".$data['eventZipCode']."','".$data['eventPhoneNumber']."','".$data['eventStatus']."')";
         $query = "INSERT INTO event VALUES (null,'".$fileName."','".$data['eventName']."','".$eventurl."','".$data['eventDescription']."',
-                                              '".$eventdate."','".$data['eventProgramDescription']."','".$data['eventAddress']."','".$data['eventCity']."',
-                                              '".$data['eventState']."','".$data['eventNeighborhood']."','".$data['eventZipCode']."','".$data['eventPhoneNumber']."','".$data['eventStatus']."')";           
+                                              '0000-00-00','Sin registro','Sin registro','1','1','Sin registro','00000','Sin registro','1')";           
         $result = $this->connection->query($query);
       }   
         $idEvent = $this->connection->insert_id;
@@ -115,18 +117,21 @@
         $fileType = $_FILES["eventImageCover"]["type"][0];
         $fileTemp = $_FILES["eventImageCover"]["tmp_name"][0];
         move_uploaded_file($fileTemp, "../src/images/CoverEvents/".$fileName);
+        // $query = "UPDATE event SET eventCover='".$fileName."',eventname='".$data['eventName']."',eventurl='".$eventurl."',
+        //                             eventdescription='".$data['eventDescription']."',eventdate='".$eventdate."',eventscheduledescription='".$data['eventProgramDescription']."',
+        //                             eventaddress='".$data['eventAddress']."',eventcity='".$data['eventCity']."',eventstate='".$data['eventState']."',
+        //                             eventneighborhood='".$data['eventNeighborhood']."',eventzipcode='".$data['eventZipCode']."',eventphonenumer='".$data['eventPhoneNumber']."',
+        //                             eventstatus='".$data['eventStatus']."' WHERE idevent='".$data['eventId']."'";      
         $query = "UPDATE event SET eventCover='".$fileName."',eventname='".$data['eventName']."',eventurl='".$eventurl."',
-                                    eventdescription='".$data['eventDescription']."',eventdate='".$eventdate."',eventscheduledescription='".$data['eventProgramDescription']."',
-                                    eventaddress='".$data['eventAddress']."',eventcity='".$data['eventCity']."',eventstate='".$data['eventState']."',
-                                    eventneighborhood='".$data['eventNeighborhood']."',eventzipcode='".$data['eventZipCode']."',eventphonenumer='".$data['eventPhoneNumber']."',
-                                    eventstatus='".$data['eventStatus']."' WHERE idevent='".$data['eventId']."'";         
+                                    eventdescription='".$data['eventDescription']."' WHERE idevent='".$data['eventId']."'";    
         $result = $this->connection->query($query);
       } else {
-        $query = "UPDATE event SET eventname='".$data['eventName']."',eventurl='".$eventurl."',
-                                    eventdescription='".$data['eventDescription']."',eventdate='".$eventdate."',eventscheduledescription='".$data['eventProgramDescription']."',
-                                    eventaddress='".$data['eventAddress']."',eventcity='".$data['eventCity']."',eventstate='".$data['eventState']."',
-                                    eventneighborhood='".$data['eventNeighborhood']."',eventzipcode='".$data['eventZipCode']."',eventphonenumer='".$data['eventPhoneNumber']."',
-                                    eventstatus='".$data['eventStatus']."' WHERE idevent='".$data['eventId']."'";        
+        // $query = "UPDATE event SET eventname='".$data['eventName']."',eventurl='".$eventurl."',
+        //                             eventdescription='".$data['eventDescription']."',eventdate='".$eventdate."',eventscheduledescription='".$data['eventProgramDescription']."',
+        //                             eventaddress='".$data['eventAddress']."',eventcity='".$data['eventCity']."',eventstate='".$data['eventState']."',
+        //                             eventneighborhood='".$data['eventNeighborhood']."',eventzipcode='".$data['eventZipCode']."',eventphonenumer='".$data['eventPhoneNumber']."',
+        //                             eventstatus='".$data['eventStatus']."' WHERE idevent='".$data['eventId']."'";  
+        $query = "UPDATE event SET eventname='".$data['eventName']."',eventurl='".$eventurl."',eventdescription='".$data['eventDescription']."' WHERE idevent='".$data['eventId']."'";        
         $result = $this->connection->query($query);
       }   
     }
@@ -247,15 +252,15 @@
     }
     private function changeStatusOrder(){
       parse_str($_POST['data'], $data);
-      $query = "UPDATE padb.order SET orderstatusfacture = '".$data['orderStatus']."' WHERE idorder = '".$data['orderId']."'";
+      $query = "UPDATE perroagave.order SET orderstatusfacture = '".$data['orderStatus']."' WHERE idorder = '".$data['orderId']."'";
       $result = $this->connection->query($query); 
     }
     private function invoiceOrder(){
-      $query = "UPDATE padb.order SET orderstatusfacture = 1 WHERE idorder = '".$_POST['idOrder']."'";
+      $query = "UPDATE perroagave.order SET orderstatusfacture = 1 WHERE idorder = '".$_POST['idOrder']."'";
       $result = $this->connection->query($query); 
     }
     private function invoiceOrder_(){
-      $query = "UPDATE padb.order SET orderstatusentrega = 1 WHERE idorder = '".$_POST['idOrder']."'";
+      $query = "UPDATE perroagave.order SET orderstatusentrega = 1 WHERE idorder = '".$_POST['idOrder']."'";
       $result = $this->connection->query($query); 
     }
   }

@@ -61,7 +61,7 @@
       <!-- Nombre -->
       <div class="user-data-row">
         <div class="left-side-data">
-          <span>NOMBRE</span>
+          <span>NOMBRE *</span>
         </div>
         <div class="right-side-data">
           <input type="text" name="name" value="{{userData.username}}" class="profile-input" readonly="true" data-status="acepted" disabled>
@@ -71,7 +71,7 @@
       <!-- Apellido -->
       <div class="user-data-row">
         <div class="left-side-data">
-          <span>APELLIDOS</span>
+          <span>APELLIDOS *</span>
         </div>
         <div class="right-side-data">
           <input type="text" name="lastname" value="{{userData.userlastname}}" class="profile-input" readonly="true" data-status="acepted" disabled>
@@ -81,7 +81,7 @@
       <!-- E-MAIL -->
       <div class="user-data-row">
         <div class="left-side-data">
-          <span>E-MAIL</span>
+          <span>E-MAIL *</span>
         </div>
         <div class="right-side-data">
           <input type="text" name="email" value="{{userData.useremail}}" data-email="{{userData.useremail}}" class="profile-input" readonly="true" data-status="acepted" disabled>
@@ -135,18 +135,27 @@
       <!-- C.P. -->
       <div class="user-data-row">
         <div class="left-side-data">
-          <span>CÓDIGO POSTAl</span>
+          <span>CÓDIGO POSTAL</span>
         </div>
         <div class="right-side-data">
           <input type="tel" name="postalcode" value="{{userData.userzipcode}}" class="profile-input" readonly="true" data-status="acepted" disabled>
           <span class="msgError"></span>
         </div>
       </div>
+      <div class="user-data-row">
+        <div class="col-lg-12 text-center">
+          * Campos obligatorios.
+        </div>
+      </div>
     </div>
     <div class="edit-button-wrapper">
+      <a href="./#/#shop-site" style="color:#000">
+        <span class="button-next">
+          IR A LA TIENDA
+        </span>
+      </a>
       <span class="edit-button edit-button-toggle edit-data show-button"> </span>
       <span class="edit-button save-data hide-button" data-id-user="{{userData.iduser}}">GUARDAR</span>
-      <!-- <span class="edit-button edit-passwd hide-button">EDITAR MI CONTRASEÑA</span> -->
     </div>
     <span class="msgeErrorForm"></span>
   </div>

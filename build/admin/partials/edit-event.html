@@ -16,7 +16,7 @@
 				<div class="col-sm-12">
 				  <textarea type="text" class="form-control" id="eventDescription" name="eventDescription">{{eventItem[0].eventdescription}}</textarea>
 				</div>
-				<label for="eventDate" class="col-sm-12 control-label" style="text-align: left;">Fecha del evento *</label>
+				<!-- <label for="eventDate" class="col-sm-12 control-label" style="text-align: left;">Fecha del evento *</label>
 				<div class="col-sm-12">
                 	<div class="col-md-4"><input required="" type="text" class="form-control" id="eventDay" name="eventDay" placeholder="00" value="{{eventItem[0].eventDay}}"></div>
 	                <div class="col-md-4"><input required="" type="text" class="form-control" id="eventMonth" name="eventMonth" placeholder="00" value="{{eventItem[0].eventMonth}}"></div>
@@ -29,10 +29,19 @@
 				<label for="eventAddress" class="col-sm-12 control-label" style="text-align: left;">Dirección *</label>
 		        <div class="col-sm-12">
 		          <input required type="text" class="form-control" id="eventAddress" name="eventAddress" value="{{eventItem[0].eventaddress}}"></input>
+		        </div> -->
+		        <label for="eventImageCover" class="col-sm-12 control-label" style="text-align: left;">Imágen principal</label>
+		        <div class="col-sm-12 cover">
+		          <input type="file" class="form-control" id="eventImageCover" name="eventImageCover[]"></input>
+		        </div>
+		        <div class="col-sm-12 text-center result"></div>
+		        <div class="col-sm-12" style="text-align: right;">
+		          <input type="submit" class="btn btn-default" value="Guardar"  name="" style="margin-top: 10px;padding: 7px;"></input>
+		          <input type="" class="btn btn-default clickUpdate" value=""  name="" style="display:none" ng-click="update()"></input>
 		        </div>
 			</div>
 		</div>
-		<div class="col-md-5">
+		<!-- <div class="col-md-5">
 			<div class="form-group">
 		        <label for="eventState" class="col-sm-12 control-label" style="text-align: left;">Estado *</label>
 		        <div class="col-sm-12">
@@ -70,7 +79,7 @@
 		        	<select required class="form-control" id="eventStatus" name="eventStatus">
 		        		<option disabled="" selected="" value="">Selecciona..</option>
 		        		<option ng-repeat="(key, data) in statusData" value="{{data.value}}" ng-if="data.value == eventItem[0].eventstatus" selected>{{data.name}}</option>
-		        		<option ng-repeat="(key, data) in statusData" value="{{data.value}}" ng-if="data.value != eventItem[0].eventstatus">{{data.name}}</option> -->
+		        		<option ng-repeat="(key, data) in statusData" value="{{data.value}}" ng-if="data.value != eventItem[0].eventstatus">{{data.name}}</option> 
 		        	</select>
 		        </div>
 		        <label for="eventImageCover" class="col-sm-12 control-label" style="text-align: left;">Imágen principal</label>
@@ -83,6 +92,6 @@
 		          <input type="" class="btn btn-default clickUpdate" value=""  name="" style="display:none" ng-click="update()"></input>
 		        </div>
 			</div>
-		</div>
+		</div> -->
     </form>
 </div>

@@ -43,7 +43,7 @@
                 <span class="title-bottle">{{data.productname | uppercase}}</span>
                 <span class="info-bottle">{{data.productdescription}}</span>
               </div>
-              <img src="./admin/src/images/Products/{{data.productimage}}">
+              <img class="bottle" src="./admin/src/images/Products/{{data.productimage}}">
               <div class="name">{{data.productname | uppercase}}, {{data.productcategoryname | uppercase}}</div>
               <div class="cant">{{data.productquantity}} ml</div>
               <div class="price"><div>{{data.productrealprice | currency}}</div><div style="color:red; font-weight: bold;" ng-if="data.discount>0">{{data.productdiscountprice | currency}}</div></div>

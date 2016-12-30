@@ -4,10 +4,11 @@
     <a href="#/"><div class="cont-image"><img src="./src/images/PA.png"></div></a>
   </div>
   <ul class="menu-nav">
-    <a href="#/login" ng-if="userLogin == 0"><li><div class="cont-image"><img src="./src/images/icon-01.png"></div></li></a>
-    <a href="#/profile" ng-if="userLogin != 0"><li><div class="cont-image"><img src="./src/images/icon-01.png"></div></li></a>
-    <li><div class="cont-image" ng-click="changeItem(2)"><img src="./src/images/icon-02.png"></div></li>
-    <li class="menu-nav-li">
+    <a href="#/login" ng-if="userLogin == 0"><span style="color:#FFF">Inicia sesión</span><li><div class="cont-image"><img src="./src/images/icon-01.png"></div></li></a>
+    <a href="#/profile" ng-if="userLogin != 0"> <span style="color:#FFF">Perfil</span><li><div class="cont-image"><img src="./src/images/icon-01.png"></div></li></a>
+    <span style="color:#FFF">Carrito</span><li><div class="cont-image" ng-click="changeItem(2)"><img src="./src/images/icon-02.png"></div></li>
+    <span style="color:#FFF">Menú</span>
+     <li class="menu-nav-li" style="cursor: pointer;">
       <div class="cont-image cont-image-selected" ><img src="./src/images/icon-03.png"></div>
       <ul class="submenu" ng-if="menuhome == 1">
         <li class="menu-close"><div class="cont-image"><img src="./src/images/icon-04.png"></div></li>

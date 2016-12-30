@@ -1,6 +1,6 @@
-<div class="row partial-container" ng-controller="EventsController" >
+<div class="row partial-container" id="eventos-site" ng-controller="EventsController" >
   <div class="container-carrusel-grid">
-    <div class="info-event" ng-if="eventSelected === data.idevent" ng-repeat="(key, data) in eventsListSimple">
+    <!-- <div class="info-event" ng-if="eventSelected === data.idevent" ng-repeat="(key, data) in eventsListSimple">
       <div class="gallery">
         <div class="preview">
           <div class="title-event-preview"><span>{{data.eventname | uppercase}} - {{data.eventdateday}} de {{data.eventdatemonth}} {{data.eventdateyear}}</span></div>
@@ -39,6 +39,135 @@
         </div>
       </div>
       <div class="displace right-displace"><img src="./src/images/sicon-02.png"></div>
+    </div> -->
+    
+    <!-- {{eventsListSimple}}
+    {{eventSelected}} -->
+    <div class="row events">
+      <div ng-repeat="(key, data) in eventsListSimple">
+        <div class="col-xs-6 col-sm-3 events-items" style="cursor: pointer;" ng-click="showEventSelected(data.idevent)">
+          <h5 class="text-center">{{data.eventname | uppercase}}</h5>
+          <img class="img-responsive items-event" src="./admin/src/images/CoverEvents/{{data.eventCover}}">
+        </div>
+      </div>
     </div>
+
+  </div>
+
+    <div ng-if="eventSelected === data.idevent" ng-repeat="(key, data) in eventsListSimple">
+      <div class="row events-show">
+        <div class="col-md-6"></div>
+        <div class="col-md-6">
+          <div class="actions events-gallery click">
+            <ul>
+              <li class="close-view"><img src="./src/images/iconoerrarventana.png"></li>
+            </ul>
+          </div>
+        </div>
+        <div ng-repeat="(key, data ) in data.listGalleryEvent">
+          <div class="col-xs-6 col-sm-3 events-items">
+            <img class="img-responsive items-event" src="./admin/src/images/galleryEvents/{{data.eventimagegalleryimage}}" height="264px;" width="264px;">
+          </div>
+        </div>
+      </div>
+    </div>
+
+  <br><br>
+  <div class="col-lg-12 text-center">
+    <span class="text-open-guide">Para más información contáctanos <strong><u>contacto@perroagave.com</u></strong></span>
   </div>
 </div>
+<style type="text/css">
+  .items-event {
+    height: 264px;
+  }
+  .events-show {
+    background: #000;
+    padding-bottom: 30px;
+  }
+  .events-gallery {
+    margin-left: 93%;
+    padding-bottom: 8px;
+    width: 10%;
+  }
+  @media (max-width:1500px) {
+    .items-event {
+      height: 220px;
+    }
+  }
+  @media (max-width:1409px) {
+    .events-items h5 {
+      font-size: 13px;
+    }
+  }
+  @media (max-width:1366px) {
+    .items-event {
+      font-size: 15px;
+      height: 250px;
+    }
+  }
+  @media (max-width:1155px) {
+    .events-items h5 {
+      font-size: 12px;
+    }
+    .items-event {
+      height: 220px;
+    }
+  }
+  @media (max-width:1075px) {
+    .events-items {
+      width: 50%;
+    }
+    .events-items h5 {
+      font-size: 20px;
+    }
+    .items-event {
+      height: 380px;
+      width: 100%;
+    }
+  }
+  @media (max-width:970px) {
+    .items-event {
+      height: 310px;
+    }
+    .events-items h5 {
+      font-size: 16px;
+    }
+  }
+  @media (max-width:780px) {
+    .items-event {
+      height: 270px;
+    }
+    .events-items h5 {
+      font-size: 14px;
+    }
+  }
+  @media (max-width:690px) {
+    .items-event {
+      height: 250px;
+    }
+    .events-items h5 {
+      font-size: 12px;
+    }
+  }
+  @media (max-width:480px) {
+    .events-items {
+      width: 100%;
+      margin: 0 0 20px;
+    }
+    .events-items h5 {
+      font-size: 25px;
+    }
+    .items-event {
+      height: 320px;
+    }
+    .col-md-6 {
+      padding-top: 15%;
+    }
+    .events-gallery {
+      right: 42%;
+      width: 15%;
+    }
+  }
+</style>
+

@@ -19,6 +19,9 @@
     </tbody>
   </table>
   <div class="col-md-5">
+     <div class="alert alert-info text-center" role="alert">Es requisito tener 4 imágenes agregadas.</div>
+  </div>
+  <div ng-show="eventItemImages.length < 4" class="col-md-5">
     <div class="form-group">
       <form id="addImagesEvent">
         <label for="eventImages" class="col-sm-12 control-label" style="text-align: left;">Imágenes</label>
